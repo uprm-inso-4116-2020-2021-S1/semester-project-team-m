@@ -18,7 +18,6 @@ class Major:
                     self.setup(major=self.offers[1])
 
             redirect(self.major)
-
         else:
             return "Major Not Supported"
 

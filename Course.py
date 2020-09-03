@@ -4,7 +4,6 @@ class Course:
 
         self.code = int()
         self.abbreviation = str()
-
         self.course_code = self.abbreviation + str(self.code)
         self.worth = int()
         self.modality = None
