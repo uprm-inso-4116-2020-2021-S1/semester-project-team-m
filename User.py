@@ -1,8 +1,10 @@
 import re
+import django
+im
 """
 self.user_roles should be an enum {student, develop, guest}
 """
-
+U = TypeVar()
 class User:
 
     def __init__(self):
@@ -114,6 +116,7 @@ class Developer(User):
             """
             target.password = None
 
-
+    def new_user(self, target: User) -> User:
+        return target
 
 
