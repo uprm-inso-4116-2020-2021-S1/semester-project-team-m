@@ -1,4 +1,4 @@
-class Course
+class Course:
 
     def __init__(self):
 
@@ -30,7 +30,7 @@ class Course
         self.preres = str()
         self.cores = str()
 
-    def professor(self, value=None:):
+    def professor(self, value=None: str):
 
         if value is not None and self.professor is None:
             self.professor = value
