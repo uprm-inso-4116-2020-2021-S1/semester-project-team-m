@@ -1,10 +1,8 @@
 import re
 import django
-im
 """
 self.user_roles should be an enum {student, develop, guest}
 """
-U = TypeVar()
 class User:
 
     def __init__(self):
@@ -111,12 +109,11 @@ class Developer(User):
 
     def admin_pass_change(self, target: User):
         if self.privileges:
-            """
-            For proof of concept, not for real world use. Not safe
-            """
             target.password = None
 
+    # -> Defines the type of the object that is being returned. This return will have all of the attributes of a new user.
     def new_user(self, target: User) -> User:
-        return target
+        if self.privileges:
+            return target
 
 

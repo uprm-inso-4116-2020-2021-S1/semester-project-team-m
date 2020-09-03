@@ -3,6 +3,8 @@ from dataclasses import *
 from typing import *
 from enum import Enum
 from fields import Fields
+
+
 @dataclass
 class Rubric:
 
@@ -24,9 +26,10 @@ class Rubric:
         del self._link
         self._link = None
         self.isAvaliable = False
+
+
 @dataclass
 class Class(ABC):
-
 
     def __init__(self, course_code, worth):
         self.course_code: str = course_code
@@ -35,14 +38,14 @@ class Class(ABC):
     @property
     def abbr(self):
         return self.course_code[0:4]
+
     @property
     def code(self):
         return self.course_code[4::]
 
-
     @property
     def intensity(self):
-        val  = str(self.code)
+        val = str(self.code)
         if val.startswith("3"):
             return "Basic Course"
         elif val.startswith("4"):
@@ -59,17 +62,18 @@ class Class(ABC):
 
 class Course(Class):
 
-    preres: List[Type[Class]] = None
+    prereq: List[Type[Class]] = None
     cores: List[Type[Class]] = None
     department: str = None
     rubric: Rubric()
     title: str
+
     def __init__(self, course_code, worth):
         super().__init__(course_code,worth)
 
     @property
     def requirements(self):
-        self._requirements = {"Pre": self.preres , "Co": self.cores}
+        self._requirements = {"Pre": self.prereq, "Co": self.cores}
         return self._requirements
 
 

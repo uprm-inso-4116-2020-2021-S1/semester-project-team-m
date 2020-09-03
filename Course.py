@@ -9,7 +9,6 @@ class Course:
         self.modality = None
         self.term = None
 
-
     def type(self) -> str:
         if str(self.code)[0] is 3:
             return "Basic Course"

@@ -1,6 +1,5 @@
 class Major:
 
-
     def __init__(self, major: str):
         self.major = major
         self.major_specs()

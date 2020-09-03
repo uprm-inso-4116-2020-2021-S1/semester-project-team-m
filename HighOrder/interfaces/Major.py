@@ -5,6 +5,7 @@ from Course import Course
 from typing import *
 from abc import *
 
+
 @dataclass
 class Minor:
 
@@ -12,12 +13,14 @@ class Minor:
     minor_credits: int = None
     degree: str = None
 
+
 @dataclass
 class Major(ABC):
 
     major_credits: int = None
     department: str = None
     G: Graph = Graph()
+
 
 class INSO(Major):
 
