@@ -7,9 +7,9 @@ class Course:
 
         self.course_code = self.abbreviation + str(self.code)
         self.worth = int()
+        self.modality = None
+        self.term = None
 
-        self.section = int()
-        self.professor = None
 
     def type(self) -> str:
         if str(self.code)[0] is 3:
@@ -30,7 +30,7 @@ class Course:
         self.preres = str()
         self.cores = str()
 
-    def professor(self, value=None: str):
+    def professor(self, value=None):
 
         if value is not None and self.professor is None:
             self.professor = value
