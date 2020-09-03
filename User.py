@@ -53,10 +53,8 @@ class User:
 class Student(User):
 
     def __init__(self):
-        self = User.__init__(self)
-
-    def password(self, enter=None, change=False):
-        super(Student, self).password(self,enter,change)
+        super(User, self).__init__(self)
+        self.student_id_number = int()
 
     """
         Attribute: Student ID Number
@@ -104,6 +102,17 @@ class Developer(User):
 
     def __init__(self):
         super(User, self).__init__()
+        """
+        All developers have admin privileges
+        """
+        self.privileges = True
+
+    def admin_pass_change(self, target: User):
+        if self.privileges:
+            """
+            For proof of concept, not for real world use. Not safe
+            """
+            target.password = None
 
 
 
