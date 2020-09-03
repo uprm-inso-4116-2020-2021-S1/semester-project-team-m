@@ -55,6 +55,9 @@ class Student(User):
     def __init__(self):
         self = User.__init__(self)
 
+    def password(self, enter=None, change=False):
+        super(Student, self).password(self,enter,change)
+
     """
         Attribute: Student ID Number
     """
@@ -97,7 +100,10 @@ class Student(User):
         return year
 
 
+class Developer(User):
 
+    def __init__(self):
+        super(User, self).__init__()
 
 
 
