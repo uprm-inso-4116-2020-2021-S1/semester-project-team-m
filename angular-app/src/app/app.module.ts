@@ -9,12 +9,12 @@ import { MainModule } from './main/main.module';
 import { AppComponent } from './app.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'home' }
+  { path: '', pathMatch: 'full', redirectTo: 'courses' }
 ];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
