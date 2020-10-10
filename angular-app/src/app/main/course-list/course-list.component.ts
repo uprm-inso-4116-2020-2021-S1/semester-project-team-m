@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../business-logic/api/api.service';
+
 
 @Component({
   selector: 'app-course-list',
@@ -7,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseListComponent implements OnInit {
 
-  constructor() { }
+  public movies = [];
 
-  ngOnInit() { }
+  constructor(
+    private api: ApiService
+  ) { }
+
+  ngOnInit() {
+    this.movies = this.api.getMovies()
+  }
 }

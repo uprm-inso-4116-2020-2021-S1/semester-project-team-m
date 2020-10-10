@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CourseListComponent } from './course-list/course-list.component';
 import { CourseDetailsComponent } from './course-details/course-details.component';
 import { CourseFormComponent } from './course-form/course-form.component'
+import { ApiService } from '../business-logic/api/api.service';
 
 const routes: Routes = [
   { path: 'courses', component: MainComponent }
@@ -23,6 +24,9 @@ const routes: Routes = [
   ],
   exports: [
     RouterModule
+  ],
+  providers: [
+    ApiService,
   ]
 })
 export class MainModule { }
