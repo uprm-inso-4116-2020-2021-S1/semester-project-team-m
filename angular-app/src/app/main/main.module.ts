@@ -2,13 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainComponent } from './main.component';
 import { Routes, RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CourseListComponent } from './course-list/course-list.component';
 import { CourseDetailsComponent } from './course-details/course-details.component';
-import { CourseFormComponent } from './course-form/course-form.component'
-import { ApiService } from '../business-logic/api/api.service';
 
 const routes: Routes = [
-  { path: 'courses', component: MainComponent }
+  { path: 'home', component: MainComponent }
 ];
 
 @NgModule({
@@ -16,17 +15,17 @@ const routes: Routes = [
     MainComponent,
     CourseListComponent,
     CourseDetailsComponent,
-    CourseFormComponent
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
   exports: [
     RouterModule
   ],
   providers: [
-    ApiService,
+    // ApiService,
   ]
 })
 export class MainModule { }

@@ -1,30 +1,50 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
-import { Routes, RouterModule } from '@angular/router'
-
-import { AuthModule } from './auth/auth.module';
-import { MainModule } from './main/main.module';
-
+import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { MainModule } from './main/main.module';
+import { AuthComponent } from './auth/auth.component'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  MatFormFieldModule,
+  MatButtonModule,
+  MatInputModule,
+  MatCardModule,
+  MatIconModule,
+  MatListModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatTableModule
+} from "@angular/material";
+import { MaterialModule } from './material.module';
 
-const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'courses' }
-];
+
 
 @NgModule({
   declarations: [
     AppComponent,
+    AuthComponent
   ],
   imports: [
+    MaterialModule,
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
-    AuthModule,
+    HttpClientModule,
     MainModule,
-    RouterModule.forRoot(routes)
-  ],
-  exports: [
-    RouterModule
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
+    MatIconModule,
+    MatButtonModule,
+    MatListModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatTableModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
