@@ -19,13 +19,15 @@ import {
   MatTableModule
 } from "@angular/material";
 import { MaterialModule } from './material.module';
+import { LoginComponent } from './login/login.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthComponent
+    AuthComponent,
+    LoginComponent
   ],
   imports: [
     MaterialModule,
