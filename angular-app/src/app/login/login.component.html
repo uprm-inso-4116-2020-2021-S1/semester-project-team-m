@@ -15,8 +15,6 @@
       <input matInput #input required placeholder="Password" [type]="hide ? 'password' : 'text'" [formControl]="password" required>
       <mat-error *ngIf="password.invalid">{{getPasswordErrorMessage()}}</mat-error>
       <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-      <mat-hint>Must be 8 or more characters</mat-hint>
-      <mat-hint align="end">{{input.value?.length || 0}}/8</mat-hint>
     </mat-form-field>
 
     <br>

@@ -1,0 +1,49 @@
+
+.form-container{
+  background-color: rgba(3, 107, 252, 0.75);
+  border-radius: 25px;
+  height: 400px;
+  text-align: center;
+}
+
+.title{
+  color: white;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+
+
+form{
+  height: 80%;
+  width: 85%;
+  margin: auto;
+}
+
+
+mat-form-field{
+  width: 100%;
+  background-color: rgba(3,252,28, 0.85);
+  border: 2px solid black;
+  border-radius: 10px;
+  margin: 1%;
+}
+
+.button{
+  margin: 2% 10%;
+  height: 15%;
+  width: 30%;
+  border: 2px solid black;
+  border-radius: 10px;
+  background-color: gray;
+  color: black;
+}
+
+.button:hover{
+  border-color: white;
+  opacity: 0.8;
+}
+
+#submit-button{
+  background-color: rgba(3,252,28, 0.9);
+}

@@ -22,8 +22,9 @@ export class LoginComponent implements OnInit {
 //   });
   }
 
+  //missing email validation to enforce that the email already be in the system
   email = new FormControl('', [Validators.required, Validators.email]);
-  password = new FormControl('', [Validators.required, Validators.minLength(8)]);
+  password = new FormControl('', [Validators.required]);
 
   getEmailErrorMessage() {
     if (this.email.hasError('required')) {
@@ -36,7 +37,8 @@ export class LoginComponent implements OnInit {
     if (this.password.hasError('required')) {
       return 'You must enter a value';
     }
-    return this.password.hasError('minlength') ? 'Not 8 characters or more' : '';
+    return '';
+//     return this.password.hasError('minlength') ? 'Not 8 characters or more' : '';
   }
 
 }
