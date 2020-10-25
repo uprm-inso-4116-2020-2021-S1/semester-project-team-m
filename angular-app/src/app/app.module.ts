@@ -16,7 +16,7 @@ import {
   MatListModule,
   MatSelectModule,
   MatSidenavModule,
-  MatTableModule
+  MatTableModule,
 } from "@angular/material";
 import { MaterialModule } from './material.module';
 import { LoginComponent } from './login/login.component';
