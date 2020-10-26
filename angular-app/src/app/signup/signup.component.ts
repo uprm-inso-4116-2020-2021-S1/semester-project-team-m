@@ -2,6 +2,16 @@ import { Component, OnInit} from '@angular/core';
 import {FormControl, Validators, FormGroup, FormBuilder, NgForm, FormGroupDirective} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const invalidCtrl = !!(control && control.invalid && control.parent.dirty);
+    const invalidParent = !!(control && control.parent && control.parent.invalid && control.parent.dirty);
+
+    return (invalidCtrl || invalidParent);
+  }
+}
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -11,22 +21,19 @@ export class SignupComponent implements OnInit {
   signUpForm: FormGroup;
   matcher = new MyErrorStateMatcher();
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder) {
+    this.signUpForm = this.formBuilder.group({
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required, Validators.minLength(8)]],
+        confirmPassword: ['']
+      }, {validator: this.checkPasswords }
+    )
+
+   }
 
   ngOnInit() {
-    this.signUpForm = new FormGroup({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      confirmPassword: ['']
-    }, {validator: this.checkPasswords }
-   )
-
   }
 
-//   passwordMatches(control: AbstractControl): {[key: string]: boolean}| null{
-//     if(control.value !== undefined && (typeof(key)=='string') || )
-//
-//   }
   checkPasswords(group: FormGroup) { // here we have the 'passwords' group
     let pass = group.get('password').value;
     let confirmPass = group.get('confirmPassword').value;
@@ -62,11 +69,4 @@ export class SignupComponent implements OnInit {
 
 }
 
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const invalidCtrl = !!(control && control.invalid && control.parent.dirty);
-    const invalidParent = !!(control && control.parent && control.parent.invalid && control.parent.dirty);
 
-    return (invalidCtrl || invalidParent);
-  }
-}
