@@ -1,6 +1,6 @@
 
 .form-container{
-  background-color: rgba(3, 107, 252, 0.75);
+  background-color: #3899ef;
   border-radius: 25px;
   height: 400px;
   text-align: center;
@@ -23,8 +23,8 @@ form{
 
 mat-form-field{
   width: 100%;
-  background-color: rgba(3,252,28, 0.85);
-  border: 2px solid black;
+  background-color: #68de9d;
+
   border-radius: 10px;
   margin: 1%;
 }
@@ -33,18 +33,16 @@ mat-form-field{
   margin: 2% 10%;
   height: 15%;
   width: 30%;
-  border: 2px solid black;
   border-radius: 10px;
   background-color: gray;
   color: black;
 }
 
 .button:hover{
-  border-color: white;
+  border: 2px solid white;
   opacity: 0.8;
 }
 
 #submit-button{
-  background-color: rgba(3,252,28, 0.9);
+  background-color: #68de9d;
 }
-

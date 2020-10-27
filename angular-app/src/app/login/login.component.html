@@ -1,28 +1,52 @@
+
 <div class="form-container">
   <span class="title">Log In</span>
   <br>
-  <form class="form">
-    <mat-form-field appearance="fill">
-      <mat-label>email</mat-label>
-      <input matInput placeholder="john@email.com" [formControl]="email" required>
-      <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
+  <form class="form" [formGroup]="logInForm">
+    <mat-form-field>
+      <input matInput placeholder="email" formControlName="email" required>
+      <mat-error *ngIf="logInForm.hasError('required', 'email')">
+        Invalid email
+      </mat-error>
     </mat-form-field>
 
-    <br>
-
-    <mat-form-field appearance="fill">
-      <mat-label>password</mat-label>
-      <input matInput #input required placeholder="Password" [type]="hide ? 'password' : 'text'" [formControl]="password" required>
-      <mat-error *ngIf="password.invalid">{{getPasswordErrorMessage()}}</mat-error>
-      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    <mat-form-field>
+      <input matInput #input placeholder="Password" [type]="'password'" placeholder="password" formControlName="password" required>
+      <mat-error *ngIf="logInForm.hasError('required', 'password')">
+        Please enter your password
+      </mat-error>
+      <mat-hint align="end">{{input.value?.length || 0}}/8</mat-hint>
     </mat-form-field>
-
     <br>
     <input type="button" id="back-button" class="button" value="Back">
-    <input type="submit" id="submit-button" class="button" value="Sign In">
-
+    <input type="submit" id="submit-button" class="button" value="Log In">
   </form>
-
 </div>
+<!--<div class="form-container">-->
+<!--  <span class="title">Log In</span>-->
+<!--  <br>-->
+<!--  <form class="form">-->
+<!--    <mat-form-field appearance="fill">-->
+<!--      <mat-label>email</mat-label>-->
+<!--      <input matInput placeholder="john@email.com" [formControl]="email" required>-->
+<!--      <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>-->
+<!--    </mat-form-field>-->
+
+<!--    <br>-->
+
+<!--    <mat-form-field appearance="fill">-->
+<!--      <mat-label>password</mat-label>-->
+<!--      <input matInput #input required placeholder="Password" [type]="hide ? 'password' : 'text'" [formControl]="password" required>-->
+<!--      <mat-error *ngIf="password.invalid">{{getPasswordErrorMessage()}}</mat-error>-->
+<!--      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>-->
+<!--    </mat-form-field>-->
+
+<!--    <br>-->
+<!--    <input type="button" id="back-button" class="button" value="Back">-->
+<!--    <input type="submit" id="submit-button" class="button" value="Sign In">-->
+
+<!--  </form>-->
+
+<!--</div>-->
 
 

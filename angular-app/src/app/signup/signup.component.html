@@ -10,7 +10,7 @@
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput #input required placeholder="Password" [type]="'password'" placeholder="New password" formControlName="password" required>
+      <input matInput #input placeholder="Password" [type]="'password'" placeholder="New password" formControlName="password" required>
       <mat-error *ngIf="signUpForm.hasError('required', 'password')">
         Please enter your new password
       </mat-error>
@@ -23,6 +23,9 @@
         Passwords do not match
       </mat-error>
     </mat-form-field>
+    <br>
+    <input type="button" id="back-button" class="button" value="Back">
+    <input type="submit" id="submit-button" class="button" value="Sign Up">
   </form>
 <!--  <span class="title">Sign Up</span>-->
 <!--  <br>-->
