@@ -1,12 +1,28 @@
 
-.form-container{
-  background-color: #3899ef;
+.form-container {
+  background-color:#5E10BC;
   border-radius: 25px;
   height: 400px;
   text-align: center;
 }
+/* #3f7999 */
+/* #333333; */
 
-.title{
+/*
+  #5E10BC
+  #7E54D9
+  #8FD988
+  #70C056
+  #240259
+  #949494
+
+  #478559
+  #161748
+  #091f36
+*/
+
+
+.title {
   color: white;
   display: inline-block;
   vertical-align: middle;
@@ -14,22 +30,22 @@
 }
 
 
-form{
+form {
   height: 80%;
   width: 85%;
   margin: auto;
 }
 
 
-mat-form-field{
+mat-form-field {
   width: 100%;
-  background-color: #68de9d;
-
+  background-color: #8FD988;
+  /* background-color: #70C056; */
   border-radius: 10px;
   margin: 1%;
 }
 
-.button{
+.button {
   margin: 2% 10%;
   height: 15%;
   width: 30%;
@@ -38,11 +54,11 @@ mat-form-field{
   color: black;
 }
 
-.button:hover{
+.button:hover {
   border: 2px solid white;
   opacity: 0.8;
 }
 
-#submit-button{
-  background-color: #68de9d;
+#submit-button {
+  background-color:#8FD988;
 }
