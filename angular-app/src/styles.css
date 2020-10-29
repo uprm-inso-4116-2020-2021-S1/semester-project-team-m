@@ -1,7 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
-body {
-  margin: 0;
-  padding: 0
-}
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { 
+  margin: 0;
+  padding: 50px;
+  background-color: #292c35 !important; 
+  color: white !important; 
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+button {
+  outline: none !important;
+}
+
+a { 
+  text-decoration: none !important;
+}
+
+/* Text Colors */
+.white { color: white !important; }
+.green { color: #8FD988 !important; }
+.dark-gray { color: #4C4C4C !important; }
+.gray { color: #9B9B9B !important; }
+.light-gray { color: #E4E4E4 !important; }
+.purple { color: #5E10BC !important; }
+.light-purple { color:#8559e6 !important; }
+
+/* #8FD988 */
+  /* #70C056 */
+/* Background Colors */
+.bg-white { background-color: #f8f8f8; }
+.bg-green { background-color: #8FD988; }
+.bg-gray { background-color: #9B9B9B; }
+.bg-dark-gray { background-color: #4C4C4C; }
+.bg-light-gray { background-color: #E4E4E4; }

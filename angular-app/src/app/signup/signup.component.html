@@ -1,0 +1,72 @@
+<h1>The template in use is the auth.component.html</h1>
+
+<div class="form-container">
+  <span class="title">Sign Up</span>
+  <br>
+  <form class="form" [formGroup]="signUpForm">
+    <mat-form-field>
+      <input matInput placeholder="email" formControlName="email" required>
+      <mat-error *ngIf="signUpForm.hasError('required', 'email')">
+        Invalid email
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput #input placeholder="Password" [type]="'password'" placeholder="New password"
+        formControlName="password" required>
+      <mat-error *ngIf="signUpForm.hasError('required', 'password')">
+        Please enter your new password
+      </mat-error>
+      <mat-hint align="end">{{input.value?.length || 0}}/8</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Confirm password" [type]="'password'" formControlName="confirmPassword"
+        [errorStateMatcher]="matcher">
+      <mat-error *ngIf="signUpForm.hasError('notSame')">
+        Passwords do not match
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <input type="button" id="back-button" class="button" value="Back">
+    <input type="submit" id="submit-button" class="button" value="Sign Up">
+  </form>
+  <!--  <span class="title">Sign Up</span>-->
+  <!--  <br>-->
+
+  <!--  <form class="form" [FormGroup]="signUpForm">-->
+  <!--    <mat-form-field appearance="fill">-->
+  <!--&lt;!&ndash;      <mat-label>email</mat-label>&ndash;&gt;-->
+  <!--      <input matInput placeholder="john@email.com" formControlName="email" required>-->
+  <!--      <mat-error *ngIf="signUpForm.hasError('required', 'email')">Invalid Email</mat-error>-->
+  <!--    </mat-form-field>-->
+
+  <!--    <br>-->
+
+  <!--    <mat-form-field appearance="fill">-->
+  <!--&lt;!&ndash;      <mat-label>password</mat-label>&ndash;&gt;-->
+  <!--&lt;!&ndash;      <input matInput #input required placeholder="Password" [type]="hide ? 'password' : 'text'" [formControl]="password" required>&ndash;&gt;-->
+  <!--      <input matInput placeholder="Password"  formControlName="password" required>-->
+  <!--      <mat-error *ngIf="signUpForm.hasError('required', 'password')">Invalid Password</mat-error>-->
+  <!--&lt;!&ndash;      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>&ndash;&gt;-->
+  <!--&lt;!&ndash;      <mat-hint align="end">{{input.value?.length || 0}}/8</mat-hint>&ndash;&gt;-->
+  <!--    </mat-form-field>-->
+
+  <!--    <br>-->
+
+  <!--    <mat-form-field appearance="fill">-->
+  <!--&lt;!&ndash;      <mat-label>confirm password</mat-label>&ndash;&gt;-->
+  <!--      <input matInput placeholder="Confirm Password" formControlName="confirmPassword" [errorStateMatcher]="matcher">-->
+  <!--&lt;!&ndash;      <input matInput #input required placeholder="Confirm Password" [type]="hide ? 'password' : 'text'" formControlName="confirmPassword" [errorStateMatcher]="matcher">&ndash;&gt;-->
+  <!--      <mat-error *ngIf="signUpForm.hasError('notSame')">Passwords Do Not Match</mat-error>-->
+  <!--&lt;!&ndash;      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>&ndash;&gt;-->
+  <!--    </mat-form-field>-->
+
+
+  <!--    <br>-->
+  <!--    <input type="button" id="back-button" class="button" value="Back">-->
+  <!--    <input type="submit" id="submit-button" class="button" value="Sign In">-->
+
+  <!--  </form>-->
+
+</div>
