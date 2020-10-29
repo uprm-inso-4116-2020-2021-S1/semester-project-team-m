@@ -19,8 +19,6 @@ import {
   MatTableModule,
 } from "@angular/material";
 import { MaterialModule } from './material.module';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
 
 
 
@@ -28,8 +26,6 @@ import { SignupComponent } from './signup/signup.component';
   declarations: [
     AppComponent,
     AuthComponent,
-    LoginComponent,
-    SignupComponent
   ],
   imports: [
     MaterialModule,
