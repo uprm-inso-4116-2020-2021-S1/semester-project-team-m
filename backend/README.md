@@ -31,3 +31,20 @@ Additionally, we can use the parent's fields to build our dataframe. In this cas
 ```python
 df = data.to_dataframe(fieldnames=['email', 'course__code', 'course__title', 'course__worth', 'grade', 'course__pre'])
 ```
+
+## Authentication
+To implement the authentication, we use Token Authentication. In order to use it, you need to do the following:
+* Generate a token
+  * Make a POST call to http://terrain.gabrielrosa.dev/api-auth/ and pass in the Body: the username and the password
+  * key          | value
+    ------------ | -------------
+    **username** | *{username}*
+    **password** | *{password}* 
+  * This will return a token that you need to store
+* Accessing user-restricted content
+  * In order to access a restricted page, you need to pass the token in the Header.
+  * key | value
+    ------------ | -------------
+    **Authorization** | Token *{generated_token}*
+    
+  * For testing this, you can access http://terrain.gabrielrosa.dev/courses/api/
