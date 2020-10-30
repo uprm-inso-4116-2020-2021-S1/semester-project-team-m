@@ -1,3 +1,33 @@
 # Terrain
+Backend development
 
-## Web server development
+## Queries
+The most important element for obtaining information from the database is to import the Model from which you want to get the information. After importing the model, you can request all the objects or the objects that first certain criteria.
+```python 
+  Model.objects.all()  # This will get all the Objects in the db
+
+  Model.objects.filter(field=value)  # This will get all the Objects which the field = value. For example, 
+                                     # if you call MyCourse.objects.filter(email='gabriel.rosa4@upr.edu'), 
+                                     # it will return all MyCourse objects with that email.
+``` 
+
+## Pandas
+In order to generate a dataframe, you need to do the following:
+
+```python
+from .models import ModelName
+
+def your_function():
+    data = ModelName.objects.all()
+    df = data.to_dataframe()
+```
+
+Something that we can do is request only certain fields, instead of all.
+```python
+df = data.to_dataframe(fieldnames=['email', 'grade'])
+```
+
+Additionally, we can use the parent's fields to build our dataframe. In this case, we are using the parameters **code**, **title**, **worth**, and **pre** from the **Course** model.
+```python
+df = data.to_dataframe(fieldnames=['email', 'course__code', 'course__title', 'course__worth', 'grade', 'course__pre'])
+```
