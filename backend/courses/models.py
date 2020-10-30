@@ -1,4 +1,7 @@
 from django.db import models
+from django_pandas.managers import DataFrameManager
+from django.contrib.postgres.fields import ArrayField
+
 
 GRADES = (
     ('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('F', 'F'), ('W', 'W'), ('P', 'P')
@@ -23,7 +26,8 @@ class Course(models.Model):
     code = models.CharField(max_length=12)
     title = models.CharField(max_length=60)
     worth = models.IntegerField()
-    pre = models.ManyToManyField("self", blank=True)
+    pre = ArrayField(models.CharField(max_length=12), blank=True)
+    objects = DataFrameManager()  # pandas
 
     def __str__(self):
         return self.code
@@ -34,6 +38,7 @@ class MyCourse(models.Model):
     course = models.ForeignKey(Course, on_delete=models.PROTECT)
     grade = models.CharField(max_length=1, choices=GRADES)
     term = models.CharField(max_length=6)
+    objects = DataFrameManager()  # pandas
 
     def __str__(self):
         return self.course.code
