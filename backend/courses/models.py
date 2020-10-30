@@ -30,7 +30,7 @@ class Course(models.Model):
 
 
 class MyCourse(models.Model):
-    # email = models.CharField(max_length=50)
+    email = models.CharField(max_length=50)
     course = models.ForeignKey(Course, on_delete=models.PROTECT)
     grade = models.CharField(max_length=1, choices=GRADES)
     term = models.CharField(max_length=6)
