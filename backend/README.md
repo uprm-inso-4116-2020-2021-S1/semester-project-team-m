@@ -35,7 +35,7 @@ df = data.to_dataframe(fieldnames=['email', 'course__code', 'course__title', 'co
 ## Authentication
 To implement the authentication, we use Token Authentication. In order to use it, you need to do the following:
 * Generate a token
-  * Make a POST call to http://terrain.gabrielrosa.dev/api-auth/ and pass in the Body: the username and the password
+  * Make a POST call to https://terrain.gabrielrosa.dev/api-auth/ and pass in the Body: the username and the password
   * key          | value
     ------------ | -------------
     **username** | *{username}*
@@ -47,4 +47,4 @@ To implement the authentication, we use Token Authentication. In order to use it
     ------------ | -------------
     **Authorization** | Token *{generated_token}*
     
-  * For testing this, you can access http://terrain.gabrielrosa.dev/courses/api/
+  * For testing this, you can access https://terrain.gabrielrosa.dev/courses/api/
