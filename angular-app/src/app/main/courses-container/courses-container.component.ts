@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { CourseService } from 'src/app/business-logic/course/course.service';
+
+// interface Course {
+
+// }
 
 @Component({
   selector: 'app-courses-container',
@@ -10,6 +15,15 @@ import { CourseService } from 'src/app/business-logic/course/course.service';
 })
 export class CoursesContainerComponent implements OnInit {
   public courses = []
+  public displayedColumns = [
+    'course_code',
+    'title',
+    'worth',
+    'grade',
+    'pre'
+  ]
+  // dataSource: MatTableDataSource<any>(data);
+  dataSource;
 
   constructor(
     private router: Router,
@@ -25,12 +39,26 @@ export class CoursesContainerComponent implements OnInit {
 
     this.courseService.getCourses().subscribe(
       courses => {
+        // this.dataSource = new MatTableDataSource<any>(courses);
+        console.log(typeof (courses))
         console.log(courses)
-        // for (let i = 0; i < courses; i++) {
-        //   this.courses.push(courses[i])
-        //   console.log(courses[i])
+        console.log(this.courses)
+
+        this.courses.forEach(c => {
+          console.log(c)
+        })
+
+        // obj = {
+        //   1: 's'
         // }
-        // console.log(this.courses)
+
+
+        // for (let c of obj)
+        //   console.log(c)
+
+        // for (let i = 0; i < courses; i++)
+        //   this.courses.push(courses[i])
+
       },
       error => { console.log(error) }
     )
