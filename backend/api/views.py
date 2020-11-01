@@ -33,6 +33,7 @@ def api_course_list(request):
 @api_view(['GET'])
 def api_course_detail(request, course_code):
     try:
+        course_code = course_code.upper()
         courses = Course.objects.get(code=course_code)
     except Course.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
