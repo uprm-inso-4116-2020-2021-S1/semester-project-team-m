@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MainModule } from './main/main.module';
 import { AuthComponent } from './auth/auth.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 import {
   MatFormFieldModule,
   MatButtonModule,
@@ -46,7 +47,9 @@ import { MaterialModule } from './material.module';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    CookieService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
