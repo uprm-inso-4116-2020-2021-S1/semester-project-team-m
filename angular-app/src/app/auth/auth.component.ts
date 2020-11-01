@@ -39,7 +39,6 @@ export class AuthComponent implements OnInit {
 
   ngOnInit() {
     const coursesToken = this.cookieService.get('courses-token');
-    console.log(coursesToken)
     if (coursesToken)
       this.router.navigate(['/courses'])
 
