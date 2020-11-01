@@ -7,6 +7,22 @@ from .serializers import CourseSerializer, MyCourseSerializer, GradesSerializer
 
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def api_user_detail(request):
+    if request.method == "GET":
+        data = {
+            'username': request.user.username,
+            'email': request.user.email,
+            'student_id': request.user.profile.student_id,
+            'first_name': request.user.first_name,
+            'last_name': request.user.last_name,
+            'date_joined': request.user.date_joined,
+            'last_login': request.user.last_login,
+        }
+        return Response(data)
+
+
+@api_view(['GET'])
 def api_course_list(request):
     if request.method == "GET":
         courses = Course.objects.all()
