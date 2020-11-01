@@ -48,3 +48,16 @@ To implement the authentication, we use Token Authentication. In order to use it
     **Authorization** | Token *{generated_token}*
     
   * For testing this, you can access https://terrain.gabrielrosa.dev/courses/api/
+
+
+## API Calls
+The following API calls were implemented. Note: **(Auth)** means that a user needs to be authenticated to access this information.
+
+call    | url                                     | description
+------- | --------------------------------------- | ----------------------------------------
+**GET** | https://terrain.gabrielrosa.dev/api/courses/ | Get the list of courses
+**GET** | https://terrain.gabrielrosa.dev/api/courses/<code>/ | Get information about a specific course
+**GET** | https://terrain.gabrielrosa.dev/api/mycourses/ | **(Auth)** Get all the courses of a user.
+**GET** | https://terrain.gabrielrosa.dev/api/mycourses/<code>/ | **(Auth)** Get information about a specific user's course
+**GET** | https://terrain.gabrielrosa.dev/api/grades/ | **(Auth)** Get user's grades
+**GET** | https://terrain.gabrielrosa.dev/api/user/ | **(Auth)** Get information about a user (username, email, student id, first name, last name, date joined, and last login.)

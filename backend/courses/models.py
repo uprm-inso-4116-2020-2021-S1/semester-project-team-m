@@ -1,6 +1,9 @@
 from django.db import models
 from django_pandas.managers import DataFrameManager
 from django.contrib.postgres.fields import ArrayField
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 GRADES = (
@@ -12,14 +15,22 @@ MAJOR = (
 )
 
 
-class User(models.Model):
-    name = models.CharField(max_length=50)
-    email = models.EmailField()
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     student_id = models.CharField(max_length=9)
     major = models.CharField(max_length=4, choices=MAJOR)
 
     def __str__(self):
-        return self.name
+        return self.user.email
+
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.profile.save()
 
 
 class Course(models.Model):
