@@ -67,22 +67,31 @@ export class AuthComponent implements OnInit {
 
   saveForm() {
     this.authService.login(this.logInForm.value).subscribe(
-      (result: TokenObj) => {
-        console.log("result", result)
-        this.cookieService.set("courses-token", result['token']);
+      (res: TokenObj) => {
+        console.log("Token", res)
+        this.cookieService.set("courses-token", res['token']);
         // alert("User successfully logged in")
         this.router.navigate(['/courses']);
       },
       error => {
         console.log("error", error)
         this.logInForm.setValue({
-          email: this.logInForm.get('email'),
+          email: this.logInForm.get('email').value,
           password: ''
         })
         alert("User Not Found")
       },
     );
     // this.cookie.set("token", )
+  }
+
+  signup() {
+    this.authService.signup(this.signUpForm.value).subscribe(
+      result => {
+        console.log(result);
+        this.saveForm()
+      }
+    )
   }
 
 

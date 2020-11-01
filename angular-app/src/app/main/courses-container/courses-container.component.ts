@@ -20,4 +20,9 @@ export class CoursesContainerComponent implements OnInit {
       this.router.navigate(['/auth'])
     }
   }
+
+  logout() {
+    this.cookieService.delete('courses-token');
+    this.router.navigate(['auth']);
+  }
 }
