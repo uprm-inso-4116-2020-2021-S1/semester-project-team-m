@@ -24,13 +24,6 @@ export class AuthenticationService {
     private cookieService: CookieService
   ) { }
 
-  // signIn(username: string, password: string) {
-  // login() {
-  //   return this.http.get(this.baseUrl, {
-  //     headers: this.headers
-  //   });
-  // }
-
   login(authData) {
     // const body = JSON.stringify(authData);
     const body = JSON.stringify({
@@ -38,12 +31,15 @@ export class AuthenticationService {
       password: "secretpassword"
     });
     return this.http.post(`${this.baseUrl}api-auth/`, body, {
-      // return this.http.post('https://terrain.gabrielrosa.dev/api-auth/', body, {
       headers: this.headers
     })
   }
 
+
+  /* There is still no post crud for this */
   signup(authData) {
+    console.log("There is still no post crud for this")
+
     // const body = JSON.stringify(authData);
     const body = JSON.stringify({
       username: "newuser",
@@ -56,10 +52,6 @@ export class AuthenticationService {
 
   getAuthHeaders() {
     let token = this.cookieService.get('courses-token');
-
-    // until registering user can obtain token
-    // if (!token)
-    //   token = '21c208f7180cbd979574eace82e266641b1f2007';
 
     return new HttpHeaders({
       'Content-Type': 'application/json',
