@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CourseListComponent } from './course-list/course-list.component';
 import { CourseDetailsComponent } from './course-details/course-details.component';
+import { CoursesContainerComponent } from './courses-container/courses-container.component';
 
 const routes: Routes = [
   { path: 'home', component: MainComponent }
@@ -15,6 +16,7 @@ const routes: Routes = [
     MainComponent,
     CourseListComponent,
     CourseDetailsComponent,
+    CoursesContainerComponent,
   ],
   imports: [
     CommonModule,
