@@ -16,7 +16,6 @@ export class AuthenticationService {
   baseUrl = 'https://terrain.gabrielrosa.dev/'
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
-    // Authorization: `Token ${this.token}`
   })
 
 
@@ -40,7 +39,7 @@ export class AuthenticationService {
     });
     return this.http.post(`${this.baseUrl}api-auth/`, body, {
       // return this.http.post('https://terrain.gabrielrosa.dev/api-auth/', body, {
-      headers: this.getAuthHeaders()
+      headers: this.headers
     })
   }
 
@@ -59,8 +58,8 @@ export class AuthenticationService {
     let token = this.cookieService.get('courses-token');
 
     // until registering user can obtain token
-    if (!token)
-      token = '21c208f7180cbd979574eace82e266641b1f2007';
+    // if (!token)
+    //   token = '21c208f7180cbd979574eace82e266641b1f2007';
 
     return new HttpHeaders({
       'Content-Type': 'application/json',
