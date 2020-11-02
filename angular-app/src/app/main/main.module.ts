@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CourseListComponent } from './course-list/course-list.component';
 import { CourseDetailsComponent } from './course-details/course-details.component';
 import { CoursesContainerComponent } from './courses-container/courses-container.component';
+import {MatTableModule} from "@angular/material/table";
 
 const routes: Routes = [
   // { path: 'home', component: MainComponent }
@@ -20,7 +21,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    MatTableModule
   ],
   exports: [
     RouterModule

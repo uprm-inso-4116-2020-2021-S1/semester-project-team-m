@@ -4,9 +4,14 @@ import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { CourseService } from 'src/app/business-logic/course/course.service';
 
-// interface Course {
+interface Course {
+  code: string;
+  title: string;
+  worth: number;
+  pre: string[];
+  grade?: string;
 
-// }
+}
 
 @Component({
   selector: 'app-courses-container',
@@ -19,12 +24,12 @@ export class CoursesContainerComponent implements OnInit {
     'course_code',
     'title',
     'worth',
-    'grade',
+    // 'grade',
     'pre'
   ]
   // dataSource: MatTableDataSource<any>(data);
-  dataSource;
 
+  dataSource = new MatTableDataSource(this.courses)
   constructor(
     private router: Router,
     private cookieService: CookieService,

@@ -40,6 +40,15 @@ class Course(models.Model):
     pre = ArrayField(models.CharField(max_length=12), blank=True)
     objects = DataFrameManager()  # pandas
 
+    def as_json(self):
+        return dict(
+            code = self.code,
+            title = self.title,
+            worth = self.worth,
+            pre = self.pre,
+
+        )
+
     def __str__(self):
         return self.code
 
