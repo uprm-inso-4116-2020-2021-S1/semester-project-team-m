@@ -6,7 +6,6 @@ import { AuthenticationService } from '../authentication/authentication.service'
   providedIn: 'root'
 })
 export class CourseService {
-
   baseUrl = 'http://127.0.0.1:8000/api/courses/';
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -15,11 +14,17 @@ export class CourseService {
   constructor(
     private http: HttpClient,
     private authService: AuthenticationService
-  ) { }
+  ) {
+
+  }
+
 
   getCourses() {
     return this.http.get(`${this.baseUrl}`, {
-      headers: this.authService.getAuthHeaders()
+      headers: this.authService.getAuthHeaders(),
+      responseType: 'json'
     })
   }
+
+
 }
