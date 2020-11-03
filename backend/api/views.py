@@ -41,7 +41,7 @@ def api_course_detail(request, course_code):
 
     if request.method == "GET":
         serializer = CourseSerializer(courses)
-        return Response(serializer.data)
+        return Response(json.dumps(serializer.data), content_type='application/json')
 
 
 @api_view(['GET'])
@@ -55,7 +55,7 @@ def api_my_course_list(request, format='json'):
     if request.method == "GET":
         serializer = MyCourseSerializer(my_courses, many=True)
 
-        return Response(serializer.data)
+        return Response(json.dumps(serializer.data), content_type='application/json')
 
 
 @api_view(['GET'])
@@ -69,7 +69,7 @@ def api_my_courses_detail(request, course_code):
 
     if request.method == "GET":
         serializer = MyCourseSerializer(my_courses)
-        return Response(serializer.data)
+        return Response(json.dumps(serializer.data), content_type='application/json')
 
 
 @api_view(['GET'])
@@ -82,4 +82,4 @@ def api_grades_list(request):
 
     if request.method == "GET":
         serializer = GradesSerializer(my_courses, many=True)
-        return Response(serializer.data)
+        return Response(json.dumps(serializer.data), content_type='application/json')
