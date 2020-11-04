@@ -11,10 +11,19 @@ import { HomeLayoutComponent } from './home-layout.component';
 import { CoursesContainerComponent } from 'src/app/atmos-apps/courses/courses-container/courses-container.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { AppsContainerComponent } from 'src/app/atmos-apps/apps-container/apps-container.component';
+import { LayoutsRoutingModule } from '../layouts-routing.module';
 
-const routes: Routes = [
-  // { path: 'home', component: MainComponent }
-];
+// const routes: Routes = [
+//   {
+//     path: 'home',
+//     component: HomeLayoutComponent,
+//     children: [{
+//       path: 'apps',
+//       component: AppsContainerComponent // <- component containing all icons (links) of our atmosphere apps
+//     }/*{path: OtherPossibleComponent}*/]
+//   },
+// ];
 
 @NgModule({
   declarations: [
@@ -28,9 +37,11 @@ const routes: Routes = [
     CommonModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    RouterModule,
-    SharedModule
+    SharedModule,
+    // RouterModule,
     // RouterModule.forChild(routes),
+    LayoutsRoutingModule,
+    MatOptionModule,
     // MatTableModule,
     // MatFormFieldModule,
     // MatInputModule,

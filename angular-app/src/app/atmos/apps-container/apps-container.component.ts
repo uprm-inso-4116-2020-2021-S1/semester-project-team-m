@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'apps-container-apps',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppsContainerComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
 
+  detectApp() {
+    this.router.navigate(['home/curriculum'])
+    console.log("sup")
+  }
 }
