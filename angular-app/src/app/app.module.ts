@@ -4,8 +4,9 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { MainModule } from './main/main.module';
 import { AuthComponent } from './auth/auth.component'
+import { AtmosModule } from './atmos/atmos.module';
+import { CoursesModule } from './atmos-apps/courses/courses.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import {
@@ -34,7 +35,8 @@ import { MaterialModule } from './material.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    MainModule,
+    AtmosModule,
+    CoursesModule,
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,

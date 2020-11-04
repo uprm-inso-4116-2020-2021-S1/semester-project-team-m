@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
-import { CoursesContainerComponent } from './main/courses-container/courses-container.component';
+// import { CoursesContainerComponent } from './atmos-apps/courses/courses-container/courses-container.component';
+import { AtmosHomeComponent } from './atmos/atmos-home/atmos-home.component';
 
 const appRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'auth' },
   { path: 'auth', component: AuthComponent },
-  { path: 'courses', component: CoursesContainerComponent }
+  { path: 'home', component: AtmosHomeComponent },
+  // { path: 'courses', component: CoursesContainerComponent }
 ];
 
 
