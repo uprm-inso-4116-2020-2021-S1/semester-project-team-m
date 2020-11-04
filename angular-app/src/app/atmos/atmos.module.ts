@@ -3,30 +3,32 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 // import { CourseListComponent } from '../course-list/course-list.component';
-import { AtmosHomeComponent } from './atmos-home/atmos-home.component';
 import { MatTableModule } from "@angular/material/table";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatOptionModule } from "@angular/material/core";
 import { MatSelectModule } from "@angular/material/select";
+import { SharedModule } from '../shared/shared.module';
+import { AppsContainerComponent } from './apps-container/apps-container.component';
 
-const routes: Routes = [
-  { path: 'home', component: AtmosHomeComponent }
-];
+// const routes: Routes = [
+//   { path: 'apps', component: AppsContainerComponent }
+// ];
 
 @NgModule({
   declarations: [
-    AtmosHomeComponent,
+    AppsContainerComponent,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes),
+    // RouterModule.forChild(routes),
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    SharedModule,
   ],
   exports: [
     RouterModule

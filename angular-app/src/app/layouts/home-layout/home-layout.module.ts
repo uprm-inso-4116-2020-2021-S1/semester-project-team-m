@@ -2,14 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CourseListComponent } from './course-list/course-list.component';
-import { CourseDetailsComponent } from './course-details/course-details.component';
-// import { CoursesContainerComponent } from './courses-container/courses-container.component';
 import { MatTableModule } from "@angular/material/table";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatOptionModule } from "@angular/material/core";
 import { MatSelectModule } from "@angular/material/select";
+import { HomeLayoutComponent } from './home-layout.component';
+import { CoursesContainerComponent } from 'src/app/atmos-apps/courses/courses-container/courses-container.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 const routes: Routes = [
   // { path: 'home', component: MainComponent }
@@ -17,20 +18,24 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    // MainComponent,
-    CourseListComponent,
-    CourseDetailsComponent,
+    HomeLayoutComponent,
+    CoursesContainerComponent,
+    // CourseListComponent,
+    // CourseDetailsComponent,
     // CoursesContainerComponent,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes),
-    MatTableModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatOptionModule,
-    MatSelectModule
+    FlexLayoutModule,
+    RouterModule,
+    SharedModule
+    // RouterModule.forChild(routes),
+    // MatTableModule,
+    // MatFormFieldModule,
+    // MatInputModule,
+    // MatOptionModule,
+    // MatSelectModule
   ],
   exports: [
     RouterModule
@@ -39,4 +44,4 @@ const routes: Routes = [
     // ApiService,
   ]
 })
-export class CoursesModule { }
+export class HomeLayoutModule { }

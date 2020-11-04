@@ -21,6 +21,15 @@ import {
   MatTableModule,
 } from "@angular/material";
 import { MaterialModule } from './material.module';
+// import { DefaultHomeComponent } from './layouts/default-home/default-home.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+// import { DefaultComponent } from './layouts/default/default.component';
+import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
+import { HomeLayoutModule } from './layouts/home-layout/home-layout.module';
+import { SharedModule } from './shared/shared.module';
+// import { HeaderComponent } from './shared/comnponents/header/header.component';
+// import { SidebarComponent } from './shared/comnponents/sidebar/sidebar.component';
+// import { FooterComponent } from './shared/comnponents/footer/footer.component';
 
 
 
@@ -28,6 +37,13 @@ import { MaterialModule } from './material.module';
   declarations: [
     AppComponent,
     AuthComponent,
+    // HomeLayoutComponent,
+    // AtmosAppsComponent,
+    // DefaultLayoutComponent,
+    // HeaderComponent,
+    // SidebarComponent,
+    // FooterComponent,
+    // HomeLayoutComponent,
   ],
   imports: [
     MaterialModule,
@@ -48,6 +64,9 @@ import { MaterialModule } from './material.module';
     MatTableModule,
     FormsModule,
     ReactiveFormsModule,
+    HomeLayoutModule,
+    SharedModule
+    // FlexLayoutModule,
   ],
   providers: [
     CookieService
