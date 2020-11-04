@@ -1,10 +1,10 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { CourseService } from 'src/app/business-logic/course/course.service';
-import {Observable} from "rxjs";
-import {MatSort} from "@angular/material/sort";
+import { Observable } from "rxjs";
+import { MatSort } from "@angular/material/sort";
 
 interface Course {
   code: string;
@@ -12,7 +12,6 @@ interface Course {
   worth: number;
   pre: string[];
   grade?: string;
-
 }
 
 @Component({
@@ -51,7 +50,7 @@ export class CoursesContainerComponent implements OnInit {
       this.router.navigate(['/auth'])
     }
 
-      this.dataSource =this.courses
+    this.dataSource = this.courses
 
     this.courseService.getCourses().subscribe(
       courses => {
