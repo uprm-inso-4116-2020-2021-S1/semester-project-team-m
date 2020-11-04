@@ -40,7 +40,7 @@ export class AuthComponent implements OnInit {
   ngOnInit() {
     const coursesToken = this.cookieService.get('courses-token');
     if (coursesToken)
-      this.router.navigate(['/courses'])
+      this.router.navigate(['/home'])
 
     this.logInForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -71,7 +71,7 @@ export class AuthComponent implements OnInit {
         console.log("Token", res)
         this.cookieService.set("courses-token", res['token']);
         // alert("User successfully logged in")
-        this.router.navigate(['/courses']);
+        this.router.navigate(['/home']);
       },
       error => {
         console.log("error", error)
