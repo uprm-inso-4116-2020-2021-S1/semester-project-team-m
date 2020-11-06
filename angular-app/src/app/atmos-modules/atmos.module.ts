@@ -9,7 +9,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatOptionModule } from "@angular/material/core";
 import { MatSelectModule } from "@angular/material/select";
 import { SharedModule } from '../shared/shared.module';
-import { AppsContainerComponent } from '../atmos/apps-container/apps-container.component';
+import { AppsContainerComponent } from '../atmos-modules/apps-container/apps-container.component';
 import { MatButtonModule } from '@angular/material';
 
 @NgModule({

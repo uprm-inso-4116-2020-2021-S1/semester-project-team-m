@@ -5,27 +5,14 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthComponent } from './auth/auth.component'
-import { AtmosModule } from './atmos/atmos.module';
+import { AtmosModule } from './atmos-modules/atmos.module';
 import { CoursesModule } from './atmos-apps/courses/courses.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
-import {
-  MatFormFieldModule,
-  MatButtonModule,
-  MatInputModule,
-  MatCardModule,
-  MatIconModule,
-  MatListModule,
-  MatSelectModule,
-  MatSidenavModule,
-  MatTableModule,
-} from "@angular/material";
 import { MaterialModule } from './material.module';
 import { HomeLayoutModule } from './layouts/home-layout/home-layout.module';
 import { SharedModule } from './shared/shared.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
-
 
 @NgModule({
   declarations: [
@@ -40,15 +27,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     HttpClientModule,
     AtmosModule,
     CoursesModule,
-    // MatFormFieldModule,
-    // MatInputModule,
-    // MatCardModule,
-    // MatIconModule,
-    // MatButtonModule,
-    // MatListModule,
-    // MatSelectModule,
-    // MatSidenavModule,
-    // MatTableModule,
     FormsModule,
     ReactiveFormsModule,
     HomeLayoutModule,

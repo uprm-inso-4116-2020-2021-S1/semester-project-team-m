@@ -6,7 +6,7 @@ import { AuthenticationService } from '../authentication/authentication.service'
   providedIn: 'root'
 })
 export class CourseService {
-  baseUrl = 'http://127.0.0.1:8000/api/courses/';
+  baseUrl = 'https://terrain.gabrielrosa.dev/';
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
   })
@@ -20,7 +20,7 @@ export class CourseService {
 
 
   getCourses() {
-    return this.http.get(`${this.baseUrl}`, {
+    return this.http.get(`${this.baseUrl}api/courses/`, {
       headers: this.authService.getAuthHeaders(),
       responseType: 'json'
     })

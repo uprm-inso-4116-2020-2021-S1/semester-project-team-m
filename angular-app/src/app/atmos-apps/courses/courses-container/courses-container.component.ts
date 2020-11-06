@@ -41,9 +41,6 @@ export class CoursesContainerComponent implements OnInit {
 
   }
 
-
-
-
   ngOnInit() {
     const token = this.cookieService.get('courses-token')
     if (!token) {
@@ -59,37 +56,5 @@ export class CoursesContainerComponent implements OnInit {
       },
       error => { console.log(error) }
     )
-
-    // this.courseService.getCourses().subscribe(
-    //   courses => {
-    //     if (typeof courses === "string") {
-    //       console.log(this.dataSource = new MatTableDataSource(JSON.parse(courses)))
-    //     }
-    //     console.log(typeof (this.dataSource.data))
-    //     console.log(this.dataSource.data)
-    //     console.log(this.courses)
-
-    //     this.courses.forEach(c => {
-    //       console.log(c)
-    //     })
-
-    //     // this.courseService.getCourses(res => {console.log(res); this.courses = res});
-
-
-
-    //     // obj = {
-    //     //   1: 's'
-    //     // }
-
-
-    //     // for (let c of obj)
-    //     //   console.log(c)
-
-    //     // for (let i = 0; i < courses; i++)
-    //     //   this.courses.push(courses[i])
-
-    //   },
-    //   error => { console.log(error) }
-    // )
   }
 }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AppsContainerComponent } from './atmos/apps-container/apps-container.component';
+import { AppsContainerComponent } from './atmos-modules/apps-container/apps-container.component';
 import { AuthComponent } from './auth/auth.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 

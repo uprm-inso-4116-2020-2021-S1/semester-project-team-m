@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CoursesContainerComponent } from '../atmos-apps/courses/courses-container/courses-container.component';
-import { AppsContainerComponent } from '../atmos/apps-container/apps-container.component';
+import { AppsContainerComponent } from '../atmos-modules/apps-container/apps-container.component';
 import { HomeLayoutComponent } from './home-layout/home-layout.component';
 
 const routes: Routes = [
