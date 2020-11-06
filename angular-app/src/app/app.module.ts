@@ -23,6 +23,7 @@ import {
 import { MaterialModule } from './material.module';
 import { HomeLayoutModule } from './layouts/home-layout/home-layout.module';
 import { SharedModule } from './shared/shared.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 
@@ -39,19 +40,20 @@ import { SharedModule } from './shared/shared.module';
     HttpClientModule,
     AtmosModule,
     CoursesModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCardModule,
-    MatIconModule,
-    MatButtonModule,
-    MatListModule,
-    MatSelectModule,
-    MatSidenavModule,
-    MatTableModule,
+    // MatFormFieldModule,
+    // MatInputModule,
+    // MatCardModule,
+    // MatIconModule,
+    // MatButtonModule,
+    // MatListModule,
+    // MatSelectModule,
+    // MatSidenavModule,
+    // MatTableModule,
     FormsModule,
     ReactiveFormsModule,
     HomeLayoutModule,
-    SharedModule
+    SharedModule,
+    FlexLayoutModule
   ],
   providers: [
     CookieService

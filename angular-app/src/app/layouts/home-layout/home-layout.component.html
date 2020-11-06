@@ -1,10 +1,12 @@
 <app-header flexLayout="column"></app-header>
 
+<!-- <div flexLayout="row" fxFlex> -->
 <div flexLayout="row" fxFlex>
   <div fxFlex="20">
     <app-sidebar fxFlex></app-sidebar>
   </div>
   <div fxFlex="80" class="container">
+    <!-- root route should be apps-container.component  -->
     <router-outlet></router-outlet>
   </div>
 </div>

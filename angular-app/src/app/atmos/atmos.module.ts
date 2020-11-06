@@ -9,11 +9,8 @@ import { MatInputModule } from "@angular/material/input";
 import { MatOptionModule } from "@angular/material/core";
 import { MatSelectModule } from "@angular/material/select";
 import { SharedModule } from '../shared/shared.module';
-import { AppsContainerComponent } from '../atmos-apps/apps-container/apps-container.component';
-
-// const routes: Routes = [
-//   { path: 'apps', component: AppsContainerComponent }
-// ];
+import { AppsContainerComponent } from '../atmos/apps-container/apps-container.component';
+import { MatButtonModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -23,6 +20,7 @@ import { AppsContainerComponent } from '../atmos-apps/apps-container/apps-contai
     CommonModule,
     ReactiveFormsModule,
     // RouterModule.forChild(routes),
+    MatButtonModule,
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
@@ -33,8 +31,6 @@ import { AppsContainerComponent } from '../atmos-apps/apps-container/apps-contai
   exports: [
     RouterModule
   ],
-  providers: [
-    // ApiService,
-  ]
+  providers: []
 })
 export class AtmosModule { }
