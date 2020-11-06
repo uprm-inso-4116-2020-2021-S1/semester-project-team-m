@@ -6,7 +6,7 @@ import { AuthenticationService } from '../authentication/authentication.service'
   providedIn: 'root'
 })
 export class CourseService {
-  baseUrl = 'http://127.0.0.1:8000/api/courses/';
+  baseUrl = 'https://terrain.gabrielrosa.dev/api/courses/';
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
   })

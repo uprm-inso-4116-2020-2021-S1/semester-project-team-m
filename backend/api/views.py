@@ -1,10 +1,11 @@
 from rest_framework.response import Response
+from django.http import JsonResponse
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import status
 from courses.models import Course, MyCourse
-import json
 from rest_framework.permissions import IsAuthenticated
 from .serializers import CourseSerializer, MyCourseSerializer, GradesSerializer
+
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -28,7 +29,7 @@ def api_course_list(request):
 
         courses = Course.objects.all()
         serializer = CourseSerializer(courses, many=True)
-        return Response(json.dumps(serializer.data), content_type='application/json')
+        return JsonResponse(serializer.data, safe=False)
 
 
 @api_view(['GET'])
@@ -41,7 +42,7 @@ def api_course_detail(request, course_code):
 
     if request.method == "GET":
         serializer = CourseSerializer(courses)
-        return Response(json.dumps(serializer.data), content_type='application/json')
+        return JsonResponse(serializer.data, safe=False)
 
 
 @api_view(['GET'])
@@ -54,8 +55,7 @@ def api_my_course_list(request, format='json'):
 
     if request.method == "GET":
         serializer = MyCourseSerializer(my_courses, many=True)
-
-        return Response(json.dumps(serializer.data), content_type='application/json')
+        return JsonResponse(serializer.data, safe=False)
 
 
 @api_view(['GET'])
@@ -69,7 +69,7 @@ def api_my_courses_detail(request, course_code):
 
     if request.method == "GET":
         serializer = MyCourseSerializer(my_courses)
-        return Response(json.dumps(serializer.data), content_type='application/json')
+        return JsonResponse(serializer.data, safe=False)
 
 
 @api_view(['GET'])
@@ -82,4 +82,4 @@ def api_grades_list(request):
 
     if request.method == "GET":
         serializer = GradesSerializer(my_courses, many=True)
-        return Response(json.dumps(serializer.data), content_type='application/json')
+        return JsonResponse(serializer.data, safe=False)
