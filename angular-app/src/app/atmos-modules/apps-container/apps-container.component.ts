@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./apps-container.component.css']
 })
 export class AppsContainerComponent implements OnInit {
-
+  public viewCatalog = false;
   constructor(
     private router: Router
   ) { }
@@ -15,8 +15,14 @@ export class AppsContainerComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+  hideViewCatalog(whatIPassed) {
+    console.log("What I passed from other component", whatIPassed)
+    this.viewCatalog = whatIPassed;
+  }
+
   detectApp() {
     this.router.navigate(['home/catalog'])
-    console.log("sup")
+    // this.viewCatalog = true;
   }
 }

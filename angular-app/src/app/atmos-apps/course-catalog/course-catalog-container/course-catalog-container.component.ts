@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
@@ -15,11 +15,13 @@ interface Course {
 }
 
 @Component({
-  selector: 'app-courses-container',
-  templateUrl: './courses-container.component.html',
-  styleUrls: ['./courses-container.component.css']
+  selector: 'app-course-catalog-container',
+  templateUrl: './course-catalog-container.component.html',
+  styleUrls: ['./course-catalog-container.component.css']
 })
-export class CoursesContainerComponent implements OnInit {
+export class CourseCatalogContainerComponent implements OnInit {
+  @Output() onFinished = new EventEmitter<boolean>();
+
   public courses = []
   public displayedColumns = [
     'course_code',
@@ -42,10 +44,8 @@ export class CoursesContainerComponent implements OnInit {
   }
 
   ngOnInit() {
-    const token = this.cookieService.get('courses-token')
-    if (!token) {
+    if (!this.cookieService.get('courses-token'))
       this.router.navigate(['/auth'])
-    }
 
     this.dataSource = this.courses
 
@@ -56,5 +56,11 @@ export class CoursesContainerComponent implements OnInit {
       },
       error => { console.log(error) }
     )
+  }
+
+
+  goBack() {
+    // this.onFinished.emit(false)
+    this.router.navigate(['home/apps'])
   }
 }

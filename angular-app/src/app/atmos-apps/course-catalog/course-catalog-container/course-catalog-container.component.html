@@ -1,4 +1,9 @@
 <p>You can see the courses on the console log. Needs serializer - Coming Soon!</p>
+
+<button mat-raised-button (click)="goBack()">
+  Back
+</button>
+
 <mat-table [dataSource]="dataSource">
   <ng-container matColumnDef="course_code" sticky>
     <th mat-header-cell *matHeaderCellDef> Course Code </th>
