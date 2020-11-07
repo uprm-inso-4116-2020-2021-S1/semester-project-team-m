@@ -8,11 +8,11 @@ import { MatInputModule } from "@angular/material/input";
 import { MatOptionModule } from "@angular/material/core";
 import { MatSelectModule } from "@angular/material/select";
 import { HomeLayoutComponent } from './home-layout.component';
-import { CoursesContainerComponent } from 'src/app/atmos-apps/courses/courses-container/courses-container.component';
+import { CoursesContainerComponent } from 'src/app/atmos-apps/course-catalog/course-catalog-container/courses-container.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AppsContainerComponent } from 'src/app/atmos-modules/apps-container/apps-container.component';
-import { LayoutsRoutingModule } from '../layouts-routing.module';
+import { RoutingLayoutModule } from '../../routing-layout.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,7 @@ import { LayoutsRoutingModule } from '../layouts-routing.module';
     ReactiveFormsModule,
     FlexLayoutModule,
     SharedModule,
-    LayoutsRoutingModule,
+    RoutingLayoutModule,
     MatOptionModule,
   ],
   exports: [

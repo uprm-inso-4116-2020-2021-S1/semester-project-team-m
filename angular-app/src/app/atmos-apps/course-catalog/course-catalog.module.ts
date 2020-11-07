@@ -41,4 +41,4 @@ const routes: Routes = [
     // ApiService,
   ]
 })
-export class CoursesModule { }
+export class CourseCatalogModule { }

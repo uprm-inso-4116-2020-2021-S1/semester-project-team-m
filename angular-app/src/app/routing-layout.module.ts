@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CoursesContainerComponent } from '../atmos-apps/courses/courses-container/courses-container.component';
-import { AppsContainerComponent } from '../atmos-modules/apps-container/apps-container.component';
-import { HomeLayoutComponent } from './home-layout/home-layout.component';
+import { CoursesContainerComponent } from './atmos-apps/course-catalog/course-catalog-container/courses-container.component';
+import { AppsContainerComponent } from './atmos-modules/apps-container/apps-container.component';
+import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 
 const routes: Routes = [
   {
@@ -12,7 +12,7 @@ const routes: Routes = [
       path: 'apps',
       component: AppsContainerComponent // <- component containing all icons (links) of our atmosphere apps
     }, {
-      path: 'curriculum',
+      path: 'catalog',
       component: CoursesContainerComponent
     }/*{path: OtherPossibleComponent}*/]
   },
@@ -23,4 +23,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class LayoutsRoutingModule { }
+export class RoutingLayoutModule { }

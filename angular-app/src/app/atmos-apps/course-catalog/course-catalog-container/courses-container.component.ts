@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { CourseService } from 'src/app/business-logic/course/course.service';
+import { CourseCatalogService } from 'src/app/business-logic/course-catalog/course-catalog.service';
 import { Observable } from "rxjs";
 import { MatSort } from "@angular/material/sort";
 
@@ -36,7 +36,7 @@ export class CoursesContainerComponent implements OnInit {
   constructor(
     private router: Router,
     private cookieService: CookieService,
-    private courseService: CourseService
+    private courseCatalogService: CourseCatalogService
   ) {
 
   }
@@ -49,7 +49,7 @@ export class CoursesContainerComponent implements OnInit {
 
     this.dataSource = this.courses
 
-    this.courseService.getCourses().subscribe(
+    this.courseCatalogService.getCourses().subscribe(
       courses => {
         this.dataSource = new MatTableDataSource(<any>courses);
         console.log(this.dataSource.data);

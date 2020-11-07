@@ -16,7 +16,7 @@ export class AppsContainerComponent implements OnInit {
   }
 
   detectApp() {
-    this.router.navigate(['home/curriculum'])
+    this.router.navigate(['home/catalog'])
     console.log("sup")
   }
 }

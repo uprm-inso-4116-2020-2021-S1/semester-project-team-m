@@ -5,7 +5,7 @@ import { AuthenticationService } from '../authentication/authentication.service'
 @Injectable({
   providedIn: 'root'
 })
-export class CourseService {
+export class CourseCatalogService {
   baseUrl = 'https://terrain.gabrielrosa.dev/';
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
