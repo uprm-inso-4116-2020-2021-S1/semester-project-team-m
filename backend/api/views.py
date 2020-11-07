@@ -30,7 +30,9 @@ def api_course_list(request):
         serializer = CourseSerializer(courses, many=True)
         return JsonResponse(serializer.data, safe=False)
     elif request.method == "POST":
-        request.data.code = request.data.code.upper
+        request.POST._mutable = True
+        request.POST['code'] = request.POST['code'].upper()
+        request.POST._mutable = False
         serializer = CourseSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(code=request.data['code'].upper())
@@ -51,6 +53,9 @@ def api_course_detail(request, course_code):
         return JsonResponse(serializer.data, safe=False)
 
     elif request.method == "PUT":
+        request.POST._mutable = True
+        request.POST['code'] = request.POST['code'].upper()
+        request.POST._mutable = False
         serializer = CourseSerializer(course, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
