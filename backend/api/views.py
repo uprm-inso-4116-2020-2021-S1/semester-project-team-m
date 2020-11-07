@@ -23,26 +23,43 @@ def api_user_detail(request):
         return Response(data)
 
 
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
 def api_course_list(request):
     if request.method == "GET":
-
         courses = Course.objects.all()
         serializer = CourseSerializer(courses, many=True)
         return JsonResponse(serializer.data, safe=False)
+    elif request.method == "POST":
+        request.data.code = request.data.code.upper
+        serializer = CourseSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(code=request.data['code'].upper())
+            return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
+        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['GET'])
+@api_view(['GET', 'PUT', 'DELETE'])
 def api_course_detail(request, course_code):
     try:
         course_code = course_code.upper()
-        courses = Course.objects.get(code=course_code)
+        course = Course.objects.get(code=course_code)
     except Course.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == "GET":
-        serializer = CourseSerializer(courses)
+        serializer = CourseSerializer(course)
         return JsonResponse(serializer.data, safe=False)
+
+    elif request.method == "PUT":
+        serializer = CourseSerializer(course, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data)
+        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == "DELETE":
+        course.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 @api_view(['GET'])
