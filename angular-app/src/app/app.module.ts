@@ -13,13 +13,12 @@ import { MaterialModule } from './material.module';
 import { HomeLayoutModule } from './layouts/home-layout/home-layout.module';
 import { SharedModule } from './shared/shared.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-// import { CourseCatalogContainerComponent } from './atmos-apps/course-catalog/course-catalog-container/course-catalog-container.component';
+import { CdkTableModule } from '@angular/cdk/table';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
-    // CourseCatalogContainerComponent,
   ],
   imports: [
     MaterialModule,
@@ -33,7 +32,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     CourseCatalogModule,
     HomeLayoutModule,
     SharedModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    CdkTableModule
   ],
   providers: [
     CookieService
