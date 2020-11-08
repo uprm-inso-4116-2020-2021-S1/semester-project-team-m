@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework import status
 from courses.models import Course, MyCourse
 from rest_framework.permissions import IsAuthenticated
-from .serializers import CourseSerializer, MyCourseSerializer, GradesSerializer
+from .serializers import CourseSerializer, MyCourseSerializer, GradesSerializer, UserCourseSerializer
 
 
 @api_view(['GET'])
@@ -93,5 +93,5 @@ def api_curriculum_detail(request):
 
     if request.method == "GET":
         courses = Course.objects.filter(curriculum__contains=[currirculum])
-        serializer = CourseSerializer(courses, many=True)
+        serializer = UserCourseSerializer(courses, many=True)
         return JsonResponse(serializer.data, safe=False)

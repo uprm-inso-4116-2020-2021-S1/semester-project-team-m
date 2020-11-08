@@ -3,6 +3,12 @@ from courses.models import Course, MyCourse
 
 
 class CourseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Course
+        fields = ('code', 'title', 'worth', 'pre')
+
+
+class UserCourseSerializer(serializers.ModelSerializer):
     grade = serializers.SerializerMethodField('get_grade')
     term = serializers.SerializerMethodField('get_term')
 
