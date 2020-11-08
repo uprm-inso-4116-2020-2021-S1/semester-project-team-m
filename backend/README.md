@@ -61,3 +61,4 @@ call    | url                                     | description
 **GET** | https://terrain.gabrielrosa.dev/api/mycourses/{code}/ | **(Auth)** Get information about a specific user's course
 **GET** | https://terrain.gabrielrosa.dev/api/grades/ | **(Auth)** Get user's grades
 **GET** | https://terrain.gabrielrosa.dev/api/user/ | **(Auth)** Get information about a user (username, email, student id, first name, last name, date joined, and last login.)
+**GET** | https://terrain.gabrielrosa.dev/api/curriculum/ | **(Auth)** Get user's curriculum
