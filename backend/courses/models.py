@@ -14,11 +14,16 @@ MAJOR = (
     ("INSO", "Software Engineering"), ("CIIC", "Computer Science and Engineering")
 )
 
+CURRICULUM_YEAR = (
+    ("2015", "2015"), ("2020", "2020")
+)
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     student_id = models.CharField(max_length=9)
     major = models.CharField(max_length=4, choices=MAJOR)
+    curriculum_year = models.CharField(max_length=4, choices=CURRICULUM_YEAR)
 
     def __str__(self):
         return self.user.email
@@ -34,10 +39,11 @@ class Profile(models.Model):
 
 
 class Course(models.Model):
-    code = models.CharField(max_length=12)
+    curriculum = ArrayField(models.CharField(max_length=8))
+    code = models.CharField(max_length=12, unique=True)
     title = models.CharField(max_length=60)
     worth = models.IntegerField()
-    pre = ArrayField(models.CharField(max_length=12), blank=True)
+    pre = ArrayField(models.CharField(max_length=12), blank=True, null=True)
     objects = DataFrameManager()  # pandas
 
     def as_json(self):
@@ -51,6 +57,12 @@ class Course(models.Model):
 
     def __str__(self):
         return self.code
+
+    def taken_courses(self):
+        try:
+            return MyCourse.objects.get(course__code=self.code)
+        except MyCourse.DoesNotExist:
+            return None
 
 
 class MyCourse(models.Model):

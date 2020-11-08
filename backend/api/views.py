@@ -83,3 +83,15 @@ def api_grades_list(request):
     if request.method == "GET":
         serializer = GradesSerializer(my_courses, many=True)
         return JsonResponse(serializer.data, safe=False)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def api_curriculum_detail(request):
+    year = request.user.profile.curriculum_year if request.user.profile.curriculum_year is not '0' else ''
+    currirculum = request.user.profile.major + year
+
+    if request.method == "GET":
+        courses = Course.objects.filter(curriculum__contains=[currirculum])
+        serializer = CourseSerializer(courses, many=True)
+        return JsonResponse(serializer.data, safe=False)
