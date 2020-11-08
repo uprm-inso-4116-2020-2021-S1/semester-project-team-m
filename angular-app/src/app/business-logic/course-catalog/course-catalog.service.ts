@@ -5,8 +5,8 @@ import { AuthenticationService } from '../authentication/authentication.service'
 @Injectable({
   providedIn: 'root'
 })
-export class CourseService {
-  baseUrl = 'https://terrain.gabrielrosa.dev/api/courses/';
+export class CourseCatalogService {
+  baseUrl = 'https://terrain.gabrielrosa.dev/';
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
   })
@@ -20,7 +20,7 @@ export class CourseService {
 
 
   getCourses() {
-    return this.http.get(`${this.baseUrl}`, {
+    return this.http.get(`${this.baseUrl}api/courses/`, {
       headers: this.authService.getAuthHeaders(),
       responseType: 'json'
     })

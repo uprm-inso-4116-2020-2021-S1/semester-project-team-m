@@ -4,12 +4,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CourseListComponent } from './course-list/course-list.component';
 import { CourseDetailsComponent } from './course-details/course-details.component';
-import { CoursesContainerComponent } from './courses-container/courses-container.component';
-import {MatTableModule} from "@angular/material/table";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatInputModule} from "@angular/material/input";
-import {MatOptionModule} from "@angular/material/core";
-import {MatSelectModule} from "@angular/material/select";
+import { MatTableModule } from "@angular/material/table";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatOptionModule } from "@angular/material/core";
+import { MatSelectModule } from "@angular/material/select";
+import { MatButtonModule } from '@angular/material';
+import { CourseCatalogContainerComponent } from './course-catalog-container/course-catalog-container.component';
 
 const routes: Routes = [
   // { path: 'home', component: MainComponent }
@@ -20,12 +21,13 @@ const routes: Routes = [
     // MainComponent,
     CourseListComponent,
     CourseDetailsComponent,
-    CoursesContainerComponent,
+    CourseCatalogContainerComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
+    MatButtonModule,
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
@@ -33,10 +35,13 @@ const routes: Routes = [
     MatSelectModule
   ],
   exports: [
-    RouterModule
+    RouterModule,
+    CourseListComponent,
+    CourseDetailsComponent,
+    CourseCatalogContainerComponent
   ],
   providers: [
     // ApiService,
   ]
 })
-export class MainModule { }
+export class CourseCatalogModule { }
