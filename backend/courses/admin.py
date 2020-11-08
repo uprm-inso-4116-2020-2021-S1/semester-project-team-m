@@ -4,7 +4,7 @@ from .models import MyCourse, Profile, Course
 
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ['code', 'title', 'worth', 'pre']
+    list_display = ['code', 'title', 'worth', 'pre', 'curriculum']
 
 
 @admin.register(MyCourse)
@@ -14,5 +14,5 @@ class MyCourseAdmin(admin.ModelAdmin):
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ['student_id', 'major']
+    list_display = ['student_id', 'major', 'curriculum_year']
 
