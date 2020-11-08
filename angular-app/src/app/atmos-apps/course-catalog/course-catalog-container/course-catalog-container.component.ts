@@ -5,14 +5,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { CourseCatalogService } from 'src/app/business-logic/course-catalog/course-catalog.service';
 import { Observable } from "rxjs";
 import { MatSort } from "@angular/material/sort";
+import { Course } from '../../../business-logic/models/course'
 
-interface Course {
-  code: string;
-  title: string;
-  worth: number;
-  pre: string[];
-  grade?: string;
-}
 
 @Component({
   selector: 'app-course-catalog-container',
