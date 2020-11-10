@@ -1,15 +1,22 @@
-
-
-
-
 :host {
   display: flex;
   flex-flow: column;
-  height: 100%;
 }
 
 
+app-footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
 
+/*
+for some reason,probably flex, the sidebar's size is adjusted according to the mat-table's size
+*/
+.app-body{
+  max-height: 500px;
+  height: 80%;
+}
 
 
 
@@ -28,21 +35,8 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* :host {
-  box-sizing: border-box; 
+  box-sizing: border-box;
  }
  body {
    margin: 0;
@@ -54,7 +48,7 @@
  #main > article {
    flex: 1;
  }
- #main > nav, 
+ #main > nav,
  #main > aside {
    flex: 0 0 20vw;
    background: beige;
