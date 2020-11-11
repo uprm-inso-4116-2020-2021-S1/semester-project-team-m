@@ -3,22 +3,25 @@
   flex-flow: column;
 }
 
+.app-body{
+  max-height: 500px;
+  height: 80%;
+}
+/*
+Made sidebar fixed to left side of the page, because
+for some reason it's height was being affected by the mat-table
+*/
+.app-body app-sidebar{
+  position: fixed;
+  left: 0px;
+  height: 80%;
+}
 
 app-footer{
   position: absolute;
   bottom: 0;
   width: 100%;
 }
-
-/*
-for some reason,probably flex, the sidebar's size is adjusted according to the mat-table's size
-*/
-.app-body{
-  max-height: 500px;
-  height: 80%;
-}
-
-
 
 
 
