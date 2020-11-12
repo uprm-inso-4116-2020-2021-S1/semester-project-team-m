@@ -2,3 +2,43 @@ mat-card {
   height: 75%;
   overflow: auto;
 }
+
+mat-table {
+  background: lightcyan;
+  min-height: 90%;
+}
+
+tr.mat-header-row {
+  min-width: 50%
+}
+
+table.mat-table {
+  display: table;
+}
+
+/* .mat-table__wrapper .mat-table {
+  min-width: auto !important;
+  width: 100% !important;
+} */
+
+.mat-column-course_code {
+  /* flex: 0 0 25% !important; */
+  min-width: 120px !important;
+}
+
+.mat-column-title {
+  min-width: 250px !important;
+}
+
+.mat-column-worth {
+  min-width: 50px !important;
+}
+
+.mat-column-pre {
+  min-width: 300px !important;
+  padding-left: 10px;
+}
+
+.mat-column-honor {
+  min-width: 100px !important;
+}

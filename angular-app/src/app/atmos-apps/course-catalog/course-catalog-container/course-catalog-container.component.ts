@@ -23,7 +23,7 @@ export class CourseCatalogContainerComponent implements OnInit {
     'worth',
     'grade',
     'pre',
-    'hp'
+    'honor'
   ]
 
   // dataSource: MatTableDataSource<any>(data);
