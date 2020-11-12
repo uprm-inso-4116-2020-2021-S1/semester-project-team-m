@@ -3,8 +3,8 @@ import { MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { CourseCatalogService } from 'src/app/business-logic/course-catalog/course-catalog.service';
-import { Observable } from "rxjs";
-import { MatSort } from "@angular/material/sort";
+import { Observable } from 'rxjs';
+import { MatSort } from '@angular/material/sort';
 import { Course } from '../../../business-logic/models/course'
 
 
