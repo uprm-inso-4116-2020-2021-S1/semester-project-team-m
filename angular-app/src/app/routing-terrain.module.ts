@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CourseCatalogContainerComponent } from './atmos-apps/course-catalog/course-catalog-container/course-catalog-container.component';
-import { AppsContainerComponent } from './atmos-modules/apps-container/apps-container.component';
+import { AppsContainerComponent } from './atmos-terrain/apps-container/apps-container.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 
 const routes: Routes = [
@@ -28,4 +28,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class RoutingLayoutModule { }
+export class RoutingTerrainModule { }

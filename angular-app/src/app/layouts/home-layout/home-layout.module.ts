@@ -10,7 +10,7 @@ import { MatSelectModule } from "@angular/material/select";
 import { HomeLayoutComponent } from './home-layout.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { RoutingLayoutModule } from '../../routing-layout.module';
+import { RoutingTerrainModule } from '../../routing-terrain.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { RoutingLayoutModule } from '../../routing-layout.module';
     ReactiveFormsModule,
     FlexLayoutModule,
     SharedModule,
-    RoutingLayoutModule,
+    RoutingTerrainModule,
     MatOptionModule,
   ],
   exports: [
