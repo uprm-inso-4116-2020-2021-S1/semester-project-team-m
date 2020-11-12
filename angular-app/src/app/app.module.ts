@@ -14,6 +14,7 @@ import { HomeLayoutModule } from './layouts/home-layout/home-layout.module';
 import { SharedModule } from './shared/shared.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CdkTableModule } from '@angular/cdk/table';
+import { GpaCalculatorModule } from './atmos-apps/gpa-calculator/gpa-calculator.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { CdkTableModule } from '@angular/cdk/table';
     HttpClientModule,
     AtmosTerrainModule,
     CourseCatalogModule,
+    GpaCalculatorModule,
     HomeLayoutModule,
     SharedModule,
     FlexLayoutModule,
