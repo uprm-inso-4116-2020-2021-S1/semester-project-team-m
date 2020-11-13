@@ -1,1 +1,26 @@
-<p>grade-distri-container works!</p>
+<button mat-raised-button class="mb-3" color="primary" (click)="goBack()">
+  Back
+</button>
+
+<mat-card>
+  <mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="faculty">
+      <mat-header-cell *matHeaderCellDef> Faculty </mat-header-cell>
+      <mat-cell *matCellDef="let catalog"> {{catalog.faculty}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="department">
+      <mat-header-cell *matHeaderCellDef> Department </mat-header-cell>
+      <mat-cell *matCellDef="let catalog"> {{catalog.department}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="code">
+      <mat-header-cell *matHeaderCellDef> Code </mat-header-cell>
+      <mat-cell *matCellDef="let catalog"> {{catalog.code}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="section">
+      <mat-header-cell *matHeaderCellDef> Section </mat-header-cell>
+      <mat-cell *matCellDef="let catalog"> {{catalog.section}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: columnsToDisplay"></mat-row>
+  </mat-table>
+</mat-card>

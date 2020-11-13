@@ -1,0 +1,22 @@
+td{
+  border: 1px solid white;
+}
+
+.clickable {
+    height: 50px;
+    background: gray;
+}
+
+.clickable:hover {
+    background: green;
+}
+
+mat-card {
+  height: 75%;
+  overflow: auto;
+}
+
+mat-table {
+  background: lightcyan;
+  min-height: 90%;
+}

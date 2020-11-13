@@ -31,7 +31,8 @@
     "rxjs": "~6.6.3",
     "tslib": "^1.10.0",
     "web-animations-js": "^2.3.2",
-    "zone.js": "~0.10.3"
+    "zone.js": "~0.10.3",
+    "xlsx": "^0.16.8"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1100.0-rc.1",
