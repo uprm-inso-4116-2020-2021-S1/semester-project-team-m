@@ -5,3 +5,9 @@
   align-items: center;
   cursor: pointer;
 }
+
+button {
+  margin-right: 2em;
+}
+
+

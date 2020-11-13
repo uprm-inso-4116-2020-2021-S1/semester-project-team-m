@@ -21,8 +21,15 @@ export class AppsContainerComponent implements OnInit {
     this.viewCatalog = whatIPassed;
   }
 
-  detectApp() {
+  detectCourseCatalog() {
     this.router.navigate(['home/catalog'])
-    // this.viewCatalog = true;
+  }
+
+  detentGpaCalculator() {
+    this.router.navigate(['home/gpa-calculator'])
+  }
+
+  detectGradeDistribution() {
+    this.router.navigate(['home/grade-distribution'])
   }
 }
