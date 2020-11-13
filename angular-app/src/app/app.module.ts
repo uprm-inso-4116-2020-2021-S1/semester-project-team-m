@@ -15,6 +15,7 @@ import { SharedModule } from './shared/shared.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CdkTableModule } from '@angular/cdk/table';
 import { GpaCalculatorModule } from './terrain-apps/gpa-calculator/gpa-calculator.module';
+import { GradeDistributionModule } from './terrain-apps/grade-distribution/grade-distribution.module';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { GpaCalculatorModule } from './terrain-apps/gpa-calculator/gpa-calculato
     AtmosTerrainModule,
     CourseCatalogModule,
     GpaCalculatorModule,
+    GradeDistributionModule,
     HomeLayoutModule,
     SharedModule,
     FlexLayoutModule,
