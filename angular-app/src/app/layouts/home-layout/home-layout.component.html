@@ -1,7 +1,10 @@
 <app-header flexLayout="column"></app-header>
 
 <div class="app-middle" flexLayout="row" fxFlex>
-  <app-sidebar></app-sidebar>
+  <div fxFlex="12">
+    <!-- <div> -->
+    <app-sidebar></app-sidebar>
+  </div>
   <div fxFlex="80" class="terrain">
     <router-outlet></router-outlet>
   </div>

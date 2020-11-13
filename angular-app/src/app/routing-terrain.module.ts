@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CourseCatalogContainerComponent } from './atmos-apps/course-catalog/course-catalog-container/course-catalog-container.component';
+import { CourseCatalogContainerComponent } from './terrain-apps/course-catalog/course-catalog-container/course-catalog-container.component';
 import { AppsContainerComponent } from './atmos-terrain/apps-container/apps-container.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 
