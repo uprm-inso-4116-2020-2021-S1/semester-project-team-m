@@ -3,6 +3,11 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GpaCalcContainerComponent } from './gpa-calc-container/gpa-calc-container.component';
+import { MatTableModule } from '@angular/material/table';
+import {
+  MatButtonModule,
+  MatCardModule,
+} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -11,6 +16,9 @@ import { GpaCalcContainerComponent } from './gpa-calc-container/gpa-calc-contain
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    MatTableModule,
+    MatButtonModule,
+    MatCardModule,
   ],
   exports: [
     RouterModule,
