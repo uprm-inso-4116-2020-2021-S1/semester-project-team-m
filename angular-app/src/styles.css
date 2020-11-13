@@ -56,3 +56,8 @@ a {
 .bg-gray { background-color: #9B9B9B; }
 .bg-dark-gray { background-color: #4C4C4C; }
 .bg-light-gray { background-color: #E4E4E4; }
+
+/* Mat Colors */
+.mat-raised-button {
+  color: white !important;
+}
