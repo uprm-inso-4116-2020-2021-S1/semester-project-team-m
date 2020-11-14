@@ -1,4 +1,14 @@
-td{
+mat-card {
+  height: 600px;
+  overflow: auto;
+}
+
+mat-table {
+  background: lightcyan;
+  min-height: 90%;
+}
+
+td {
   border: 1px solid white;
 }
 
@@ -9,14 +19,4 @@ td{
 
 .clickable:hover {
     background: green;
-}
-
-mat-card {
-  height: 75%;
-  overflow: auto;
-}
-
-mat-table {
-  background: lightcyan;
-  min-height: 90%;
 }
