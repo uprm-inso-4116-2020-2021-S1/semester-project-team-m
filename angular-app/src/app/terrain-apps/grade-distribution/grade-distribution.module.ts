@@ -7,6 +7,7 @@ import { MatTableModule } from '@angular/material/table';
 import {
   MatButtonModule,
   MatCardModule,
+  MatIconModule,
 } from '@angular/material';
 
 @NgModule({
@@ -19,6 +20,7 @@ import {
     MatTableModule,
     MatButtonModule,
     MatCardModule,
+    MatIconModule
   ],
   exports: [
     RouterModule,

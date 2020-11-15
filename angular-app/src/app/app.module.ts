@@ -16,6 +16,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { CdkTableModule } from '@angular/cdk/table';
 import { GpaCalculatorModule } from './terrain-apps/gpa-calculator/gpa-calculator.module';
 import { GradeDistributionModule } from './terrain-apps/grade-distribution/grade-distribution.module';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { GradeDistributionModule } from './terrain-apps/grade-distribution/grade
     HomeLayoutModule,
     SharedModule,
     FlexLayoutModule,
-    CdkTableModule
+    CdkTableModule,
+    MatIconModule
   ],
   providers: [
     CookieService
