@@ -4,24 +4,14 @@
 }
 
 .app-middle {
-  max-height: 89vh;
+  /* max-height: 89vh; */
   /* background-color: blue; */
 }
 
-/* 
-  Made sidebar fixed to left side of the page, because
-  for some reason it's height was being affected by the mat-table 
-*/
-app-sidebar {
-  position: fixed;
-  left: 0;
-  padding-left: 40px;
-  height: 100%;
-  width: 10%;
-}
+
 
 .terrain {
-  max-height: 100%;
+  /* max-height: 100%; */
   margin: 30px;
 }
 
