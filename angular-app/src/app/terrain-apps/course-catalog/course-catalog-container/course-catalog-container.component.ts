@@ -41,7 +41,6 @@ export class CourseCatalogContainerComponent implements OnInit {
     if (!this.cookieService.get('courses-token'))
       this.router.navigate(['/auth'])
 
-    this.dataSource = this.courses
 
     this.courseCatalogService.getCourses().subscribe(
       courses => {

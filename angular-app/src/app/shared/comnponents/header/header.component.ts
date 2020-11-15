@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  logout() {
+  signout() {
     this.cookieService.delete('courses-token');
     this.router.navigate(['auth']);
   }
