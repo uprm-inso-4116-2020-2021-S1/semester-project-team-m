@@ -7,6 +7,10 @@ mat-table {
   min-height: 90%;
 }
 
+a {
+  cursor: pointer;
+}
+
 td {
   border: 1px solid white;
 }

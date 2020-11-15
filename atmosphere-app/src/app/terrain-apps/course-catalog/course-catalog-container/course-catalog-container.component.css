@@ -8,6 +8,10 @@ mat-table {
   min-height: 90%;
 }
 
+a {
+  cursor: pointer;
+}
+
 tr.mat-header-row {
   min-width: 50%
 }
