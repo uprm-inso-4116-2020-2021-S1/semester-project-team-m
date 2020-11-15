@@ -1,5 +1,19 @@
 header {
   padding: 20px;
-  background-color: teal;
+  background-color: #388e3c;
   /* height: 100%; */
+}
+
+.nav-link {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.nav-link:hover {
+  cursor: pointer;
+  border-bottom-color: #8d849e !important;
+}
+
+li {
+  list-style: none;
 }
