@@ -1,7 +1,16 @@
 <header fxLayoutAlign="space-between center">
   <div>LOGO</div>
-  <div fxLayout="row" fxLayoutGap="20px">
+  <!-- <div fxLayout="row" fxLayoutGap="20px">
     <button mat-raised-button color="primary" (click)="logout()">Logout</button>
+  </div> -->
+
+  <div>
+    <li (click)="signout()" role="presentation" class="nav-item">
+      <!-- <a id="signInBtn" class="nav-link d-none d-sm-block d-md-block d-xl-block bottom-green-border"> -->
+      <a id="signInBtn" class="nav-link d-none d-sm-block d-md-block d-xl-block border-secondary">
+        <strong>Sign Out</strong>
+      </a>
+    </li>
   </div>
 </header>
 
