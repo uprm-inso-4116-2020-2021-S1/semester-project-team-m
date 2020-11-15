@@ -6,8 +6,20 @@
   cursor: pointer;
 }
 
-button {
-  margin-right: 2em;
+
+
+
+.app-container {
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-gap: 20px;
+  /* padding-left: 50px; */
+  /* background-color: #fff; */
 }
 
-
+.app-icon {
+  cursor: pointer;
+  /* background-color: #444;
+  border-radius: 5px;
+  padding: 20px; */
+}

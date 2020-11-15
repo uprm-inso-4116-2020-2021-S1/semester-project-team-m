@@ -1,29 +1,31 @@
-<button mat-raised-button color="accent" (click)="detectCourseCatalog()">
-  Course Catalog
-</button>
+<!-- <div class="apps-container">
+  <button class="app" mat-raised-button color="accent" (click)="detectCourseCatalog()">
+    Course Catalog
+  </button>
 
-<button mat-raised-button color="accent" (click)="detentGpaCalculator()">
-  GPA Calculator
-</button>
+  <button class="app" mat-raised-button color="accent" (click)="detentGpaCalculator()">
+    GPA Calculator
+  </button>
 
-<button mat-raised-button color="accent" (click)="detectGradeDistribution()">
-  Grade Distribution
-</button>
+  <button class="app" mat-raised-button color="accent" (click)="detectGradeDistribution()">
+    Grade Distribution
+  </button>
+</div> -->
 
-<div>
-  <img src="../../../assets/loner.svg" alt="iap-logo" id="icon">
+
+
+
+<div class="app-container">
+  <div class="app-icon">
+    <img src="../../../assets/SVG/first-icon.svg" height="300" width="300" (click)="detectCourseCatalog()">
+    <p>Course Catalog</p>
+  </div>
+  <div class="app-icon">
+    <img src="../../../assets/SVG/first-icon.svg" height="300" width="300" (click)="detentGpaCalculator()">
+    <p>GPA Calculator</p>
+  </div>
+  <div class="app-icon">
+    <img src="../../../assets/SVG/first-icon.svg" height="300" width="300" (click)="detectGradeDistribution()">
+    <p>Grade Distribution</p>
+  </div>
 </div>
-
-
-
-<!-- 
-<div class="upload">
-  <label id="fileLabel" class="file-btn green circular-btn">
-    <img src="../../../assets/assignment-white-48dp.svg">
-    <hr>
-    Curriculum
-  </label>
-  <input style="display: none" id="curriculum" (click)="detectApp()">
-</div>
-
-<div class="tl-logo"></div> -->
