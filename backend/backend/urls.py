@@ -20,12 +20,9 @@ from courses.views import FrontEndRenderView
 
 
 urlpatterns = [
+    path('', FrontEndRenderView.as_view(), name='home'),
     path('admin/', admin.site.urls),
     path('api-auth/', obtain_auth_token, name='api_auth'),
     path('api/', include('api.urls')),
     path('courses/', include('courses.urls')),
-]
-
-urlpatterns += [
-    re_path(r'(?P<path>.*)', FrontEndRenderView.as_view(), name='home')
 ]
