@@ -74,7 +74,7 @@ def api_course_detail(request, course_code):
 @permission_classes([IsAuthenticated])
 def api_my_course_list(request, format='json'):
     try:
-        my_courses = MyCourse.objects.filter(email=request.user.email)
+        my_courses = MyCourse.objects.filter(user=request.user.profile)
     except MyCourse.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
@@ -97,7 +97,7 @@ def api_my_course_list(request, format='json'):
         return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['GET'])
+@api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([IsAuthenticated])
 def api_my_courses_detail(request, course_code):
     try:
@@ -110,12 +110,30 @@ def api_my_courses_detail(request, course_code):
         serializer = MyCourseSerializer(my_courses)
         return JsonResponse(serializer.data, safe=False)
 
+    elif request.method == "PUT":
+        serializer = MyCourseSerializer(my_courses, data=request.data, partial=True)
+        if serializer.is_valid():
+            if 'course' in request.POST:
+                try:
+                    course = Course.objects.get(code=request.POST['course'].upper())
+                except Course.DoesNotExist:
+                    raise serializers.ValidationError({"course": "Please provide a valid course."})
+                serializer.save(course=course, user=request.user.profile)
+            else:
+                serializer.save(user=request.user.profile)
+            return JsonResponse(serializer.data)
+        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == "DELETE":
+        my_courses.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def api_grades_list(request):
     try:
-        my_courses = MyCourse.objects.filter(email=request.user.email)
+        my_courses = MyCourse.objects.filter(user=request.user.profile)
     except MyCourse.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 

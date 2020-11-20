@@ -67,7 +67,6 @@ class Course(models.Model):
 
 class MyCourse(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    email = models.CharField(max_length=50)
     course = models.ForeignKey(Course, on_delete=models.PROTECT)
     grade = models.CharField(max_length=1, choices=GRADES)
     term = models.CharField(max_length=6)
