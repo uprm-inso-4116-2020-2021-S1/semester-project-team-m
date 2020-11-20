@@ -102,7 +102,7 @@ def api_my_course_list(request, format='json'):
 def api_my_courses_detail(request, course_code):
     try:
         course_code = course_code.upper()
-        my_courses = MyCourse.objects.get(email=request.user.email, course__code=course_code)
+        my_courses = MyCourse.objects.get(user=request.user.profile, course__code=course_code)
     except MyCourse.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
