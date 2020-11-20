@@ -9,7 +9,7 @@ class CourseAdmin(admin.ModelAdmin):
 
 @admin.register(MyCourse)
 class MyCourseAdmin(admin.ModelAdmin):
-    list_display = ['course', 'grade', 'term']
+    list_display = ['user', 'course', 'grade', 'term']
 
 
 @admin.register(Profile)
