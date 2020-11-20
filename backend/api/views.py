@@ -5,6 +5,7 @@ from rest_framework import status
 from courses.models import Course, MyCourse
 from rest_framework.permissions import IsAuthenticated
 from .serializers import CourseSerializer, MyCourseSerializer, GradesSerializer, UserCourseSerializer
+from rest_framework import serializers
 
 
 @api_view(['GET'])
@@ -69,7 +70,7 @@ def api_course_detail(request, course_code):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
 def api_my_course_list(request, format='json'):
     try:
@@ -80,6 +81,20 @@ def api_my_course_list(request, format='json'):
     if request.method == "GET":
         serializer = MyCourseSerializer(my_courses, many=True)
         return JsonResponse(serializer.data, safe=False)
+
+    elif request.method == "POST":
+        if 'course' not in request.POST:
+            raise serializers.ValidationError({"course": "This field is required"})
+
+        serializer = MyCourseSerializer(data=request.data)
+        if serializer.is_valid():
+            try:
+                course = Course.objects.get(code=request.POST['course'].upper())
+            except Course.DoesNotExist:
+                raise serializers.ValidationError({"course": "Please provide a valid course"})
+            serializer.save(course=course)
+            return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
+        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET'])

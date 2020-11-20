@@ -32,6 +32,9 @@ class MyCourseSerializer(serializers.ModelSerializer):
         model = MyCourse
         fields = ('grade', 'term', 'course')
 
+    def create(self, validated_data):
+        return MyCourse.objects.create(**validated_data)
+
 
 class GradesSerializer(serializers.ModelSerializer):
     course = CourseSerializer(many=False, read_only=True)
