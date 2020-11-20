@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from courses.models import Course, MyCourse
+from courses.models import Course, MyCourse, Profile
 
 
 class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
-        fields = ('code', 'title', 'worth', 'pre')
+        fields = ('code', 'title', 'worth', 'curriculum', 'pre')
 
 
 class UserCourseSerializer(serializers.ModelSerializer):
@@ -31,6 +31,9 @@ class MyCourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = MyCourse
         fields = ('grade', 'term', 'course')
+
+    def create(self, validated_data):
+        return MyCourse.objects.create(**validated_data)
 
 
 class GradesSerializer(serializers.ModelSerializer):

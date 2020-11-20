@@ -60,13 +60,13 @@ class Course(models.Model):
 
     def taken_courses(self):
         try:
-            return MyCourse.objects.get(course__code=self.code)
+            return MyCourse.objects.filter(course__code=self.code).first()
         except MyCourse.DoesNotExist:
             return None
 
 
 class MyCourse(models.Model):
-    email = models.CharField(max_length=50)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.PROTECT)
     grade = models.CharField(max_length=1, choices=GRADES)
     term = models.CharField(max_length=6)
