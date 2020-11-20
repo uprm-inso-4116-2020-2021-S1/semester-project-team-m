@@ -84,15 +84,15 @@ def api_my_course_list(request, format='json'):
 
     elif request.method == "POST":
         if 'course' not in request.POST:
-            raise serializers.ValidationError({"course": "This field is required"})
+            raise serializers.ValidationError({"course": "This field is required."})
 
         serializer = MyCourseSerializer(data=request.data)
         if serializer.is_valid():
             try:
                 course = Course.objects.get(code=request.POST['course'].upper())
             except Course.DoesNotExist:
-                raise serializers.ValidationError({"course": "Please provide a valid course"})
-            serializer.save(course=course)
+                raise serializers.ValidationError({"course": "Please provide a valid course."})
+            serializer.save(course=course, user=request.user.profile)
             return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
         return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
