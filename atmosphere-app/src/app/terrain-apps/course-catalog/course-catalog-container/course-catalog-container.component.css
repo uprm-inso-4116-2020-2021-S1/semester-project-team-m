@@ -4,7 +4,6 @@ mat-card {
 }
 
 mat-table {
-  background: lightcyan;
   min-height: 90%;
 }
 
@@ -19,6 +18,40 @@ tr.mat-header-row {
 table.mat-table {
   display: table;
 }
+
+.data-table {
+  overflow: auto;
+  min-height: 300px;
+  max-height: 500px;
+}
+
+.inputs {
+  flex: 1;
+}
+.inputs label {
+  margin: 10px auto
+}
+.inputs button {
+  min-width: 1em
+}
+
+.advanced-search-buttons {
+  margin-top: 1.5em;
+  width: 100%;
+}
+
+.search-field {
+  flex: 4;
+}
+.advanced-button {
+  flex: 1;
+}
+
+/* .advanced-button button {
+  height: 50px;
+  float: right;
+} */
+
 
 /* .mat-table__wrapper .mat-table {
   min-width: auto !important;
