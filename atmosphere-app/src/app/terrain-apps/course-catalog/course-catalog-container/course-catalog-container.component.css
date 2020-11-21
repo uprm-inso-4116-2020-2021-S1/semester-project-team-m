@@ -7,6 +7,18 @@ mat-table {
   min-height: 90%;
 }
 
+.sub-header {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.back-button {
+  display: flex;
+  /* flex-direction: row; */
+  /* align-items: center; */
+}
+
 a, #advanced-button .filter-button {
   cursor: pointer;
 }

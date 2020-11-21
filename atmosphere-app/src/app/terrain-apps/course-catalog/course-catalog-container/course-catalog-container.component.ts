@@ -20,8 +20,7 @@ class SearchField<E> {
 export class CourseCatalogContainerComponent implements OnInit {
   @Output() onFinished = new EventEmitter<boolean>();
 
-
-  public courses = []
+  public dataSource = new MatTableDataSource<Course>();
   public displayedColumns = [
     'course_code', //string
     'title', //string
@@ -31,14 +30,16 @@ export class CourseCatalogContainerComponent implements OnInit {
     'honor' //grade * worth
   ]
 
-  dataSource = new MatTableDataSource();
-
-  public advancedFilter = false;
+  public viewAdvancedFilter = false;
+  public viewCourseDetail = false;
+  // public viewAllCourses = false; //should be false by default
+  public viewAllCourses = true;
 
 
   // course lists
-  public originalCourses; //: Course[];
-  public filteredCourses: any[] = []; //: Course[] = [];
+  public originalCourses: Course[] = []; //: Course[];
+  public filteredCourses: Course[] = []; //: Course[] = [];
+  public mycourses: Course[] = [];
 
   // input fields configurations
 
@@ -76,14 +77,57 @@ export class CourseCatalogContainerComponent implements OnInit {
     this.gradeOptions.push('F')
 
 
-    this.courseCatalogService.getCourses().subscribe(
+    this.courseCatalogService.getAllCourses().subscribe(
       courses => {
-        this.originalCourses = courses;
-        this.dataSource.data = <any>courses;
+        this.originalCourses = this.dataSource.data = courses;
       },
       error => { console.log(error) }
     )
   }
+
+
+
+  toogleTableCourses() {
+    // toggle
+    this.viewAllCourses = !this.viewAllCourses;
+
+    this.filteredCourses = [];
+
+    if (this.viewAllCourses) {
+      this.courseCatalogService.getAllCourses().subscribe(
+        courses => {
+          this.originalCourses = this.dataSource.data = courses;
+        },
+        error => { console.log(error) }
+      )
+    } else {
+      this.courseCatalogService.getMyCourses().subscribe(
+        mycourses => {
+          this.originalCourses = mycourses;
+          this.dataSource.data = mycourses;
+          this.mycourses = mycourses;
+          // console.log(mycourses)
+          // this.originalCourses = this.dataSource.data = mycourses;
+        },
+        error => { console.log(error) }
+      )
+    }
+
+
+
+    this.changeDetector.detectChanges()
+  }
+
+
+
+
+  goBack() {
+    // this.onFinished.emit(false)
+    this.router.navigate(['home/apps'])
+  }
+
+
+  /* ----------------     Advance Filter Section     ---------------- */
 
   /** Returns true if given array length is larger than zero and doesn't
    *   exceed maximum amount of input fields.  False otherwise. */
@@ -98,7 +142,6 @@ export class CourseCatalogContainerComponent implements OnInit {
 
   /** Assigns the selected grade into the given search field's value. */
   selectGrade(gradeField: SearchField<string>, selectedGrade: string) {
-    console.log(gradeField.value, gradeField.value.length, gradeField.value.length > 1)
     gradeField.value = (gradeField.value.length > 1) ? ' ' : selectedGrade;
   }
 
@@ -113,12 +156,12 @@ export class CourseCatalogContainerComponent implements OnInit {
   // }
 
   activateAdvancedFilter() {
-    this.advancedFilter = true;
+    this.viewAdvancedFilter = true;
     this.cloneOriginal();
   }
 
   undoFilter() {
-    this.advancedFilter = false;
+    this.viewAdvancedFilter = false;
     this.dataSource.data = this.originalCourses; // resets student table
     this.cloneOriginal();
   }
@@ -268,10 +311,5 @@ export class CourseCatalogContainerComponent implements OnInit {
   /** Returns true if given string is numeric. */
   isNumeric(value: string): boolean {
     return value != null && !isNaN(Number(value));
-  }
-
-  goBack() {
-    // this.onFinished.emit(false)
-    this.router.navigate(['home/apps'])
   }
 }
