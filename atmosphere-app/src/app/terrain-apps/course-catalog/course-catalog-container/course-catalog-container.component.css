@@ -7,7 +7,7 @@ mat-table {
   min-height: 90%;
 }
 
-a {
+a, #advanced-button .filter-button {
   cursor: pointer;
 }
 
@@ -40,10 +40,11 @@ table.mat-table {
   width: 100%;
 }
 
-.search-field {
+#search-field {
   flex: 4;
 }
-.advanced-button {
+
+#advanced-button {
   flex: 1;
 }
 

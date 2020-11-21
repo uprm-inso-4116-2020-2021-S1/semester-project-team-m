@@ -102,20 +102,26 @@
 
 
 
-<mat-card class="mt-2">
+<mat-card class="mt-2" style="overflow: hidden">
   <div class="d-flex mb-4">
-    <!-- <div class="search-field">
+    <div id="search-field">
       <mat-form-field style="width: 100%">
         <mat-icon matPrefix>search</mat-icon>
         <input matInput (keyup)="generalFilter()" placeholder="General Filter" [(ngModel)]="genIn">
       </mat-form-field>
-    </div> -->
-    <div class="advanced-button">
-      <button *ngIf="advancedSearch; else undo" mat-raised-button color="primary" (click)="undoSearch()">
-        Deactivate Search
-      </button>
+    </div>
+    <div id="advanced-button">
+      <div *ngIf="advancedSearch; else undo" (click)="undoSearch()"
+        class="filter-button green circular-btn d-flex justify-content-center align-items-center">
+        <img src="../../../../assets/SVG/filter.svg" height="" width="30">
+        <p style="font-size: x-large; margin: 2px 0 0 15px; color: black;">Filter</p>
+      </div>
       <ng-template #undo>
-        <button mat-button color="primary" (click)="activateAdvancedSearch()">Advanced Search</button>
+        <div (click)="activateAdvancedSearch()"
+          class="filter-button green circular-btn d-flex justify-content-center align-items-center">
+          <img src="../../../../assets/SVG/filter.svg" height="" width="30">
+          <p style="font-size: x-large; margin: 2px 0 0 15px; color: black;">Filter</p>
+        </div>
       </ng-template>
     </div>
   </div>
