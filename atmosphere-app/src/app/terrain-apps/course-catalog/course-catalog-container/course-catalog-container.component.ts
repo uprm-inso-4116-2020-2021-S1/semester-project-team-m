@@ -31,8 +31,6 @@ export class CourseCatalogContainerComponent implements OnInit {
     'honor' //grade * worth
   ]
 
-  // dataSource: MatTableDataSource<any>(data);
-  // public dataSource;
   dataSource = new MatTableDataSource();
 
   public advancedSearch = false;
@@ -45,7 +43,6 @@ export class CourseCatalogContainerComponent implements OnInit {
   // input fields configurations
 
   public MAX_INPUTS = 3;  // maximum input fields in advanced search
-  // public courseCodeField: SearchField<string>;
   public codeFields: SearchField<string>[] = [];
   public titleFields: SearchField<string>[] = [];
   public preFields: SearchField<string>[] = [];
@@ -82,9 +79,7 @@ export class CourseCatalogContainerComponent implements OnInit {
     this.courseCatalogService.getCourses().subscribe(
       courses => {
         this.originalCourses = courses;
-        // this.dataSource = new MatTableDataSource(<any>courses);
         this.dataSource.data = <any>courses;
-        // console.log(this.dataSource.data);
       },
       error => { console.log(error) }
     )
