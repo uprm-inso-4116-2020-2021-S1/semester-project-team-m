@@ -33,7 +33,7 @@ export class CourseCatalogContainerComponent implements OnInit {
 
   dataSource = new MatTableDataSource();
 
-  public advancedSearch = false;
+  public advancedFilter = false;
 
 
   // course lists
@@ -112,13 +112,13 @@ export class CourseCatalogContainerComponent implements OnInit {
   //   });
   // }
 
-  activateAdvancedSearch() {
-    this.advancedSearch = true;
+  activateAdvancedFilter() {
+    this.advancedFilter = true;
     this.cloneOriginal();
   }
 
-  undoSearch() {
-    this.advancedSearch = false;
+  undoFilter() {
+    this.advancedFilter = false;
     this.dataSource.data = this.originalCourses; // resets student table
     this.cloneOriginal();
   }

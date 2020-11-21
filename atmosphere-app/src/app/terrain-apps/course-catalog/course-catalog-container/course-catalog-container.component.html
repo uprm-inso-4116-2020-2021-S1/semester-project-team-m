@@ -16,9 +16,9 @@
   </a>
 </div>
 
-<mat-card *ngIf="advancedSearch" class="mt-2" style="max-height: 300px">
+<mat-card *ngIf="advancedFilter" class="mt-2" style="max-height: 300px">
   <div class="d-flex justify-content-start align-items-center p-3 title bg-light-gray">
-    <h6 class="m-0">Advanced Search</h6>
+    <h6 class="m-0">Advanced Filter</h6>
   </div>
   <div class="mt-3">
     <div class="d-flex">
@@ -78,7 +78,7 @@
     </div>
 
 
-    <div class="advanced-search-buttons">
+    <div class="advanced-filter-buttons">
       <div style="display: inline">
         <button class="mr-2" mat-stroked-button color="primary" (click)="removeEmptyFields()">
           Remove Empty Fields
@@ -111,13 +111,13 @@
       </mat-form-field>
     </div>
     <div id="advanced-button">
-      <div *ngIf="advancedSearch; else undo" (click)="undoSearch()"
+      <div *ngIf="advancedFilter; else undo" (click)="undoFilter()"
         class="filter-button green circular-btn d-flex justify-content-center align-items-center">
         <img src="../../../../assets/SVG/filter.svg" height="" width="30">
         <p style="font-size: x-large; margin: 2px 0 0 15px; color: black;">Filter</p>
       </div>
       <ng-template #undo>
-        <div (click)="activateAdvancedSearch()"
+        <div (click)="activateAdvancedFilter()"
           class="filter-button green circular-btn d-flex justify-content-center align-items-center">
           <img src="../../../../assets/SVG/filter.svg" height="" width="30">
           <p style="font-size: x-large; margin: 2px 0 0 15px; color: black;">Filter</p>
