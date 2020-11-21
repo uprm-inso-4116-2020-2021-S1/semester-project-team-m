@@ -14,7 +14,7 @@
 
 <mat-card>
   <mat-table [dataSource]="dataSource">
-    <ng-container matColumnDef="faculty">
+    <ng-container matColumnDef="faculty" sticky>
       <mat-header-cell *matHeaderCellDef> Faculty </mat-header-cell>
       <mat-cell *matCellDef="let catalog"> {{catalog.faculty}} </mat-cell>
     </ng-container>

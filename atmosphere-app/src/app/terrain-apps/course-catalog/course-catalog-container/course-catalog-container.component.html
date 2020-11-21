@@ -122,23 +122,23 @@
 
   <mat-table [dataSource]="dataSource" class="data-table">
     <ng-container matColumnDef="course_code" sticky>
-      <mat-header-cell mat-header-cell *matHeaderCellDef> Course Code </mat-header-cell>
-      <mat-cell mat-cell *matCellDef="let element"> {{element.code}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef> Course Code </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.code}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="title">
-      <mat-header-cell mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
-      <mat-cell mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="worth">
-      <mat-header-cell mat-header-cell *matHeaderCellDef> Worth </mat-header-cell>
-      <mat-cell mat-cell *matCellDef="let element;">{{element.worth}}</mat-cell>
+      <mat-header-cell *matHeaderCellDef> Worth </mat-header-cell>
+      <mat-cell *matCellDef="let element;">{{element.worth}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="grade">
-      <mat-header-cell mat-header-cell *matHeaderCellDef> Grade </mat-header-cell>
-      <mat-cell mat-cell *matCellDef="let element;">
+      <mat-header-cell *matHeaderCellDef> Grade </mat-header-cell>
+      <mat-cell *matCellDef="let element;">
         <mat-form-field appearance="fill">
           <mat-label>Choose Grade</mat-label>
           <mat-select [(value)]="element.grade">
@@ -153,13 +153,13 @@
     </ng-container>
 
     <ng-container matColumnDef="pre">
-      <mat-header-cell mat-header-cell *matHeaderCellDef> Pre </mat-header-cell>
-      <mat-cell mat-cell *matCellDef="let element"> {{element.pre}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef> Pre </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.pre}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="honor">
-      <mat-header-cell mat-header-cell *matHeaderCellDef> Honor </mat-header-cell>
-      <mat-cell mat-cell *matCellDef="let element"> {{(element.grade) ? element.grade * element.worth : ""}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef> Honor </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{(element.grade) ? element.grade * element.worth : ""}} </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
