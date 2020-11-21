@@ -67,6 +67,21 @@ export class CourseCatalogService {
   }
 
   getCurriculum() {
-
+    return this.http.get<Course[]>(`${this.baseUrl}api/curriculum/`, {
+      headers: this.authService.getAuthHeaders(),
+      responseType: 'json'
+    }).pipe(map(courses => {
+      return courses.map(data => {
+        return new Course(
+          data['code'],
+          data['title'],
+          data['worth'],
+          data['pre'],
+          data['curriculum'],
+          data['grade'],
+          data['term'],
+        )
+      })
+    }))
   }
 }

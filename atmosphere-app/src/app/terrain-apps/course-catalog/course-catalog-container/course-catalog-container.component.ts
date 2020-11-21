@@ -77,46 +77,41 @@ export class CourseCatalogContainerComponent implements OnInit {
     this.gradeOptions.push('F')
 
 
-    this.courseCatalogService.getAllCourses().subscribe(
+    this.courseCatalogService.getCurriculum().subscribe(
       courses => {
+        console.log(courses)
         this.originalCourses = this.dataSource.data = courses;
       },
       error => { console.log(error) }
     )
   }
 
+  // toogleTableCourses() {
+  //   // toggle
+  //   this.viewAllCourses = !this.viewAllCourses;
 
+  //   this.filteredCourses = [];
 
-  toogleTableCourses() {
-    // toggle
-    this.viewAllCourses = !this.viewAllCourses;
-
-    this.filteredCourses = [];
-
-    if (this.viewAllCourses) {
-      this.courseCatalogService.getAllCourses().subscribe(
-        courses => {
-          this.originalCourses = this.dataSource.data = courses;
-        },
-        error => { console.log(error) }
-      )
-    } else {
-      this.courseCatalogService.getMyCourses().subscribe(
-        mycourses => {
-          this.originalCourses = mycourses;
-          this.dataSource.data = mycourses;
-          this.mycourses = mycourses;
-          // console.log(mycourses)
-          // this.originalCourses = this.dataSource.data = mycourses;
-        },
-        error => { console.log(error) }
-      )
-    }
-
-
-
-    this.changeDetector.detectChanges()
-  }
+  //   if (this.viewAllCourses) {
+  //     this.courseCatalogService.getAllCourses().subscribe(
+  //       courses => {
+  //         this.originalCourses = this.dataSource.data = courses;
+  //       },
+  //       error => { console.log(error) }
+  //     )
+  //   } else {
+  //     this.courseCatalogService.getMyCourses().subscribe(
+  //       mycourses => {
+  //         this.originalCourses = mycourses;
+  //         this.dataSource.data = mycourses;
+  //         this.mycourses = mycourses;
+  //         // this.originalCourses = this.dataSource.data = mycourses;
+  //       },
+  //       error => { console.log(error) }
+  //     )
+  //   }
+  //   this.changeDetector.detectChanges()
+  // }
 
 
 
@@ -182,10 +177,8 @@ export class CourseCatalogContainerComponent implements OnInit {
     const code = course.code.toLowerCase();
     for (const field of this.codeFields) {
       const fieldCode = field.value.toLowerCase();
-      if (code.indexOf(fieldCode) > -1) { // course name contains fieldCode?
-        console.log("-", course.code)
+      if (code.indexOf(fieldCode) > -1) // course name contains fieldCode?
         return true;
-      }
     }
     return false;
   }
@@ -199,10 +192,8 @@ export class CourseCatalogContainerComponent implements OnInit {
     const title = course.title.toLowerCase();
     for (const field of this.titleFields) {
       const fieldTitle = field.value.toLowerCase();
-      if (title.indexOf(fieldTitle) > -1) { // course title contains fieldTitle?
-        console.log("-", course.title)
+      if (title.indexOf(fieldTitle) > -1) // course title contains fieldTitle?
         return true;
-      }
     }
     return false;
   }
@@ -216,10 +207,8 @@ export class CourseCatalogContainerComponent implements OnInit {
     const pre = course.pre.toLowerCase();
     for (const field of this.preFields) {
       const fieldPre = field.value.toLowerCase();
-      if (pre.indexOf(fieldPre) > -1) { // course title contains fieldTitle?
-        console.log("-", course.pre)
+      if (pre.indexOf(fieldPre) > -1) // course title contains fieldTitle?
         return true;
-      }
     }
     return false;
   }
@@ -234,14 +223,21 @@ export class CourseCatalogContainerComponent implements OnInit {
 
     const grade = Number(course.grade);
     for (const field of this.gradeFields) {
-      const fieldGrade = 69 - field.value.charCodeAt(0);
-      if (undefined !== fieldGrade && grade === fieldGrade) { // course's grade same as fieldGrade?
+      const fieldGrade = this.gradeToValue(field.value)
+
+      if (undefined !== fieldGrade && grade === fieldGrade) // course's grade same as fieldGrade?
         return true;
-      }
     }
     return false;
   }
 
+  // gradeToValue(grade: string): number | string {
+  gradeToValue(grade: string) {
+    // if (grade.length > 0) return '';
+    let value = 69 - grade.charCodeAt(0);
+    if (value == -1) value = 0;
+    return value
+  }
 
   /** Filters students for all filled input fields */
   applyFilter() {
