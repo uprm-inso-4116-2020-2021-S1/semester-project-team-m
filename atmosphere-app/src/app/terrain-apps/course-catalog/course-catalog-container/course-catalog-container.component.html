@@ -2,7 +2,10 @@
   <h2>Course Catalog</h2>
   <div class="d-flex flex-row justify-content-end">
     <h4 class="green mb-0 mr-2">Total Courses: </h4>
-    <h4 class="mb-0"> {{dataSource.data.length}} </h4>
+    <h4 class="mb-0" *ngIf="dataSource; else zero"> {{dataSource.data.length}} </h4>
+    <ng-template #zero>
+      <h4 class="mb-0"> 0 </h4>
+    </ng-template>
   </div>
 </div>
 <!-- <hr class="mt-1"> -->
@@ -13,8 +16,111 @@
   </a>
 </div>
 
-<mat-card>
-  <mat-table [dataSource]="dataSource">
+<mat-card *ngIf="advancedSearch" class="mt-2" style="max-height: 300px">
+  <div class="d-flex justify-content-start align-items-center p-3 title bg-light-gray">
+    <h6 class="m-0">Advanced Search</h6>
+  </div>
+  <div class="mt-3">
+    <div class="d-flex">
+      <div class="inputs">
+        <div *ngFor="let field of codeFields">
+          <mat-form-field for flex class="md-icon-float md-block md-title">
+            <input matInput placeholder="Code" [(ngModel)]="field.value" type="text">
+          </mat-form-field>
+        </div>
+        <a style="width: 90%" *ngIf="validAmountToAdd(codeFields)" (click)="addCodeField()"
+          class="green circular-btn d-flex justify-content-center align-items-center">
+          <mat-icon>add</mat-icon>add code
+        </a>
+      </div>
+
+      <div class="inputs">
+        <div *ngFor="let field of titleFields">
+          <mat-form-field for flex class="md-icon-float md-block md-title">
+            <input matInput placeholder="Title" [(ngModel)]="field.value" type="text">
+          </mat-form-field>
+        </div>
+        <a style="width: 90%" *ngIf="validAmountToAdd(titleFields)" (click)="addTitleField()"
+          class="green circular-btn d-flex justify-content-center align-items-center">
+          <mat-icon>add</mat-icon>add title
+        </a>
+      </div>
+
+
+      <div class="inputs">
+        <div *ngFor="let field of gradeFields">
+          <mat-form-field for flex class="md-icon-float md-block md-title">
+            <mat-select placeholder="Grade" [(ngModel)]="field.value">
+              <mat-option *ngFor="let gradeOption of gradeOptions" (click)="selectGrade(field, gradeOption)"
+                [value]="gradeOption">
+                {{gradeOption}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <a style="width: 80%" *ngIf="validAmountToAdd(gradeFields)" (click)="addGradeField()"
+          class="green circular-btn d-flex justify-content-center align-items-center">
+          <mat-icon>add</mat-icon>add Grade
+        </a>
+      </div>
+
+      <div class="inputs">
+        <div *ngFor="let field of preFields">
+          <mat-form-field for flex class="md-icon-float md-block md-title">
+            <input matInput placeholder="Prerequisite" [(ngModel)]="field.value" type="text">
+          </mat-form-field>
+        </div>
+        <a style="width: 90%" *ngIf="validAmountToAdd(preFields)" (click)="addPreField()"
+          class="green circular-btn d-flex justify-content-center align-items-center">
+          <mat-icon>add</mat-icon>add prerequisite
+        </a>
+      </div>
+    </div>
+
+
+    <div class="advanced-search-buttons">
+      <div style="display: inline">
+        <button class="mr-2" mat-stroked-button color="primary" (click)="removeEmptyFields()">
+          Remove Empty Fields
+        </button>
+      </div>
+      <div style="display: inline">
+        <!-- <div *ngIf="!allEmptyFields(); else disabled"> -->
+        <button class="apply-filter" style="width: 75%" mat-raised-button color="primary" (click)="applyFilter()">
+          Filter Now
+        </button>
+        <!-- </div>
+        <ng-template #disabled>
+          <button class="apply-filter" style="width: 75%" mat-raised-button color="primary" (click)="applyFilter() disabled">
+            Filter Now
+          </button>
+        </ng-template> -->
+      </div>
+    </div>
+  </div>
+</mat-card>
+
+
+
+<mat-card class="mt-2">
+  <div class="d-flex mb-4">
+    <!-- <div class="search-field">
+      <mat-form-field style="width: 100%">
+        <mat-icon matPrefix>search</mat-icon>
+        <input matInput (keyup)="generalFilter()" placeholder="General Filter" [(ngModel)]="genIn">
+      </mat-form-field>
+    </div> -->
+    <div class="advanced-button">
+      <button *ngIf="advancedSearch; else undo" mat-raised-button color="primary" (click)="undoSearch()">
+        Deactivate Search
+      </button>
+      <ng-template #undo>
+        <button mat-button color="primary" (click)="activateAdvancedSearch()">Advanced Search</button>
+      </ng-template>
+    </div>
+  </div>
+
+  <mat-table [dataSource]="dataSource" class="data-table">
     <ng-container matColumnDef="course_code" sticky>
       <mat-header-cell *matHeaderCellDef> Course Code </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.code}} </mat-cell>
@@ -59,7 +165,7 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"
       [ngClass]="{hovered: row.hovered, highlighted: row.highlighted}" (click)="row.highlighted = !row.highlighted"
-      (mouseover)="row.hovered = true" (mouseout)="row.hovered = false"></mat-row>
-
+      (mouseover)="row.hovered = true" (mouseout)="row.hovered = false">
+    </mat-row>
   </mat-table>
 </mat-card>
