@@ -163,15 +163,17 @@
       <mat-header-cell *matHeaderCellDef> Grade </mat-header-cell>
       <mat-cell *matCellDef="let element;">
         <mat-form-field appearance="fill">
-          <mat-label>Choose Grade</mat-label>
-          <!-- <mat-select placeholder="Grade" [(ngModel)]="field.value"> -->
+          <!-- <mat-form-field> -->
+          <!-- <mat-label>Choose Grade</mat-label> -->
           <mat-select [(ngModel)]="element.grade">
-            <!-- <mat-option value=""></mat-option> -->
+            <!-- <mat-select [formControl]="grade" [(value)]="element.grade"> -->
+            <mat-option value="Choose Grade"> Choose Grade </mat-option>
             <mat-option value="A"> A </mat-option>
             <mat-option value="B"> B </mat-option>
             <mat-option value="C"> C </mat-option>
             <mat-option value="D"> D </mat-option>
             <mat-option value="F"> F </mat-option>
+            <!-- <mat-option value="F"> F </mat-option> -->
           </mat-select>
         </mat-form-field>
       </mat-cell>

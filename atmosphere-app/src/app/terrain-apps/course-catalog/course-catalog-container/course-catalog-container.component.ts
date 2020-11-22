@@ -6,6 +6,7 @@ import { CourseCatalogService } from 'src/app/business-logic/course-catalog/cour
 import { Observable } from 'rxjs';
 import { MatSort } from '@angular/material/sort';
 import { Course } from '../../../business-logic/models/course'
+import { FormControl } from '@angular/forms';
 
 /** Reference of a specific input field within the advance search. */
 class SearchField<E> {
@@ -29,6 +30,7 @@ export class CourseCatalogContainerComponent implements OnInit {
     'pre', //string or 
     'honor' //grade * worth
   ]
+  public genIn;
 
   public viewAdvancedFilter = false;
   public viewCourseDetail = false;
@@ -51,7 +53,12 @@ export class CourseCatalogContainerComponent implements OnInit {
 
   // list of Grades options
   public gradeOptions: string[] = [];
-  public genIn;
+  public grade = new FormControl('Choose Grade');
+
+  defaultGrade() {
+    let form = new FormControl('Choose Grade');
+    // form.value
+  }
 
   constructor(
     private router: Router,
@@ -69,7 +76,6 @@ export class CourseCatalogContainerComponent implements OnInit {
     this.preFields.push(new SearchField(''));
     this.gradeFields.push(new SearchField(''));
 
-    this.gradeOptions.push('Leave Empty')
     this.gradeOptions.push('A')
     this.gradeOptions.push('B')
     this.gradeOptions.push('C')
@@ -171,9 +177,9 @@ export class CourseCatalogContainerComponent implements OnInit {
   /** Returns true if at least one of the code search fields
    *   contains the given course's code.  False otherwise. */
   codeWorthyToFilter(course): boolean {
-    if (this.emptySearchFields(this.codeFields)) {
+    if (this.emptySearchFields(this.codeFields))
       return false;
-    }
+
     const code = course.code.toLowerCase();
     for (const field of this.codeFields) {
       const fieldCode = field.value.toLowerCase();
@@ -186,9 +192,9 @@ export class CourseCatalogContainerComponent implements OnInit {
   /** Returns true if at least one of the title search fields
    *   contains the given course's title.  False otherwise. */
   titleWorthyToFilter(course): boolean {
-    if (this.emptySearchFields(this.titleFields)) {
+    if (this.emptySearchFields(this.titleFields))
       return false;
-    }
+
     const title = course.title.toLowerCase();
     for (const field of this.titleFields) {
       const fieldTitle = field.value.toLowerCase();
@@ -201,9 +207,9 @@ export class CourseCatalogContainerComponent implements OnInit {
   /** Returns true if at least one of the pre search fields
    *   contains the given course's prerequisite.  False otherwise. */
   preWorthyToFilter(course): boolean {
-    if (this.emptySearchFields(this.preFields)) {
+    if (this.emptySearchFields(this.preFields))
       return false;
-    }
+
     const pre = course.pre.toLowerCase();
     for (const field of this.preFields) {
       const fieldPre = field.value.toLowerCase();
@@ -216,27 +222,26 @@ export class CourseCatalogContainerComponent implements OnInit {
 
   /** Returns true if at least one of the graduation date search fields
    *   contains the given student's graduation date.  False otherwise. */
-  gradeWorthyToFilter(course): boolean {
-    if (this.emptySearchFields(this.gradeFields)) {
+  gradeWorthyToFilter(course: Course): boolean {
+    if (this.emptySearchFields(this.gradeFields))
       return false;
-    }
 
-    const grade = Number(course.grade);
+    console.log('---', course.grade);
+    const grade = this.gradeToValue(course.grade);
+    console.log(grade)
     for (const field of this.gradeFields) {
       const fieldGrade = this.gradeToValue(field.value)
-
+      console.log(fieldGrade)
       if (undefined !== fieldGrade && grade === fieldGrade) // course's grade same as fieldGrade?
         return true;
     }
     return false;
   }
 
-  // gradeToValue(grade: string): number | string {
-  gradeToValue(grade: string) {
-    // if (grade.length > 0) return '';
+  gradeToValue(grade: string): number {
+    if (grade.length > 1) return 0;
     let value = 69 - grade.charCodeAt(0);
-    if (value == -1) value = 0;
-    return value
+    return (value === -1) ? 0 : value;
   }
 
   /** Filters students for all filled input fields */
@@ -264,6 +269,13 @@ export class CourseCatalogContainerComponent implements OnInit {
     this.filteredCourses = [];
     this.cloneOriginal();
   }
+
+  // calculateGpa() {
+  //   for (let c of this.dataSource.data) {
+  //     console.log(c);
+  //     c['c']
+  //   }
+  // }
 
   /** Returns true if each string within the given search fields is empty */
   emptySearchFields(searchFields: SearchField<string>[] | string[]): boolean {

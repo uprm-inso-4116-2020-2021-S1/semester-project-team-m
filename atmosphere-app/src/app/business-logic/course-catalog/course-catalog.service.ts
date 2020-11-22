@@ -72,16 +72,20 @@ export class CourseCatalogService {
       responseType: 'json'
     }).pipe(map(courses => {
       return courses.map(data => {
+        let grade = data['grade'] === null ? 'Choose Grade' : data['grade'];
+
         return new Course(
           data['code'],
           data['title'],
           data['worth'],
           data['pre'],
           data['curriculum'],
-          data['grade'],
+          grade,
           data['term'],
         )
       })
     }))
   }
+
+
 }
