@@ -1,13 +1,27 @@
-<!-- <div class="app">
-  <h1>Atmosphere OS</h1>
-  <router-outlet></router-outlet>
-</div> -->
-
-<!-- <app-navbar></app-navbar> -->
-<!-- <app-signup></app-signup> -->
-<!-- <app-login></app-login> -->
 <main>
   <router-outlet></router-outlet>
 </main>
 
+<!-- <main>
+  <app-auth *ngIf="!signedIn; else homepage" (isLoggedIn)="isSignedIn($event)"></app-auth>
+  <ng-template #homepage>
+    <div class="outlet-background">
+      <router-outlet></router-outlet>
+    </div>
+  </ng-template>
+</main> -->
 
+<!-- <main>
+  <div *ngIf="!signedIn; else homepage" class="auth-parent">
+    <app-auth class="auth" (isSignedIn)="isSignedIn($event)"></app-auth>
+  </div>
+  <ng-template #homepage>
+    <router-outlet></router-outlet>
+  </ng-template>
+</main> -->
+
+<!-- <main>
+  <div class="auth-parent">
+    <app-auth class="auth"></app-auth>
+  </div>
+</main> -->
