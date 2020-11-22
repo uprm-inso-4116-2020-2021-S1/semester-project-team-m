@@ -98,22 +98,21 @@
 
     <div class="advanced-filter-buttons">
       <div style="display: inline">
-        <button class="mr-2" mat-stroked-button color="primary" (click)="removeEmptyFields()">
+        <button class="mr-3" mat-stroked-button color="primary" (click)="removeEmptyFields()">
           Remove Empty Fields
         </button>
       </div>
-      <div style="display: inline">
-        <div *ngIf="!allEmptyFields(); else disabled">
+
+      <div *ngIf="!allEmptyFields(); else disabled">
         <button class="apply-filter" style="width: 75%" mat-raised-button color="primary" (click)="applyFilter()">
           Filter Now
         </button>
-        </div>
-        <!--<ng-template #disabled>
-          <button class="apply-filter" style="width: 75%" mat-raised-button color="primary" (click)="applyFilter() disabled">
-            Filter Now
-          </button>
-        </ng-template> -->
       </div>
+      <ng-template #disabled>
+        <button class="apply-filter" style="width: 75%" mat-raised-button color="primary" disabled>
+          Filter Now
+        </button>
+      </ng-template>
     </div>
   </div>
 </mat-card>

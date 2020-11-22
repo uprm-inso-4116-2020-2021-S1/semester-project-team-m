@@ -313,12 +313,13 @@ export class CourseCatalogContainerComponent implements OnInit {
 
   /** Checks if each input field of each category () within the advance search. */
   allEmptyFields() {
-    if(this.emptySearchFields(this.codeFields) 
-    || this.emptySearchFields(this.titleFields) 
-    || this.emptySearchFields(this.gradeFields)
-    || this.emptySearchFields(this.preFields))
-      return false;
-    return true;
+    console.log("sup")
+    if (this.emptySearchFields(this.codeFields)
+      && this.emptySearchFields(this.titleFields)
+      && this.emptySearchFields(this.gradeFields)
+      && this.emptySearchFields(this.preFields))
+      return true;
+    return false;
 
   }
 
