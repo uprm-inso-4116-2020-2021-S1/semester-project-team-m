@@ -1,89 +1,73 @@
-<div id="login-signup">
-  <!-- <div class="hero"> -->
-  <!-- <h1 class="text-center">RUM Atmosphere</h1> -->
-  <div class="login-page">
-    <mat-card class="mat-elevation-z12">
-      <mat-card-title class="text-center">
-        SignIn/SignUp
-      </mat-card-title>
-      <mat-tab-group mat-stretch-tabs>
-        <mat-tab label="Sign In">
-          <mat-card-content>
-            <form class="form" [formGroup]="logInForm">
+<div class="auth">
+  <div class="login-signup">
+    <div class="login-page">
+      <mat-card class="mat-elevation-z12">
+        <mat-card-title class="text-center">
+          SignIn/SignUp
+        </mat-card-title>
+        <mat-tab-group mat-stretch-tabs>
+          <mat-tab label="Sign In">
+            <mat-card-content>
+              <form class="form" [formGroup]="logInForm">
 
-              <mat-form-field>
-                <input matInput placeholder="email" formControlName="email" required />
-                <mat-icon matSuffix>email</mat-icon>
-                <mat-error *ngIf="logInForm.hasError('required', 'email')">
-                  Email is Invalid
-                </mat-error>
-              </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="email" formControlName="email" required />
+                  <mat-icon matSuffix>email</mat-icon>
+                  <mat-error *ngIf="logInForm.hasError('required', 'email')">
+                    Email is Invalid
+                  </mat-error>
+                </mat-form-field>
 
-              <mat-form-field>
-                <input matInput #input placeholder="password" formControlName="password" [type]="'password'" required />
-                <mat-icon matSuffix>lock</mat-icon>
-                <mat-error *ngIf="logInForm.hasError('required', 'password')">
-                  Password is required
-                </mat-error>
-                <mat-hint align="end">{{input.value?.length || 0}}/8</mat-hint>
-              </mat-form-field>
-              <button mat-raised-button color="primary" class="login-button" (click)="saveForm()">
-                Sign In
-              </button>
-            </form>
-          </mat-card-content>
-        </mat-tab>
+                <mat-form-field>
+                  <input matInput #input placeholder="password" formControlName="password" [type]="'password'"
+                    required />
+                  <mat-icon matSuffix>lock</mat-icon>
+                  <mat-error *ngIf="logInForm.hasError('required', 'password')">
+                    Password is required
+                  </mat-error>
+                  <mat-hint align="end">{{input.value?.length || 0}}/8</mat-hint>
+                </mat-form-field>
+                <button mat-raised-button color="primary" class="login-button" (click)="saveForm()">
+                  Sign In
+                </button>
+              </form>
+            </mat-card-content>
+          </mat-tab>
 
-        <mat-tab label="Sign Up">
-          <mat-card-content>
-            <form class="form" [formGroup]="signUpForm">
-              <mat-form-field>
-                <input matInput placeholder="email" formControlName="email" required>
-                <mat-error *ngIf="signUpForm.hasError('required', 'email')">
-                  Email is Invalid
-                </mat-error>
-              </mat-form-field>
+          <mat-tab label="Sign Up">
+            <mat-card-content>
+              <form class="form" [formGroup]="signUpForm">
+                <mat-form-field>
+                  <input matInput placeholder="email" formControlName="email" required>
+                  <mat-error *ngIf="signUpForm.hasError('required', 'email')">
+                    Email is Invalid
+                  </mat-error>
+                </mat-form-field>
 
-              <mat-form-field>
-                <input matInput #input placeholder="Password" [type]="'password'" placeholder="New password"
-                  formControlName="password" required>
-                <mat-icon matSuffix>lock</mat-icon>
-                <mat-error *ngIf="signUpForm.hasError('required', 'password')">
-                  Password is required
-                </mat-error>
-                <mat-hint align="end">{{input.value?.length || 0}}/8</mat-hint>
-              </mat-form-field>
-              <mat-form-field>
-                <input matInput placeholder="Confirm password" [type]="'password'" formControlName="confirmPassword"
-                  [errorStateMatcher]="matcher">
-                <mat-error *ngIf="signUpForm.hasError('notSame')">
-                  Passwords do not match
-                </mat-error>
-              </mat-form-field>
-              <button mat-raised-button color="primary" class="login-button" (click)="signup()">
-                Sign Up
-              </button>
-            </form>
-          </mat-card-content>
-        </mat-tab>
-      </mat-tab-group>
-    </mat-card>
+                <mat-form-field>
+                  <input matInput #input placeholder="Password" [type]="'password'" placeholder="New password"
+                    formControlName="password" required>
+                  <mat-icon matSuffix>lock</mat-icon>
+                  <mat-error *ngIf="signUpForm.hasError('required', 'password')">
+                    Password is required
+                  </mat-error>
+                  <mat-hint align="end">{{input.value?.length || 0}}/8</mat-hint>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="Confirm password" [type]="'password'" formControlName="confirmPassword"
+                    [errorStateMatcher]="matcher">
+                  <mat-error *ngIf="signUpForm.hasError('notSame')">
+                    Passwords do not match
+                  </mat-error>
+                </mat-form-field>
+                <button mat-raised-button color="primary" class="login-button" (click)="signup()">
+                  Sign Up
+                </button>
+              </form>
+            </mat-card-content>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card>
+    </div>
   </div>
 </div>
-
-
-
-
-<!-- <app-header flexLayout="column"></app-header>
-
-<div flexLayout="row" fxFlex>
-  <div fxFlex="20">
-    <p>SUP</p><br>
-    <p>SUP</p><br>
-  </div>
-  <div fxFlex="80" class="container">
-    <router-outlet></router-outlet>
-  </div>
-</div>
-
-<app-footer flexLayout="column"></app-footer> -->
