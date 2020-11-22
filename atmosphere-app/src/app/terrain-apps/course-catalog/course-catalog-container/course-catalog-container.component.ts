@@ -64,11 +64,6 @@ export class CourseCatalogContainerComponent implements OnInit {
   public gradeOptions: string[] = [];
   public grade = new FormControl('Choose Grade');
 
-  defaultGrade() {
-    let form = new FormControl('Choose Grade');
-    // form.value
-  }
-
   constructor(
     private router: Router,
     private cookieService: CookieService,
