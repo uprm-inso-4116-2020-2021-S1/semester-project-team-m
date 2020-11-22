@@ -23,20 +23,29 @@ export class CourseCatalogContainerComponent implements OnInit {
 
   public dataSource = new MatTableDataSource<Course>();
   public displayedColumns = [
-    'course_code', //string
-    'title', //string
-    'worth', //mat-option
-    'grade', //string[] or string
-    'pre', //string or 
-    'honor' //grade * worth
+    'course_code',
+    'title',
+    'worth',
+    'grade', //mat-select
+    'pre',
+    'honor', //grade * worth
+    'view'
   ]
   public genIn;
 
   public viewAdvancedFilter = false;
-  public viewCourseDetail = false;
+  // public deletedCourseCode: string;
   // public viewAllCourses = false; //should be false by default
-  public viewAllCourses = true;
-
+  public selectedCourse: Course;
+  // public selectedCourse = new Course(
+  //   "ESPA3101",
+  //   "Spanish I Basic",
+  //   3,
+  //   [],
+  //   [],
+  //   "D",
+  //   "fall"
+  // );
 
   // course lists
   public originalCourses: Course[] = []; //: Course[];
@@ -83,11 +92,10 @@ export class CourseCatalogContainerComponent implements OnInit {
     this.gradeOptions.push('F')
 
 
-    this.courseCatalogService.getCurriculum().subscribe(
-      courses => {
-        console.log(courses)
-        this.originalCourses = this.dataSource.data = courses;
-      },
+    this.courseCatalogService.getCurriculum().subscribe(courses => {
+      console.log(courses)
+      this.originalCourses = this.dataSource.data = courses;
+    },
       error => { console.log(error) }
     )
   }
@@ -120,11 +128,37 @@ export class CourseCatalogContainerComponent implements OnInit {
   // }
 
 
+  viewCourse(code: string) {
+    this.viewAdvancedFilter = false;
+    // this.viewCourseDetail = true;
+    this.courseCatalogService.getCourseByCode(code).subscribe(course => {
+      // console.log(course);
+      this.selectedCourse = course
+    })
+  }
 
+  goBack(codeToDelete?: string): void {
+    console.log('-----------')
+    console.log(codeToDelete)
+    console.log(this.selectedCourse)
+    if (this.selectedCourse) {
+      this.selectedCourse = undefined
+      if (codeToDelete) {
+        this.updateStudentsTable();
+        // console.log('--', codeToDelete)
+        // const asyncFunc = course => {
+        //   if (course.code == codeToDelete) {
+        //     console.log('\n\nFound\n\n', course)
+        //     course.code = ''
+        //     this.changeDetector.detectChanges()
+        //   }
+        // }
+        // Promise.all(this.dataSource.data.map(async (c) => asyncFunc(c)));
+      }
+    }
 
-  goBack() {
-    // this.onFinished.emit(false)
-    this.router.navigate(['home/apps'])
+    else
+      this.router.navigate(['home/apps'])
   }
 
 
@@ -146,15 +180,15 @@ export class CourseCatalogContainerComponent implements OnInit {
     gradeField.value = (gradeField.value.length > 1) ? ' ' : selectedGrade;
   }
 
-  // updateStudentsTable() {
-  //   console.log("updateStudentsTable")
-  //   this.courseCatalogService.getCourses().subscribe(courses => {
-  //     // want to use subscribe only at beginning
-  //     this.originalCourses = courses;
-  //     // *when doing advanced search, table data shall reference 'filteredStuds'
-  //     // this.dataSource.data = courses;
-  //   });
-  // }
+  updateStudentsTable() {
+    console.log("updateStudentsTable")
+    this.courseCatalogService.getCurriculum().subscribe(courses => {
+      console.log(courses)
+      this.originalCourses = this.dataSource.data = courses;
+    },
+      error => { console.log(error) }
+    )
+  }
 
   activateAdvancedFilter() {
     this.viewAdvancedFilter = true;
@@ -226,12 +260,9 @@ export class CourseCatalogContainerComponent implements OnInit {
     if (this.emptySearchFields(this.gradeFields))
       return false;
 
-    console.log('---', course.grade);
     const grade = this.gradeToValue(course.grade);
-    console.log(grade)
     for (const field of this.gradeFields) {
       const fieldGrade = this.gradeToValue(field.value)
-      console.log(fieldGrade)
       if (undefined !== fieldGrade && grade === fieldGrade) // course's grade same as fieldGrade?
         return true;
     }
