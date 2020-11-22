@@ -66,7 +66,7 @@ export class CourseCatalogService {
     }))
   }
 
-  getCurriculum() {
+  getCurriculum(): Observable<Course[]> {
     return this.http.get<Course[]>(`${this.baseUrl}api/curriculum/`, {
       headers: this.authService.getAuthHeaders(),
       responseType: 'json'
@@ -87,5 +87,17 @@ export class CourseCatalogService {
     }))
   }
 
+  getCourseByCode(code: string): Observable<Course> {
+    return this.http.get<Course>(`${this.baseUrl}api/courses/${code}/`, {
+      headers: this.authService.getAuthHeaders(),
+      responseType: 'json'
+    })
+  }
 
+  deleteCourseByCode(code: string) {
+    return this.http.delete(`${this.baseUrl}api/mycourses/${code}/`, {
+      headers: this.authService.getAuthHeaders(),
+      responseType: 'json'
+    })
+  }
 }
