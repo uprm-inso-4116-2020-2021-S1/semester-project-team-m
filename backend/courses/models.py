@@ -58,9 +58,9 @@ class Course(models.Model):
     def __str__(self):
         return self.code
 
-    def taken_courses(self):
+    def taken_courses(self, profile):
         try:
-            return MyCourse.objects.filter(course__code=self.code).first()
+            return MyCourse.objects.filter(course__code=self.code, user=profile).first()
         except MyCourse.DoesNotExist:
             return None
 
