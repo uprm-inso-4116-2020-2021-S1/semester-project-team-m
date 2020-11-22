@@ -49,7 +49,7 @@ To implement the authentication, we use Token Authentication. In order to use it
 
   * For testing this, you can access https://terrain.gabrielrosa.dev/courses/api/
 * User Registration
-  * For registering a new user, you should make a POST call to https://terrain.gabrielrosa.dev/register/. Please read the API calls section for detailed information.
+  * For registering a new user, you should make a POST call to https://terrain.gabrielrosa.dev/api/register/. Please read the API calls section for detailed information.
 
 
 ## API Calls
@@ -68,7 +68,7 @@ call    | url                                                   | description
 call       | url                                                      | description                                             | parameters                                                              | required
 ---------- | -------------------------------------------------------- | ------------------------------------------------------- | ----------------------------------------------------------------------- | -------------------------------
 **POST**   | https://terrain.gabrielrosa.dev/api-auth/                | Generate a token for authentication                     | username <br> password                                                  | Y <br> Y
-**POSt**   | https://terrain.gabrielrosa.dev/register/                | Register a new user                                     | username <br> password <br> student_id <br> major <br> curriculum_year  | Y <br> Y <br> Y <br> Y <br> Y
+**POSt**   | https://terrain.gabrielrosa.dev/api/register/                | Register a new user                                     | username <br> password <br> student_id <br> major <br> curriculum_year  | Y <br> Y <br> Y <br> Y <br> Y
 **POST**   | https://terrain.gabrielrosa.dev/api/courses/             | **(Auth)** Create a new course                          | code <br> title <br> worth <br> pre <br> curriculum                     | Y <br> Y <br> Y <br> N <br> Y
 **POST**   | https://terrain.gabrielrosa.dev/api/mycourses/           | **(Auth)** Add a taken course to my profile             | course <br> grade <br> term                                             | Y <br> Y <br> Y
 **PUT**    | https://terrain.gabrielrosa.dev/api/courses/{code}/      | **(Auth)** Modify information about a course            | code <br> title <br> worth <br> pre <br> curriculum                     | N <br> N <br> N <br> N <br> N
