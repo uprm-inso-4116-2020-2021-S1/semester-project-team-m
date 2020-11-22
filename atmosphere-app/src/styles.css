@@ -4,8 +4,8 @@ body {
   height: 100%; 
   margin: 0;
   padding: 0;
-  color: white !important; 
-  background-color: #292c35 !important; 
+  /* color: white !important;  */
+  background-color: #f8f8f8 !important; 
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
@@ -31,12 +31,22 @@ html {
   z-index: 100  
 } */
 
+a { 
+  text-decoration: none !important;
+}
+
 button {
   outline: none !important;
 }
 
-a { 
-  text-decoration: none !important;
+.circular-btn {
+  padding: 5px 10px 5px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.circular-btn:hover {
+  background-color: #38353510;
 }
 
 .title {
