@@ -48,6 +48,8 @@ To implement the authentication, we use Token Authentication. In order to use it
     **Authorization** | Token *{generated_token}*
 
   * For testing this, you can access https://terrain.gabrielrosa.dev/courses/api/
+* User Registration
+  * For registering a new user, you should make a POST call to https://terrain.gabrielrosa.dev/register/. Please read the API calls section for detailed information.
 
 
 ## API Calls
