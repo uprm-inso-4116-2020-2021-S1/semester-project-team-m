@@ -17,11 +17,13 @@ class UserCourseSerializer(serializers.ModelSerializer):
         fields = ('code', 'title', 'worth', 'pre', 'grade', 'term')
 
     def get_grade(self, obj):
-        mycourse = obj.taken_courses()
+        profile = self.context.get("profile")
+        mycourse = obj.taken_courses(profile=profile)
         return None if mycourse is None else mycourse.grade
 
     def get_term(self, obj):
-        mycourse = obj.taken_courses()
+        profile = self.context.get("profile")
+        mycourse = obj.taken_courses(profile=profile)
         return None if mycourse is None else mycourse.term
 
 

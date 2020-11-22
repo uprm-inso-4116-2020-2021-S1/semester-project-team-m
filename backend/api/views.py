@@ -150,5 +150,5 @@ def api_curriculum_detail(request):
 
     if request.method == "GET":
         courses = Course.objects.filter(curriculum__contains=[currirculum])
-        serializer = UserCourseSerializer(courses, many=True)
+        serializer = UserCourseSerializer(courses, many=True, context={'profile': request.user.profile})
         return JsonResponse(serializer.data, safe=False)
