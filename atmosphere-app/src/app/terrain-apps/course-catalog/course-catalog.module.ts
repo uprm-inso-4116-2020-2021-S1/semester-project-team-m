@@ -10,6 +10,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule, MatCardModule, MatIconModule } from '@angular/material';
 import { CourseCatalogContainerComponent } from './course-catalog-container/course-catalog-container.component';
+
 // import { MaterialModule } from '../../material.module'
 
 const routes: Routes = [

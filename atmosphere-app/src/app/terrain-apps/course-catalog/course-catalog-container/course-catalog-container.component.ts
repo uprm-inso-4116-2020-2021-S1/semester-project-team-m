@@ -41,7 +41,6 @@ export class CourseCatalogContainerComponent implements OnInit {
     if (!this.cookieService.get('courses-token'))
       this.router.navigate(['/auth'])
 
-
     this.courseCatalogService.getCourses().subscribe(
       courses => {
         this.dataSource = new MatTableDataSource(<any>courses);

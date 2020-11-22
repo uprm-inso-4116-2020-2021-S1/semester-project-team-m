@@ -8,7 +8,10 @@ import {
   MatButtonModule,
   MatCardModule,
   MatIconModule,
+  MatPaginatorModule,
+  MatSortModule,
 } from '@angular/material';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +23,9 @@ import {
     MatTableModule,
     MatButtonModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   exports: [
     RouterModule,
