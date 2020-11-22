@@ -6,6 +6,7 @@ import { CourseCatalogService } from 'src/app/business-logic/course-catalog/cour
 import { Observable } from 'rxjs';
 import { MatSort } from '@angular/material/sort';
 import { Course } from '../../../business-logic/models/course'
+import { FormControl } from '@angular/forms';
 
 /** Reference of a specific input field within the advance search. */
 class SearchField<E> {
@@ -20,8 +21,7 @@ class SearchField<E> {
 export class CourseCatalogContainerComponent implements OnInit {
   @Output() onFinished = new EventEmitter<boolean>();
 
-
-  public courses = []
+  public dataSource = new MatTableDataSource<Course>();
   public displayedColumns = [
     'course_code', //string
     'title', //string
@@ -30,15 +30,18 @@ export class CourseCatalogContainerComponent implements OnInit {
     'pre', //string or 
     'honor' //grade * worth
   ]
+  public genIn;
 
-  dataSource = new MatTableDataSource();
-
-  public advancedSearch = false;
+  public viewAdvancedFilter = false;
+  public viewCourseDetail = false;
+  // public viewAllCourses = false; //should be false by default
+  public viewAllCourses = true;
 
 
   // course lists
-  public originalCourses; //: Course[];
-  public filteredCourses: any[] = []; //: Course[] = [];
+  public originalCourses: Course[] = []; //: Course[];
+  public filteredCourses: Course[] = []; //: Course[] = [];
+  public mycourses: Course[] = [];
 
   // input fields configurations
 
@@ -50,7 +53,12 @@ export class CourseCatalogContainerComponent implements OnInit {
 
   // list of Grades options
   public gradeOptions: string[] = [];
-  public genIn;
+  public grade = new FormControl('Choose Grade');
+
+  defaultGrade() {
+    let form = new FormControl('Choose Grade');
+    // form.value
+  }
 
   constructor(
     private router: Router,
@@ -68,7 +76,6 @@ export class CourseCatalogContainerComponent implements OnInit {
     this.preFields.push(new SearchField(''));
     this.gradeFields.push(new SearchField(''));
 
-    this.gradeOptions.push('Leave Empty')
     this.gradeOptions.push('A')
     this.gradeOptions.push('B')
     this.gradeOptions.push('C')
@@ -76,14 +83,52 @@ export class CourseCatalogContainerComponent implements OnInit {
     this.gradeOptions.push('F')
 
 
-    this.courseCatalogService.getCourses().subscribe(
+    this.courseCatalogService.getCurriculum().subscribe(
       courses => {
-        this.originalCourses = courses;
-        this.dataSource.data = <any>courses;
+        console.log(courses)
+        this.originalCourses = this.dataSource.data = courses;
       },
       error => { console.log(error) }
     )
   }
+
+  // toogleTableCourses() {
+  //   // toggle
+  //   this.viewAllCourses = !this.viewAllCourses;
+
+  //   this.filteredCourses = [];
+
+  //   if (this.viewAllCourses) {
+  //     this.courseCatalogService.getAllCourses().subscribe(
+  //       courses => {
+  //         this.originalCourses = this.dataSource.data = courses;
+  //       },
+  //       error => { console.log(error) }
+  //     )
+  //   } else {
+  //     this.courseCatalogService.getMyCourses().subscribe(
+  //       mycourses => {
+  //         this.originalCourses = mycourses;
+  //         this.dataSource.data = mycourses;
+  //         this.mycourses = mycourses;
+  //         // this.originalCourses = this.dataSource.data = mycourses;
+  //       },
+  //       error => { console.log(error) }
+  //     )
+  //   }
+  //   this.changeDetector.detectChanges()
+  // }
+
+
+
+
+  goBack() {
+    // this.onFinished.emit(false)
+    this.router.navigate(['home/apps'])
+  }
+
+
+  /* ----------------     Advance Filter Section     ---------------- */
 
   /** Returns true if given array length is larger than zero and doesn't
    *   exceed maximum amount of input fields.  False otherwise. */
@@ -98,7 +143,6 @@ export class CourseCatalogContainerComponent implements OnInit {
 
   /** Assigns the selected grade into the given search field's value. */
   selectGrade(gradeField: SearchField<string>, selectedGrade: string) {
-    console.log(gradeField.value, gradeField.value.length, gradeField.value.length > 1)
     gradeField.value = (gradeField.value.length > 1) ? ' ' : selectedGrade;
   }
 
@@ -112,13 +156,13 @@ export class CourseCatalogContainerComponent implements OnInit {
   //   });
   // }
 
-  activateAdvancedSearch() {
-    this.advancedSearch = true;
+  activateAdvancedFilter() {
+    this.viewAdvancedFilter = true;
     this.cloneOriginal();
   }
 
-  undoSearch() {
-    this.advancedSearch = false;
+  undoFilter() {
+    this.viewAdvancedFilter = false;
     this.dataSource.data = this.originalCourses; // resets student table
     this.cloneOriginal();
   }
@@ -133,16 +177,14 @@ export class CourseCatalogContainerComponent implements OnInit {
   /** Returns true if at least one of the code search fields
    *   contains the given course's code.  False otherwise. */
   codeWorthyToFilter(course): boolean {
-    if (this.emptySearchFields(this.codeFields)) {
+    if (this.emptySearchFields(this.codeFields))
       return false;
-    }
+
     const code = course.code.toLowerCase();
     for (const field of this.codeFields) {
       const fieldCode = field.value.toLowerCase();
-      if (code.indexOf(fieldCode) > -1) { // course name contains fieldCode?
-        console.log("-", course.code)
+      if (code.indexOf(fieldCode) > -1) // course name contains fieldCode?
         return true;
-      }
     }
     return false;
   }
@@ -150,16 +192,14 @@ export class CourseCatalogContainerComponent implements OnInit {
   /** Returns true if at least one of the title search fields
    *   contains the given course's title.  False otherwise. */
   titleWorthyToFilter(course): boolean {
-    if (this.emptySearchFields(this.titleFields)) {
+    if (this.emptySearchFields(this.titleFields))
       return false;
-    }
+
     const title = course.title.toLowerCase();
     for (const field of this.titleFields) {
       const fieldTitle = field.value.toLowerCase();
-      if (title.indexOf(fieldTitle) > -1) { // course title contains fieldTitle?
-        console.log("-", course.title)
+      if (title.indexOf(fieldTitle) > -1) // course title contains fieldTitle?
         return true;
-      }
     }
     return false;
   }
@@ -167,16 +207,14 @@ export class CourseCatalogContainerComponent implements OnInit {
   /** Returns true if at least one of the pre search fields
    *   contains the given course's prerequisite.  False otherwise. */
   preWorthyToFilter(course): boolean {
-    if (this.emptySearchFields(this.preFields)) {
+    if (this.emptySearchFields(this.preFields))
       return false;
-    }
+
     const pre = course.pre.toLowerCase();
     for (const field of this.preFields) {
       const fieldPre = field.value.toLowerCase();
-      if (pre.indexOf(fieldPre) > -1) { // course title contains fieldTitle?
-        console.log("-", course.pre)
+      if (pre.indexOf(fieldPre) > -1) // course title contains fieldTitle?
         return true;
-      }
     }
     return false;
   }
@@ -184,21 +222,27 @@ export class CourseCatalogContainerComponent implements OnInit {
 
   /** Returns true if at least one of the graduation date search fields
    *   contains the given student's graduation date.  False otherwise. */
-  gradeWorthyToFilter(course): boolean {
-    if (this.emptySearchFields(this.gradeFields)) {
+  gradeWorthyToFilter(course: Course): boolean {
+    if (this.emptySearchFields(this.gradeFields))
       return false;
-    }
 
-    const grade = Number(course.grade);
+    console.log('---', course.grade);
+    const grade = this.gradeToValue(course.grade);
+    console.log(grade)
     for (const field of this.gradeFields) {
-      const fieldGrade = 69 - field.value.charCodeAt(0);
-      if (undefined !== fieldGrade && grade === fieldGrade) { // course's grade same as fieldGrade?
+      const fieldGrade = this.gradeToValue(field.value)
+      console.log(fieldGrade)
+      if (undefined !== fieldGrade && grade === fieldGrade) // course's grade same as fieldGrade?
         return true;
-      }
     }
     return false;
   }
 
+  gradeToValue(grade: string): number {
+    if (grade.length > 1) return 0;
+    let value = 69 - grade.charCodeAt(0);
+    return (value === -1) ? 0 : value;
+  }
 
   /** Filters students for all filled input fields */
   applyFilter() {
@@ -225,6 +269,13 @@ export class CourseCatalogContainerComponent implements OnInit {
     this.filteredCourses = [];
     this.cloneOriginal();
   }
+
+  // calculateGpa() {
+  //   for (let c of this.dataSource.data) {
+  //     console.log(c);
+  //     c['c']
+  //   }
+  // }
 
   /** Returns true if each string within the given search fields is empty */
   emptySearchFields(searchFields: SearchField<string>[] | string[]): boolean {
@@ -268,10 +319,5 @@ export class CourseCatalogContainerComponent implements OnInit {
   /** Returns true if given string is numeric. */
   isNumeric(value: string): boolean {
     return value != null && !isNaN(Number(value));
-  }
-
-  goBack() {
-    // this.onFinished.emit(false)
-    this.router.navigate(['home/apps'])
   }
 }

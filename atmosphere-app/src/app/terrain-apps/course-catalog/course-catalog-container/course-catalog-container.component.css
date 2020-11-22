@@ -7,7 +7,19 @@ mat-table {
   min-height: 90%;
 }
 
-a {
+.sub-header {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.back-button {
+  display: flex;
+  /* flex-direction: row; */
+  /* align-items: center; */
+}
+
+a, #advanced-button .filter-button {
   cursor: pointer;
 }
 
@@ -35,15 +47,16 @@ table.mat-table {
   min-width: 1em
 }
 
-.advanced-search-buttons {
+.advanced-filter-buttons {
   margin-top: 1.5em;
   width: 100%;
 }
 
-.search-field {
+#search-field {
   flex: 4;
 }
-.advanced-button {
+
+#advanced-button {
   flex: 1;
 }
 
