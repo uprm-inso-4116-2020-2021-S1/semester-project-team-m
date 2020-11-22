@@ -7,6 +7,7 @@ import { MatTableModule } from '@angular/material/table';
 import {
   MatButtonModule,
   MatCardModule,
+  MatFormFieldModule,
   MatIconModule,
   MatPaginatorModule,
   MatSortModule,
@@ -25,7 +26,8 @@ import {
     MatCardModule,
     MatIconModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatFormFieldModule
   ],
   exports: [
     RouterModule,

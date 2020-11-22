@@ -14,8 +14,9 @@
 </div>
 
 <mat-card>
-  <mat-table [dataSource]="dataSource">
-    <ng-container matColumnDef="course_code" sticky>
+  
+  <mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="course_code">
       <mat-header-cell *matHeaderCellDef> Course Code </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.code}} </mat-cell>
     </ng-container>
@@ -60,6 +61,6 @@
     <mat-row *matRowDef="let row; columns: displayedColumns;"
       [ngClass]="{hovered: row.hovered, highlighted: row.highlighted}" (click)="row.highlighted = !row.highlighted"
       (mouseover)="row.hovered = true" (mouseout)="row.hovered = false"></mat-row>
-
   </mat-table>
 </mat-card>
+<mat-paginator [pageSize] = "10" [pageSizeOptions] = "[10, 25, 50]" showFirstLastButtons></mat-paginator>
