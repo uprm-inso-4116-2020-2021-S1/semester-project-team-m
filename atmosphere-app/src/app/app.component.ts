@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     if (this.cookieService.get('courses-token')) {
-      this.router.navigate(['/home/page'])
+      this.router.navigate(['/home/apps']);
     }
   }
 }
