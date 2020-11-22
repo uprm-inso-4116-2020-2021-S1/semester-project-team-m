@@ -3,7 +3,7 @@ import { MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { CourseCatalogService } from 'src/app/business-logic/course-catalog/course-catalog.service';
-import { Observable } from 'rxjs';
+import { empty, Observable } from 'rxjs';
 import { MatSort } from '@angular/material/sort';
 import { Course } from '../../../business-logic/models/course'
 import { FormControl } from '@angular/forms';
@@ -287,6 +287,12 @@ export class CourseCatalogContainerComponent implements OnInit {
 
   /** Checks if each input field of each category () within the advance search. */
   allEmptyFields() {
+    if(this.emptySearchFields(this.codeFields) 
+    || this.emptySearchFields(this.titleFields) 
+    || this.emptySearchFields(this.gradeFields)
+    || this.emptySearchFields(this.preFields))
+      return false;
+    return true;
 
   }
 
