@@ -4,8 +4,20 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework import status
 from courses.models import Course, MyCourse
 from rest_framework.permissions import IsAuthenticated
-from .serializers import CourseSerializer, MyCourseSerializer, GradesSerializer, UserCourseSerializer
+from .serializers import CourseSerializer, MyCourseSerializer, GradesSerializer, UserCourseSerializer, UserSerializer
 from rest_framework import serializers
+
+
+@api_view(['POST'])
+def api_user_register(request):
+    if request.method == "POST":
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()
+            if user:
+                return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
+            return JsonResponse(status=status.HTTP_400_BAD_REQUEST)
+        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET'])

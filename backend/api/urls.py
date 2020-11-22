@@ -10,5 +10,6 @@ urlpatterns = [
     path('mycourses/<course_code>/', views.api_my_courses_detail, name='my_course_detail'),
     path('grades/', views.api_grades_list, name='grades_list'),
     path('user/', views.api_user_detail, name='user'),
+    path('register/', views.api_user_register, name='register'),
     path('curriculum/', views.api_curriculum_detail, name='curriculum'),
 ]
