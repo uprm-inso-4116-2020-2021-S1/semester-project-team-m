@@ -3,6 +3,7 @@ import * as XLSX from 'xlsx';
 import { HttpClient } from '@angular/common/http';
 import { MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
+import { Observable} from 'rxjs';
 
 // Website I got the code from
 // https://github.com/sadupawan1990/excelreader/blob/master/src/app/excelsheet/excelsheet.component.ts
@@ -78,8 +79,8 @@ export class GradeDistriContainerComponent implements OnInit {
     this.row = i
   }
 
-  goBack() {
+  async goBack(){
     // this.onFinished.emit(false)
-    this.router.navigate(['home/apps'])
+    return await this.router.navigate(['home/apps']);
   }
 }

@@ -26,7 +26,7 @@ export class CourseCatalogContainerComponent implements OnInit {
     'title', //string
     'worth', //mat-option
     'grade', //string[] or string
-    'pre', //string or 
+    'pre', //string or
     'honor' //grade * worth
   ]
 
@@ -52,6 +52,9 @@ export class CourseCatalogContainerComponent implements OnInit {
   // list of Grades options
   public gradeOptions: string[] = [];
   public genIn;
+
+  //user gpa var
+  public userGPA = 0;
 
   constructor(
     private router: Router,
@@ -120,6 +123,38 @@ export class CourseCatalogContainerComponent implements OnInit {
     // this.onFinished.emit(false)
     this.router.navigate(['home/apps'])
   }
+
+  calculateGPA(){
+    let total_points = 0;
+    let total_credits = 0;
+    for(let row of this.dataSource.data){
+      //2 is current index of credit worth
+      //5 is current index of gpa points
+      if(row['grade'] == 'A'){
+        total_points += +row['worth']*4;
+        total_credits += +row['worth'];
+      }
+      if(row['grade'] == 'B'){
+        total_points += +row['worth']*3;
+        total_credits += +row['worth'];
+      }
+      if(row['grade'] == 'C'){
+        total_points += +row['worth']*2;
+        total_credits += +row['worth'];
+      }
+      if(row['grade'] == 'D'){
+        total_points += +row['worth'];
+        total_credits += +row['worth'];
+      }
+      if(row['grade'] == 'F'){
+        total_credits += +row['worth'];
+      }
+    }
+    if(total_credits > 0 ) this.userGPA = +(total_points/total_credits).toFixed(2);
+    else this.userGPA =  0;
+  }
+
+
 
 
   /* ----------------     Advance Filter Section     ---------------- */
