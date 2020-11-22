@@ -28,6 +28,42 @@
   #091f36
 */
 
+.login-signup {
+  position: relative;
+  font-size: 8rem;
+  text-align: center;
+}
+
+.auth {
+  background-color: #292c35 !important; 
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.auth::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-Image: url('../../assets/magenta-circle.jpg');
+  background-size: cover;
+  background-position: top center;
+  opacity: 0.25;
+}
+
+
+
+
+
+#login-signup {
+  background-color: #292c35 !important; 
+}
+
 h1 {
   margin-top: 90px;
   font-size: 5em;

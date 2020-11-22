@@ -1,1 +1,22 @@
-<p>course-details works!</p>
+<!-- get getCode() { return this.course.code }
+    get getTitle() { return this.course.title }
+    get getWorth() { return this.course.worth }
+    get getGrade() { return this.course.grade } -->
+<mat-card style="padding: 20px 40px; margin: 100px;">
+  <p class="code text-center">{{ getCode }}</p>
+
+  <p class="title">{{ getTitle }}</p>
+  <p>Grade: {{ getGrade }}</p>
+
+  <p class="term">Term: {{ getTerm }}</p>
+  <p>Description: Write a general presentable description. Context doesn't matter. </p>
+  <p>{{ getWorth }}</p>
+  <p>{{ getPre }}</p>
+
+  <!-- <p>Syllabus: </p> -->
+
+  <!-- <p>{{ course.pre }}</p> -->
+  <button mat-button color="warn" (click)="removeMyCourse()">
+    Delete from My Courses
+  </button>
+</mat-card>

@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'apps-container-apps',
-  templateUrl: './apps-container.component.html',
-  styleUrls: ['./apps-container.component.css']
+  selector: 'terrain-container-apps',
+  templateUrl: './terrain-container.component.html',
+  styleUrls: ['./terrain-container.component.css']
 })
-export class AppsContainerComponent implements OnInit {
+export class TerrainContainerComponent implements OnInit {
   public viewCatalog = false;
   constructor(
     private router: Router

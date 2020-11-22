@@ -58,6 +58,8 @@ export class AuthComponent implements OnInit {
       })
   }
 
+
+
   checkPassword(group: FormGroup) { // here we have the 'passwords' group
     let pass = group.get('password').value;
     let confirmPass = group.get('confirmPassword').value;
@@ -70,6 +72,7 @@ export class AuthComponent implements OnInit {
       (res: TokenObj) => {
         console.log('Token', res)
         this.cookieService.set('courses-token', res['token']);
+        // this.isSignedIn.emit(true)
         // alert("User successfully logged in")
         this.router.navigate(['/home']);
       },
@@ -92,33 +95,5 @@ export class AuthComponent implements OnInit {
   //       this.saveForm()
   //     }
   //   )
-  // }
-
-
-
-
-  // login() {
-  //   // originally
-  //   // const body = {
-  //   //   email: this.logInForm.get('email'),
-  //   //   password: this.logInForm.get('password')
-  //   // }
-  //   // this.router.navigate(['/admin/purchases']);
-
-  //   // At the moment
-  //   const body = {
-  //     email: this.logInForm.get('email'),
-  //     password: this.logInForm.get('password')
-  //   }
-
-  //   // fetching api
-  //   // this.authService.login().subscribe(
-  //   //   data => {
-  //   //     this.message = data['message'];
-  //   //   },
-  //   //   error => console.log(error)
-  //   // )
-
-  //   // this.router.navigate(['/courses']);
   // }
 }

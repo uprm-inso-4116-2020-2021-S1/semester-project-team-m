@@ -1,49 +1,24 @@
-import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { Subscription } from 'rxjs';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, AfterViewInit {
-  title = 'atmosphere-app';
-
-  private mediaSub: Subscription;
+export class AppComponent implements OnInit {
+  // private mediaSub: Subscription;
 
   constructor(
-    private cdRef: ChangeDetectorRef,
-    private mediaObserver: MediaObserver
+    private cookieService: CookieService,
+    private router: Router
   ) { }
 
   ngOnInit() {
-    this.mediaSub = this.mediaObserver.media$.subscribe(
-      (change: MediaChange) => {
-        console.log(change)
-        // console.log(change.mqAlial)
-      }
-    )
+    if (this.cookieService.get('courses-token')) {
+      this.router.navigate(['/home/apps']);
+    }
   }
-
-
-  ngAfterViewInit() {
-
-  }
-
-  ngOnDestroy() {
-
-  }
-
-  // url: string = 'http://127.0.0.1:8000/api/courses/';
-  //
-  // constructor(private http: HttpClient) {
-  // }
-  //
-  // public getLocations() {
-  //   this.http.get(this.url).toPromise().then((data) => {
-  //     console.log(data);
-  //   });
-  // }
 }

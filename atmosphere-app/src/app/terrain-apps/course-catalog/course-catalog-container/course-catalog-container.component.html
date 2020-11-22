@@ -1,22 +1,150 @@
 <div class="d-flex flex-row justify-content-between align-items-baseline">
   <h2>Course Catalog</h2>
   <div class="d-flex flex-row justify-content-end">
-    <h4 class="green mb-0 mr-2">Total Courses: </h4>
-    <h4 class="mb-0"> {{dataSource.data.length}} </h4>
+    <h4 class="green mb-0 mr-2">Courses: </h4>
+    <h4 class="mb-0" *ngIf="dataSource; else zero"> {{dataSource.data.length}} </h4>
+    <ng-template #zero>
+      <h4 class="mb-0"> 0 </h4>
+    </ng-template>
   </div>
 </div>
 <!-- <hr class="mt-1"> -->
 
+<!-- <div class="sub-header mb-2"> -->
+<!-- <div class="back-button"> -->
 <div class="d-flex justify-content-start align-items-center w-100 mt-3 mb-3">
-  <a (click)="goBack()" class="green circular-btn d-flex justify-content-center align-items-center">
+  <a (click)="goBack()" class="green circular-btn purple d-flex justify-content-center align-items-center">
     <mat-icon>keyboard_arrow_left</mat-icon>BACK
   </a>
 </div>
+<!-- </div> -->
+<!-- <hr> -->
+<!-- <div>
+    <button mat-raised-button class="ml-3" color="primary">
+      <p *ngIf="true" (click)="toogleTableCourses()">My Courses</p>
+    </button>
+  </div> -->
+<!-- </div> -->
 
-<mat-card>
-  
-  <mat-table [dataSource]="dataSource" matSort>
-    <ng-container matColumnDef="course_code">
+
+
+<ng-template #courseDetails>
+  <app-course-details (onFinished)="goBack($event)" [course]="selectedCourse"></app-course-details>
+</ng-template>
+
+
+
+<mat-card *ngIf="viewAdvancedFilter && !selectedCourse" class="mt-2" style="max-height: 300px">
+  <div class="d-flex justify-content-start align-items-center p-3 title bg-light-gray">
+    <h6 class="m-0">Advanced Filter</h6>
+  </div>
+  <div class="mt-3">
+    <div class="d-flex">
+      <div class="inputs">
+        <div *ngFor="let field of codeFields">
+          <mat-form-field for flex class="md-icon-float md-block md-title">
+            <input matInput placeholder="Code" [(ngModel)]="field.value" type="text">
+          </mat-form-field>
+        </div>
+        <a style="width: 90%" *ngIf="validAmountToAdd(codeFields)" (click)="addCodeField()"
+          class="green circular-btn d-flex justify-content-center align-items-center">
+          <mat-icon>add</mat-icon>add code
+        </a>
+      </div>
+
+      <div class="inputs">
+        <div *ngFor="let field of titleFields">
+          <mat-form-field for flex class="md-icon-float md-block md-title">
+            <input matInput placeholder="Title" [(ngModel)]="field.value" type="text">
+          </mat-form-field>
+        </div>
+        <a style="width: 90%" *ngIf="validAmountToAdd(titleFields)" (click)="addTitleField()"
+          class="green circular-btn d-flex justify-content-center align-items-center">
+          <mat-icon>add</mat-icon>add title
+        </a>
+      </div>
+
+
+      <div class="inputs">
+        <div *ngFor="let field of gradeFields">
+          <mat-form-field for flex class="md-icon-float md-block md-title">
+            <mat-select placeholder="Grade" [(ngModel)]="field.value">
+              <mat-option *ngFor="let gradeOption of gradeOptions" (click)="selectGrade(field, gradeOption)"
+                [value]="gradeOption">
+                {{gradeOption}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <a style="width: 80%" *ngIf="validAmountToAdd(gradeFields)" (click)="addGradeField()"
+          class="green circular-btn d-flex justify-content-center align-items-center">
+          <mat-icon>add</mat-icon>add Grade
+        </a>
+      </div>
+
+      <div class="inputs">
+        <div *ngFor="let field of preFields">
+          <mat-form-field for flex class="md-icon-float md-block md-title">
+            <input matInput placeholder="Prerequisite" [(ngModel)]="field.value" type="text">
+          </mat-form-field>
+        </div>
+        <a style="width: 90%" *ngIf="validAmountToAdd(preFields)" (click)="addPreField()"
+          class="green circular-btn d-flex justify-content-center align-items-center">
+          <mat-icon>add</mat-icon>add prerequisite
+        </a>
+      </div>
+    </div>
+
+
+    <div class="advanced-filter-buttons">
+      <div style="display: inline">
+        <button class="mr-2" mat-stroked-button color="primary" (click)="removeEmptyFields()">
+          Remove Empty Fields
+        </button>
+      </div>
+      <div style="display: inline">
+        <!-- <div *ngIf="!allEmptyFields(); else disabled"> -->
+        <button class="apply-filter" style="width: 75%" mat-raised-button color="primary" (click)="applyFilter()">
+          Filter Now
+        </button>
+        <!-- </div>
+        <ng-template #disabled>
+          <button class="apply-filter" style="width: 75%" mat-raised-button color="primary" (click)="applyFilter() disabled">
+            Filter Now
+          </button>
+        </ng-template> -->
+      </div>
+    </div>
+  </div>
+</mat-card>
+
+
+<mat-card *ngIf="!selectedCourse; else courseDetails" class="mt-2" style="overflow: hidden">
+  <div class="d-flex mb-4">
+    <div id="search-field">
+      <mat-form-field style="width: 100%">
+        <mat-icon matPrefix>search</mat-icon>
+        <input matInput (keyup)="generalFilter()" placeholder="General Filter" [(ngModel)]="genIn">
+      </mat-form-field>
+    </div>
+    <div id="advanced-button">
+      <div *ngIf="viewAdvancedFilter; else undo" (click)="undoFilter()"
+        class="filter-button green circular-btn d-flex justify-content-center align-items-center">
+        <img src="../../../../assets/SVG/filter.svg" height="" width="30">
+        <p style="font-size: x-large; margin: 2px 0 0 15px; color: black;">Filter</p>
+      </div>
+      <ng-template #undo>
+        <div (click)="activateAdvancedFilter()"
+          class="filter-button green circular-btn d-flex justify-content-center align-items-center">
+          <img src="../../../../assets/SVG/filter.svg" height="" width="30">
+          <p style="font-size: x-large; margin: 2px 0 0 15px; color: black;">Filter</p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+
+  <mat-table [dataSource]="dataSource" class="data-table" matSort>
+    <ng-container matColumnDef="course_code" sticky>
       <mat-header-cell *matHeaderCellDef> Course Code </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.code}} </mat-cell>
     </ng-container>
@@ -35,13 +163,17 @@
       <mat-header-cell *matHeaderCellDef> Grade </mat-header-cell>
       <mat-cell *matCellDef="let element;">
         <mat-form-field appearance="fill">
-          <mat-label>Choose Grade</mat-label>
-          <mat-select [(value)]="element.grade">
-            <mat-option value=4> A </mat-option>
-            <mat-option value=3> B </mat-option>
-            <mat-option value=2> C </mat-option>
-            <mat-option value=1> D </mat-option>
-            <mat-option value=0> F </mat-option>
+          <!-- <mat-form-field> -->
+          <!-- <mat-label>Choose Grade</mat-label> -->
+          <mat-select [(ngModel)]="element.grade">
+            <!-- <mat-select [formControl]="grade" [(value)]="element.grade"> -->
+            <mat-option value="Choose Grade"> Choose Grade </mat-option>
+            <mat-option value="A"> A </mat-option>
+            <mat-option value="B"> B </mat-option>
+            <mat-option value="C"> C </mat-option>
+            <mat-option value="D"> D </mat-option>
+            <mat-option value="F"> F </mat-option>
+            <!-- <mat-option value="F"> F </mat-option> -->
           </mat-select>
         </mat-form-field>
       </mat-cell>
@@ -54,13 +186,22 @@
 
     <ng-container matColumnDef="honor">
       <mat-header-cell *matHeaderCellDef> Honor </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{(element.grade) ? element.grade * element.worth : ""}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{(element.grade) ? gradeToValue(element.grade) * element.worth : ""}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="view">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> View Details </mat-header-cell>
+      <mat-cell *matCellDef="let course">
+        <button mat-button color="primary" (click)="viewCourse(course.code)">View</button>
+      </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"
       [ngClass]="{hovered: row.hovered, highlighted: row.highlighted}" (click)="row.highlighted = !row.highlighted"
-      (mouseover)="row.hovered = true" (mouseout)="row.hovered = false"></mat-row>
+      (mouseover)="row.hovered = true" (mouseout)="row.hovered = false">
+    </mat-row>
   </mat-table>
 </mat-card>
-<mat-paginator [pageSize] = "10" [pageSizeOptions] = "[10, 25, 50]" showFirstLastButtons></mat-paginator>
+<mat-paginator [pageSize] = "54" [hidePageSize]="true" [itemsPerPageLabel]="false"></mat-paginator>
