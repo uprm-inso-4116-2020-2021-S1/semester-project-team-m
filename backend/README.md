@@ -68,7 +68,7 @@ call    | url                                                   | description
 call       | url                                                      | description                                             | parameters                                                              | required
 ---------- | -------------------------------------------------------- | ------------------------------------------------------- | ----------------------------------------------------------------------- | -------------------------------
 **POST**   | https://terrain.gabrielrosa.dev/api-auth/                | Generate a token for authentication                     | username <br> password                                                  | Y <br> Y
-**POST**   | https://terrain.gabrielrosa.dev/api/register/                | Register a new user                                     | username <br> password <br> student_id <br> major <br> curriculum_year  | Y <br> Y <br> Y <br> Y <br> Y
+**POST**   | https://terrain.gabrielrosa.dev/api/register/            | Register a new user                                     | email <br> password <br> student_id <br> major <br> curriculum_year     | Y <br> Y <br> Y <br> Y <br> Y
 **POST**   | https://terrain.gabrielrosa.dev/api/courses/             | **(Auth)** Create a new course                          | code <br> title <br> worth <br> pre <br> curriculum                     | Y <br> Y <br> Y <br> N <br> Y
 **POST**   | https://terrain.gabrielrosa.dev/api/mycourses/           | **(Auth)** Add a taken course to my profile             | course <br> grade <br> term                                             | Y <br> Y <br> Y
 **PUT**    | https://terrain.gabrielrosa.dev/api/courses/{code}/      | **(Auth)** Modify information about a course            | code <br> title <br> worth <br> pre <br> curriculum                     | N <br> N <br> N <br> N <br> N
@@ -78,18 +78,19 @@ call       | url                                                      | descript
 
 ### Format
 - The parameter {code} in the API url should be replaced with the course code in a format similiar to this: CIIC3010 or ciic3010
-- | parameter      | description                                                        | example                 |
-  | -------------- | ------------------------------------------------------------------ | ----------------------- |
-  | username       | username of the person trying to access the information            | gabriel.rosa4@upr.edu   |
-  | password       | password of the person trying to access the information            | SecR3TP2Z$worD          |
-  | student_id     | the student id of the user (max length: 9)                         | 802192020               |
-  | major          | the major of the user (max length: 4)                              | INSO                    |
-  | curriculum_year| the year of curriculum that the user is enrolled (max length: 4)   | 2015                    |
-  | code           | course code                                                        | INSO4116                |
-  | title          | title of the new course (in english)                               | Software Design         |
-  | worth          | amount of credits that the course is worth                         | 4                       |
-  | pre            | course(s) required before taking this course                       | [INSO4115]              |
-  | curriculum     | the curriculum(s) in which this course is REQUIRED                 | [INSO2015]              |
-  | course         | course code                                                        | INSO4116                |
-  | grade          | grade received in this course (A, B, C, D, F, P)                   | A                       |
-  | term           | the term/period in which the course was taken                      | 2015S1                  |
+- Note: Username and email refers to the same parameter, an email address.
+- | parameter         | description                                                        | example                 |
+  | ----------------- | ------------------------------------------------------------------ | ----------------------- |
+  | username / email  | username of the person trying to access the information            | gabriel.rosa4@upr.edu   |
+  | password          | password of the person trying to access the information            | SecR3TP2Z$worD          |
+  | student_id        | the student id of the user (max length: 9)                         | 802192020               |
+  | major             | the major of the user (max length: 4)                              | INSO                    |
+  | curriculum_year   | the year of curriculum that the user is enrolled (max length: 4)   | 2015                    |
+  | code              | course code                                                        | INSO4116                |
+  | title             | title of the new course (in english)                               | Software Design         |
+  | worth             | amount of credits that the course is worth                         | 4                       |
+  | pre               | course(s) required before taking this course                       | [INSO4115]              |
+  | curriculum        | the curriculum(s) in which this course is REQUIRED                 | [INSO2015]              |
+  | course            | course code                                                        | INSO4116                |
+  | grade             | grade received in this course (A, B, C, D, F, P)                   | A                       |
+  | term              | the term/period in which the course was taken                      | 2015S1                  |
