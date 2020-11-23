@@ -94,6 +94,28 @@ export class CourseCatalogService {
     })
   }
 
+  postCourseToMycourse(course: Course) {
+    // console.log(course)
+    console.log("course")
+
+    const body = JSON.stringify({
+      course: course.code,
+      grade: course.grade,
+      term: course.term
+    });
+    console.log(body)
+    return this.http.post(`${this.baseUrl}api/mycourses/`, body, {
+      // return this.http.post('https://terrain.gabrielrosa.dev/api/mycourses/', body, {
+      headers: this.authService.getAuthHeaders(),
+      responseType: 'json',
+    })
+    // .pipe(map(data => {
+    //   console.log("<><><><><<><><><><><>><><<><><>><><>")
+    //   console.log(data)
+
+    // }))
+  }
+
   deleteCourseByCode(code: string) {
     return this.http.delete(`${this.baseUrl}api/mycourses/${code}/`, {
       headers: this.authService.getAuthHeaders(),
