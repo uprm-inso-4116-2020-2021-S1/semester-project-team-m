@@ -13,24 +13,34 @@
 </div>
 
 <mat-card>
-  <mat-table [dataSource]="dataSource">
-    <ng-container matColumnDef="faculty" sticky>
-      <mat-header-cell *matHeaderCellDef> Faculty </mat-header-cell>
+  <mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="faculty">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Faculty </mat-header-cell>
       <mat-cell *matCellDef="let catalog"> {{catalog.faculty}} </mat-cell>
     </ng-container>
+    
     <ng-container matColumnDef="department">
-      <mat-header-cell *matHeaderCellDef> Department </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Department </mat-header-cell>
       <mat-cell *matCellDef="let catalog"> {{catalog.department}} </mat-cell>
     </ng-container>
+
     <ng-container matColumnDef="code">
-      <mat-header-cell *matHeaderCellDef> Code </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Code </mat-header-cell>
       <mat-cell *matCellDef="let catalog"> {{catalog.code}} </mat-cell>
     </ng-container>
+
     <ng-container matColumnDef="section">
-      <mat-header-cell *matHeaderCellDef> Section </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Section </mat-header-cell>
       <mat-cell *matCellDef="let catalog"> {{catalog.section}} </mat-cell>
     </ng-container>
+
+    <ng-container matColumnDef="loading">
+      <mat-footer-cell *matFooterCellDef colspan="6"> Loading... </mat-footer-cell>
+    </ng-container>
+
     <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
     <mat-row *matRowDef="let row; columns: columnsToDisplay"></mat-row>
+    <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide': dataSource!=null}"></mat-footer-row>
   </mat-table>
 </mat-card>
+<mat-paginator [pageSize] = "10" [pageSizeOptions] = "[10, 25, 50]" showFirstLastButtons></mat-paginator>

@@ -8,8 +8,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
-import { MatButtonModule, MatCardModule, MatIconModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatIconModule, MatPaginatorModule, MatSortModule } from '@angular/material';
 import { CourseCatalogContainerComponent } from './course-catalog-container/course-catalog-container.component';
+
 // import { MaterialModule } from '../../material.module'
 
 const routes: Routes = [
@@ -34,7 +35,9 @@ const routes: Routes = [
     MatSelectModule,
     MatOptionModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   exports: [
     RouterModule,

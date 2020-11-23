@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import * as XLSX from 'xlsx';
 import { HttpClient } from '@angular/common/http';
-import { MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { Router } from '@angular/router';
+
 
 // Website I got the code from
 // https://github.com/sadupawan1990/excelreader/blob/master/src/app/excelsheet/excelsheet.component.ts
@@ -21,6 +22,8 @@ export class GradeDistriContainerComponent implements OnInit {
 
   dataSource: MatTableDataSource<any>;
   courses: any[] = [];
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator; // For pagination
+  @ViewChild(MatSort, {static: false}) sort: MatSort; // For Sort
 
   // table that will store the data from the spreadsheet
   table;
@@ -65,9 +68,11 @@ export class GradeDistriContainerComponent implements OnInit {
             section: row[3]
           })
         })
-
         this.dataSource = new MatTableDataSource(this.courses);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
       };
+      
     },
       error => {
         console.log(error);

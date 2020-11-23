@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { CourseCatalogService } from 'src/app/business-logic/course-catalog/course-catalog.service';
@@ -22,6 +22,8 @@ export class CourseCatalogContainerComponent implements OnInit {
   @Output() onFinished = new EventEmitter<boolean>();
 
   public dataSource = new MatTableDataSource<Course>();
+  @ViewChild(MatPaginator) paginator: MatPaginator; // For pagination
+  @ViewChild(MatSort) sort: MatSort; // For Sort
   public displayedColumns = [
     'course_code',
     'title',
@@ -90,6 +92,8 @@ export class CourseCatalogContainerComponent implements OnInit {
     this.courseCatalogService.getCurriculum().subscribe(courses => {
       console.log(courses)
       this.originalCourses = this.dataSource.data = courses;
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
     },
       error => { console.log(error) }
     )

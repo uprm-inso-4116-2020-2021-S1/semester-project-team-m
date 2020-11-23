@@ -7,8 +7,12 @@ import { MatTableModule } from '@angular/material/table';
 import {
   MatButtonModule,
   MatCardModule,
+  MatFormFieldModule,
   MatIconModule,
+  MatPaginatorModule,
+  MatSortModule,
 } from '@angular/material';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +24,10 @@ import {
     MatTableModule,
     MatButtonModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatFormFieldModule
   ],
   exports: [
     RouterModule,

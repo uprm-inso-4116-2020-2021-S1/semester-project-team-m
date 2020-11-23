@@ -142,24 +142,24 @@
     </div>
   </div>
 
-  <mat-table [dataSource]="dataSource" class="data-table">
-    <ng-container matColumnDef="course_code" sticky>
-      <mat-header-cell *matHeaderCellDef> Course Code </mat-header-cell>
+  <mat-table [dataSource]="dataSource" class="data-table" matSort>
+    <ng-container matColumnDef="course_code">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Course Code </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.code}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="title">
-      <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Title </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="worth">
-      <mat-header-cell *matHeaderCellDef> Worth </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Worth </mat-header-cell>
       <mat-cell *matCellDef="let element;">{{element.worth}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="grade">
-      <mat-header-cell *matHeaderCellDef> Grade </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Grade </mat-header-cell>
       <mat-cell *matCellDef="let element;">
         <mat-form-field appearance="fill">
           <!-- <mat-form-field> -->
@@ -179,18 +179,18 @@
     </ng-container>
 
     <ng-container matColumnDef="pre">
-      <mat-header-cell *matHeaderCellDef> Pre </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Pre </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.pre}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="honor">
-      <mat-header-cell *matHeaderCellDef> Honor </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Honor </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{(element.grade) ? gradeToValue(element.grade) * element.worth : ""}}
       </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="view">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> View Details </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> View Details </mat-header-cell>
       <mat-cell *matCellDef="let course">
         <button mat-button color="primary" (click)="viewCourse(course.code)">View</button>
       </mat-cell>
@@ -203,3 +203,4 @@
     </mat-row>
   </mat-table>
 </mat-card>
+<mat-paginator [pageSize] = "54" [hidePageSize]="true" [itemsPerPageLabel]="false" [disabled]="true"></mat-paginator>
