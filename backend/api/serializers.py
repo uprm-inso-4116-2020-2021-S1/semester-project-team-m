@@ -60,14 +60,14 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'password', 'student_id', 'major', 'curriculum_year')
-        extra_kwargs = {'password': {'write_only': True}}
+        fields = ('email', 'password', 'student_id', 'major', 'curriculum_year')
+        extra_kwargs = {'password': {'write_only': True}, 'email': {'required': True}}
 
     def create(self, validated_data):
         profile = validated_data.pop('profile')
         password = validated_data.pop('password')
 
-        user = User(**validated_data)
+        user = User(**validated_data, username=validated_data['email'])
         user.set_password(password)
         user.save()
 
