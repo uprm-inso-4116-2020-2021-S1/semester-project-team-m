@@ -1,10 +1,21 @@
-mat-card {
+mat-form-field {
+  margin-left: 10px;
+  padding-right: 10px;
+}
+
+/* mat-card {
   height: 500px;
   overflow: auto;
+} */
+mat-card {
+  padding-bottom: 80px;
+  min-width: 550px;
+  max-height: 500px;
 }
 
 mat-table {
-  min-height: 90%;
+  max-height: 340px;
+  overflow-y: scroll;
 }
 
 .sub-header {
@@ -27,16 +38,16 @@ tr.mat-header-row {
   min-width: 50%
 }
 
-table.mat-table {
+/* table.mat-table {
   display: table;
-}
+} */
 
-.data-table {
+/* .data-table {
   overflow: auto;
-  padding-bottom: 110px;
+  padding-bottom: 200px;
   min-height: 300px;
   max-height: 500px;
-}
+} */
 
 .inputs {
   flex: 1;
@@ -61,6 +72,7 @@ table.mat-table {
   flex: 1;
 }
 
+
 /* .advanced-button button {
   height: 50px;
   float: right;
@@ -71,6 +83,14 @@ table.mat-table {
   min-width: auto !important;
   width: 100% !important;
 } */
+
+/* Table header row */
+mat-header-row {
+  /*https://github.com/angular/material2/issues/5885*/
+  position: sticky;
+  top: -.5px;
+  z-index: 100;
+}
 
 .mat-column-course_code {
   /* flex: 0 0 25% !important; */

@@ -1,0 +1,26 @@
+.header-content {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.course-content {
+  display: flex;
+  margin: 20px 0;
+}
+
+.fields {
+  flex: 1;
+  margin: 10px 0;
+  margin: -10px -10px -20px -10px;
+}
+
+.field {
+  text-align: center;
+  vertical-align: middle;
+  margin: -11.5px;
+}
+
+.field mat-form-field {
+  width: 70%;
+}

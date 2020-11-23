@@ -27,7 +27,7 @@ export class AuthComponent implements OnInit {
   message: any = "";
 
   logInForm: FormGroup;
-  signUpForm: FormGroup;
+  registerForm: FormGroup;
   matcher = new MyErrorStateMatcher();
 
   constructor(
@@ -47,11 +47,12 @@ export class AuthComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(8)]],
     })
 
-    this.signUpForm = this.formBuilder.group(
+    this.registerForm = this.formBuilder.group(
       {
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(8)]],
-        confirmPassword: ['']
+        confirmPassword: [''],
+        student_id: ['']
       },
       {
         validator: this.checkPassword
@@ -59,6 +60,8 @@ export class AuthComponent implements OnInit {
   }
 
 
+  // get password() { return this.registerForm.get('password') }
+  // get confirmPassword() { return this.registerForm.get('confirmPassword') }
 
   checkPassword(group: FormGroup) { // here we have the 'passwords' group
     let pass = group.get('password').value;
@@ -88,12 +91,23 @@ export class AuthComponent implements OnInit {
     // this.cookie.set("token", )
   }
 
-  // signup() {
-  //   this.authService.signup(this.signUpForm.value).subscribe(
-  //     result => {
-  //       console.log(result);
-  //       this.saveForm()
-  //     }
-  //   )
-  // }
+  register() {
+    let password = this.registerForm.get('password');
+    let confirmPassword = this.registerForm.get('confirmPassword');
+
+    if (!this.registerForm.value['email'].includes('@')) {
+      alert('Please provide a valid email address');
+    }
+    else if (password !== confirmPassword) {
+      alert('password and confirmPassword do not match');
+    }
+    else {
+      this.authService.register(this.registerForm.value).subscribe(
+        result => {
+          console.log(result);
+          this.saveForm()
+        }
+      )
+    }
+  }
 }

@@ -36,19 +36,23 @@
 
           <mat-tab label="Sign Up">
             <mat-card-content>
-              <form class="form" [formGroup]="signUpForm">
+              <form class="form" [formGroup]="registerForm">
                 <mat-form-field>
                   <input matInput placeholder="email" formControlName="email" required>
-                  <mat-error *ngIf="signUpForm.hasError('required', 'email')">
+                  <mat-error *ngIf="registerForm.hasError('required', 'email')">
                     Email is Invalid
                   </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <input matInput placeholder="student id" formControlName="student_id">
                 </mat-form-field>
 
                 <mat-form-field>
                   <input matInput #input placeholder="Password" [type]="'password'" placeholder="New password"
                     formControlName="password" required>
                   <mat-icon matSuffix>lock</mat-icon>
-                  <mat-error *ngIf="signUpForm.hasError('required', 'password')">
+                  <mat-error *ngIf="registerForm.hasError('required', 'password')">
                     Password is required
                   </mat-error>
                   <mat-hint align="end">{{input.value?.length || 0}}/8</mat-hint>
@@ -56,11 +60,11 @@
                 <mat-form-field>
                   <input matInput placeholder="Confirm password" [type]="'password'" formControlName="confirmPassword"
                     [errorStateMatcher]="matcher">
-                  <mat-error *ngIf="signUpForm.hasError('notSame')">
+                  <mat-error *ngIf="registerForm.hasError('notSame')">
                     Passwords do not match
                   </mat-error>
                 </mat-form-field>
-                <button mat-raised-button color="primary" class="login-button" (click)="signup()">
+                <button mat-raised-button color="primary" class="login-button" (click)="register()">
                   Sign Up
                 </button>
               </form>

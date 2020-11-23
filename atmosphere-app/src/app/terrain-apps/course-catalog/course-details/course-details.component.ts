@@ -55,10 +55,10 @@ export class CourseDetailsComponent implements OnInit {
     }
   }
 
-  removeMyCourse() {
+  deleteFromMycourses() {
     this.courseCatalogService.deleteCourseByCode(this.course.code).subscribe(_ => {
       console.log('>', 'sup');
-      this.onFinished.emit(this.course.code)
+      this.onFinished.emit('details')
     })
   }
 

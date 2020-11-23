@@ -9,7 +9,7 @@ export interface Course {
 
 
 
-export class Course {
+export class Course implements Course {
   constructor(
     public code: string,
     public title: string,
