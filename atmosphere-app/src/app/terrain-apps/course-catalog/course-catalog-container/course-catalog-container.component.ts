@@ -122,28 +122,27 @@ export class CourseCatalogContainerComponent implements OnInit {
     })
   }
 
-  goBack(courseToUpdate?: Course): void {
-    console.log('-----------')
-    // console.log(codeToDelete)
-    // console.log(this.selectedCourse)
-    if (this.selectedCourse) {
-      this.selectedCourse = undefined
-      if (courseToUpdate) {
-        this.updateStudentsTable();
-        // console.log('--', codeToDelete)
-        // const asyncFunc = course => {
-        //   if (course.code == codeToDelete) {
-        //     console.log('\n\nFound\n\n', course)
-        //     course.code = ''
-        //     this.changeDetector.detectChanges()
-        //   }
-        // }
-        // Promise.all(this.dataSource.data.map(async (c) => asyncFunc(c)));
-      }
+  goBack(cameFrom?: string): void {
+    // console.log('-----------')
+    if (this.selectedCourse)
+      this.selectedCourse = undefined;
+    else if (this.viewAddCourse) {
+      this.viewAddCourse = false;
+      // this.updateStudentsTable();
     }
-
+    else if (cameFrom === 'create' || cameFrom === 'details')
+      this.updateStudentsTable();
     else
-      this.router.navigate(['home/apps'])
+      this.router.navigate(['home/apps']);
+
+    // const asyncFunc = course => {
+    //   if (course.code == codeToDelete) {
+    //     console.log('\n\nFound\n\n', course)
+    //     course.code = ''
+    //     this.changeDetector.detectChanges()
+    //   }
+    // }
+    // Promise.all(this.dataSource.data.map(async (c) => asyncFunc(c)));
   }
 
 
