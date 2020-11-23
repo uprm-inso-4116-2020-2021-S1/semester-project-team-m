@@ -6,6 +6,7 @@ from courses.models import Course, MyCourse
 from rest_framework.permissions import IsAuthenticated
 from .serializers import CourseSerializer, MyCourseSerializer, GradesSerializer, UserCourseSerializer, UserSerializer
 from rest_framework import serializers
+from django.contrib.auth.models import User
 
 
 @api_view(['POST'])
@@ -13,10 +14,14 @@ def api_user_register(request):
     if request.method == "POST":
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
-            user = serializer.save()
-            if user:
-                return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
-            return JsonResponse(status=status.HTTP_400_BAD_REQUEST)
+            try:
+                User.objects.get(username=serializer.validated_data['email'])
+            except User.DoesNotExist:
+                user = serializer.save()
+                if user:
+                    return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
+                return JsonResponse(status=status.HTTP_400_BAD_REQUEST)
+            raise serializers.ValidationError({"email": "Another user is registered with the same email."})
         return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
