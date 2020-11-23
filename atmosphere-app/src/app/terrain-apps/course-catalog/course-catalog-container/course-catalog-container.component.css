@@ -33,6 +33,7 @@ table.mat-table {
 
 .data-table {
   overflow: auto;
+  padding-bottom: 110px;
   min-height: 300px;
   max-height: 500px;
 }
