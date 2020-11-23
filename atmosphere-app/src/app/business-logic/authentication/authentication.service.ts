@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { CookieService } from 'ngx-cookie-service';
+import { Student } from '../models/user'
 
 @Injectable({
   providedIn: 'root'
