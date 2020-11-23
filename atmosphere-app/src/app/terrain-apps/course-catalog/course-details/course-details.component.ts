@@ -9,7 +9,7 @@ import { Course } from 'src/app/business-logic/models/course';
   styleUrls: ['./course-details.component.css']
 })
 export class CourseDetailsComponent implements OnInit {
-  @Output() onFinished = new EventEmitter<string>();
+  @Output() onFinished = new EventEmitter<Course>();
   @Input() course: Course;
 
   constructor(
@@ -58,7 +58,7 @@ export class CourseDetailsComponent implements OnInit {
   removeMyCourse() {
     this.courseCatalogService.deleteCourseByCode(this.course.code).subscribe(_ => {
       console.log('>', 'sup');
-      this.onFinished.emit(this.course.code)
+      this.onFinished.emit(this.course)
     })
   }
 
