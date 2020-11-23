@@ -145,7 +145,7 @@
 
   <mat-table [dataSource]="dataSource" class="data-table" matSort>
     <ng-container matColumnDef="course_code">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Course Code </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> Course Code </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.code}} </mat-cell>
     </ng-container>
 
@@ -204,4 +204,4 @@
     </mat-row>
   </mat-table>
 </mat-card>
-<mat-paginator [pageSize] = "54" [hidePageSize]="true" [itemsPerPageLabel]="false" [disabled]="true"></mat-paginator>
+<mat-paginator [pageSize] = "54" [hidePageSize]="true" [itemsPerPageLabel]="false"></mat-paginator>
