@@ -36,6 +36,7 @@ export class CourseCatalogContainerComponent implements OnInit {
   public genIn;
 
   public viewAdvancedFilter = false;
+  public viewAddCourse = false;
   // public deletedCourseCode: string;
   // public viewAllCourses = false; //should be false by default
   public selectedCourse: Course;
@@ -88,6 +89,15 @@ export class CourseCatalogContainerComponent implements OnInit {
     this.gradeOptions.push('D')
     this.gradeOptions.push('F')
 
+    this.courseCatalogService.getMyCourses().subscribe(
+      mycourses => {
+        // this.originalCourses = mycourses;
+        // this.dataSource.data = mycourses;
+        // this.mycourses = mycourses;
+        // this.originalCourses = this.dataSource.data = mycourses;
+      },
+      error => { console.log(error) }
+    )
 
     this.courseCatalogService.getCurriculum().subscribe(courses => {
       console.log(courses)
@@ -99,35 +109,11 @@ export class CourseCatalogContainerComponent implements OnInit {
     )
   }
 
-  // toogleTableCourses() {
-  //   // toggle
-  //   this.viewAllCourses = !this.viewAllCourses;
+  displayCourseAdd() {
+    this.viewAddCourse = true;
+  }
 
-  //   this.filteredCourses = [];
-
-  //   if (this.viewAllCourses) {
-  //     this.courseCatalogService.getAllCourses().subscribe(
-  //       courses => {
-  //         this.originalCourses = this.dataSource.data = courses;
-  //       },
-  //       error => { console.log(error) }
-  //     )
-  //   } else {
-  //     this.courseCatalogService.getMyCourses().subscribe(
-  //       mycourses => {
-  //         this.originalCourses = mycourses;
-  //         this.dataSource.data = mycourses;
-  //         this.mycourses = mycourses;
-  //         // this.originalCourses = this.dataSource.data = mycourses;
-  //       },
-  //       error => { console.log(error) }
-  //     )
-  //   }
-  //   this.changeDetector.detectChanges()
-  // }
-
-
-  viewCourse(code: string) {
+  displayCourse(code: string) {
     this.viewAdvancedFilter = false;
     // this.viewCourseDetail = true;
     this.courseCatalogService.getCourseByCode(code).subscribe(course => {
@@ -136,13 +122,13 @@ export class CourseCatalogContainerComponent implements OnInit {
     })
   }
 
-  goBack(codeToDelete?: string): void {
+  goBack(courseToUpdate?: Course): void {
     console.log('-----------')
-    console.log(codeToDelete)
-    console.log(this.selectedCourse)
+    // console.log(codeToDelete)
+    // console.log(this.selectedCourse)
     if (this.selectedCourse) {
       this.selectedCourse = undefined
-      if (codeToDelete) {
+      if (courseToUpdate) {
         this.updateStudentsTable();
         // console.log('--', codeToDelete)
         // const asyncFunc = course => {
@@ -180,9 +166,7 @@ export class CourseCatalogContainerComponent implements OnInit {
   }
 
   updateStudentsTable() {
-    console.log("updateStudentsTable")
     this.courseCatalogService.getCurriculum().subscribe(courses => {
-      console.log(courses)
       this.originalCourses = this.dataSource.data = courses;
     },
       error => { console.log(error) }
@@ -317,14 +301,12 @@ export class CourseCatalogContainerComponent implements OnInit {
 
   /** Checks if each input field of each category () within the advance search. */
   allEmptyFields() {
-    console.log("sup")
     if (this.emptySearchFields(this.codeFields)
       && this.emptySearchFields(this.titleFields)
       && this.emptySearchFields(this.gradeFields)
       && this.emptySearchFields(this.preFields))
       return true;
     return false;
-
   }
 
   /** Removes all empty input search fields. */
