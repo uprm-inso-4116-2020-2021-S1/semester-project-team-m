@@ -9,7 +9,7 @@ import { Course } from 'src/app/business-logic/models/course';
   styleUrls: ['./course-add.component.css']
 })
 export class CourseAddComponent implements OnInit {
-  @Output() onFinished = new EventEmitter<Course>();
+  @Output() onFinished = new EventEmitter<string>();
 
   // public courseForm: FormGroup;
   code: string;
@@ -70,7 +70,7 @@ export class CourseAddComponent implements OnInit {
         console.log(newCourse);
 
         this.courseCatalogService.postCourseToMycourse(newCourse)
-        this.onFinished.emit(newCourse)
+        this.onFinished.emit('create')
       }
       else {
         alert('Course with the code provided does not exist')
