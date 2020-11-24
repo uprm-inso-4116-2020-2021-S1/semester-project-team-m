@@ -3,6 +3,7 @@ import * as XLSX from 'xlsx';
 import { HttpClient } from '@angular/common/http';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { Router } from '@angular/router';
+import { Observable} from 'rxjs';
 
 
 // Website I got the code from
@@ -83,8 +84,8 @@ export class GradeDistriContainerComponent implements OnInit {
     this.row = i
   }
 
-  goBack() {
+  async goBack(){
     // this.onFinished.emit(false)
-    this.router.navigate(['home/apps'])
+    return await this.router.navigate(['home/apps']);
   }
 }
