@@ -269,17 +269,20 @@ export class CourseCatalogContainerComponent implements OnInit {
     if (this.emptySearchFields(this.gradeFields))
       return false;
 
-    const grade = this.gradeToValue(course.grade);
+    const grade = this.gradeToValue(course.grade, true);
+    if (grade === -1)
+      return false;
+
     for (const field of this.gradeFields) {
-      const fieldGrade = this.gradeToValue(field.value)
+      const fieldGrade = this.gradeToValue(field.value);
       if (undefined !== fieldGrade && grade === fieldGrade) // course's grade same as fieldGrade?
         return true;
     }
     return false;
   }
 
-  gradeToValue(grade: string): number {
-    if (grade.length > 1) return 0;
+  gradeToValue(grade: string, considerChooseGrade?): number {
+    if (grade.length > 1) return (considerChooseGrade) ? -1 : 0;
     let value = 69 - grade.charCodeAt(0);
     return (value === -1) ? 0 : value;
   }
