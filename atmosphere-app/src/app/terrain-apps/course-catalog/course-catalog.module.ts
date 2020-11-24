@@ -10,7 +10,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule, MatCardModule, MatIconModule, MatPaginatorModule, MatSortModule } from '@angular/material';
 import { CourseCatalogContainerComponent } from './course-catalog-container/course-catalog-container.component';
 import { CourseDetailsComponent } from './course-details/course-details.component';
-import { CourseAddComponent } from './course-add/course-add.component';
+import { CourseCreateComponent } from './course-create/course-create.component';
 
 // import { MaterialModule } from '../../material.module'
 
@@ -22,7 +22,7 @@ const routes: Routes = [
   declarations: [
     CourseCatalogContainerComponent,
     CourseDetailsComponent,
-    CourseAddComponent
+    CourseCreateComponent
   ],
   imports: [
     CommonModule,

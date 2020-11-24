@@ -35,7 +35,7 @@ export class AuthenticationService {
     })
   }
 
-  login(authData: Student) {
+  signin(authData: Student) {
     // const body = JSON.stringify({
     //   username: authData.email,
     //   password: authData.password

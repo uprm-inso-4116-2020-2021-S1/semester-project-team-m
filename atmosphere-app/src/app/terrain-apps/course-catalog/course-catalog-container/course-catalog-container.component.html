@@ -11,7 +11,6 @@
 <!-- <hr class="mt-1"> -->
 
 <!-- <div class="sub-header mb-2"> -->
-<!-- <div class="back-button"> -->
 <div class="d-flex justify-content-start align-items-center w-100 mt-3 mb-3">
   <a (click)="goBack()" class="green circular-btn purple d-flex justify-content-center align-items-center">
     <mat-icon>keyboard_arrow_left</mat-icon>BACK
@@ -119,7 +118,7 @@
       </mat-form-field>
     </div>
     <div id="advanced-button">
-      <div *ngIf="viewAdvancedFilter; else undo" (click)="undoFilter()"
+      <div *ngIf="viewAdvancedFilter; else undo" (click)="undoFilter()" [ngClass]="{'active': viewAdvancedFilter}"
         class="filter-button green circular-btn d-flex justify-content-center align-items-center">
         <img src="../../../../assets/SVG/filter.svg" height="" width="30">
         <p style="font-size: x-large; margin: 2px 0 0 15px; color: black;">Filter</p>
@@ -184,7 +183,7 @@
     <ng-container matColumnDef="view">
       <mat-header-cell *matHeaderCellDef> View Details </mat-header-cell>
       <mat-cell *matCellDef="let course">
-        <button mat-button color="primary" (click)="displayCourse(course.code)">View</button>
+        <button mat-button color="accent" (click)="displayCourse(course.code)">View</button>
       </mat-cell>
     </ng-container>
 
@@ -194,7 +193,17 @@
       (mouseover)="row.hovered = true" (mouseout)="row.hovered = false">
     </mat-row>
   </mat-table>
-  <mat-card-actions vertical-align='bottom' align='end'>
+  <!-- <div class="d-flex justify-content-start align-items-center w-100 mt-3 mb-3">
+    <a (click)="goBack()" class="green circular-btn purple d-flex justify-content-center align-items-center">
+      <mat-icon>keyboard_arrow_left</mat-icon>BACK
+    </a>
+  </div> -->
+  <mat-card-actions vertical-align='bottom' align='end' class="mr-5">
+    <div>
+      <span *ngIf="userGPA" class="gpa mr-2 circular-btn active" style="font-size: x-large">
+        {{userGPA}}</span>
+      <button mat-stroked-button color="primary" (click)="calculateGPA()">Calculate GPA</button>
+    </div>
     <button mat-raised-button color="primary" (click)="displayCourseAdd()">
       Create Course
     </button>
@@ -210,6 +219,6 @@
     <app-course-details (onFinished)="goBack($event)" [course]="selectedCourse"></app-course-details>
   </div>
   <div *ngIf="viewAddCourse">
-    <app-course-add (onFinished)="goBack($event)"></app-course-add>
+    <app-course-create (onFinished)="goBack($event)"></app-course-create>
   </div>
 </ng-template>

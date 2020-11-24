@@ -67,6 +67,9 @@ export class CourseCatalogContainerComponent implements OnInit {
   public gradeOptions: string[] = [];
   public grade = new FormControl('Choose Grade');
 
+  //user gpa var
+  public userGPA = '';
+
   constructor(
     private router: Router,
     private cookieService: CookieService,
@@ -144,6 +147,40 @@ export class CourseCatalogContainerComponent implements OnInit {
     // }
     // Promise.all(this.dataSource.data.map(async (c) => asyncFunc(c)));
   }
+
+  calculateGPA(): void {
+    this.userGPA = ''
+    let total_points = 0;
+    let total_credits = 0;
+    for (let row of this.dataSource.data) {
+      //2 is current index of credit worth
+      //5 is current index of gpa points
+      console.log(row.grade);
+      if (row.grade == 'A') {
+        total_points += row.worth * 4;
+        total_credits += row.worth;
+      }
+      if (row.grade == 'B') {
+        total_points += row.worth * 3;
+        total_credits += row.worth;
+      }
+      if (row.grade == 'C') {
+        total_points += row.worth * 2;
+        total_credits += row.worth;
+      }
+      if (row.grade == 'D') {
+        total_points += row.worth;
+        total_credits += row.worth;
+      }
+      if (row.grade == 'F') {
+        total_credits += row.worth;
+      }
+    }
+    if (total_credits > 0) this.userGPA += (total_points / total_credits).toFixed(2);
+    else this.userGPA = '';
+  }
+
+
 
 
   /* ----------------     Advance Filter Section     ---------------- */

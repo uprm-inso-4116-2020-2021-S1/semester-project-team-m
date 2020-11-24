@@ -70,8 +70,8 @@ export class AuthComponent implements OnInit {
     return pass === confirmPass ? null : { notSame: true }
   }
 
-  saveForm() {
-    this.authService.login(this.logInForm.value).subscribe(
+  signin() {
+    this.authService.signin(this.logInForm.value).subscribe(
       (res: TokenObj) => {
         console.log('Token', res)
         this.cookieService.set('courses-token', res['token']);
@@ -105,7 +105,7 @@ export class AuthComponent implements OnInit {
       this.authService.register(this.registerForm.value).subscribe(
         result => {
           console.log(result);
-          this.saveForm()
+          this.signin()
         }
       )
     }

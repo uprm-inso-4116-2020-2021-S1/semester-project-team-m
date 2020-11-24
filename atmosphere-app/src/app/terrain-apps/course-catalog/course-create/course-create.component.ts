@@ -4,11 +4,11 @@ import { CourseCatalogService } from 'src/app/business-logic/course-catalog/cour
 import { Course } from 'src/app/business-logic/models/course';
 
 @Component({
-  selector: 'app-course-add',
-  templateUrl: './course-add.component.html',
-  styleUrls: ['./course-add.component.css']
+  selector: 'app-course-create',
+  templateUrl: './course-create.component.html',
+  styleUrls: ['./course-create.component.css']
 })
-export class CourseAddComponent implements OnInit {
+export class CourseCreateComponent implements OnInit {
   @Output() onFinished = new EventEmitter<string>();
 
   // public courseForm: FormGroup;

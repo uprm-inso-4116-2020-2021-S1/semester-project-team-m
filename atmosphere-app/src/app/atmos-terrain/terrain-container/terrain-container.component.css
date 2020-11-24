@@ -19,7 +19,12 @@
 
 .app-icon {
   cursor: pointer;
+  text-align: center;
   /* background-color: #444;
   border-radius: 5px;
   padding: 20px; */
+}
+
+p {
+  font-size: large;
 }
