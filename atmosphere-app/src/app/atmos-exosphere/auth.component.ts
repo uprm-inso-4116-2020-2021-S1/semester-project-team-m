@@ -73,37 +73,45 @@ export class AuthComponent implements OnInit {
   }
 
   signin() {
-    this.authService.signin(this.logInForm.value).subscribe(
-      (res: TokenObj) => {
-        console.log('Token', res)
-        this.cookieService.set('courses-token', res['token']);
-        this.toast.successToast("User successfully logged in")
-        this.router.navigate(['/home']);
-      },
-      error => {
-        console.log('error', error)
-        this.logInForm.setValue({
-          email: this.logInForm.get('email').value,
-          password: ''
-        })
-        this.toast.errorToast('User Not Found');
-      },
-    );
+    let email = this.registerForm.get('email').value;
+    let password = this.registerForm.get('password').value;
+
+    if (!email.includes('@'))
+      this.toast.infoToast('Please provide a valid email address');
+    else if (!password)
+      this.toast.infoToast('Please provide a password');
+    else {
+      this.authService.signin(this.logInForm.value).subscribe(
+        (res: TokenObj) => {
+          console.log('Token', res)
+          this.cookieService.set('courses-token', res['token']);
+          this.toast.successToast("User successfully logged in")
+          this.router.navigate(['/home']);
+        },
+        error => {
+          this.toast.errorToast('User Not Found');
+          this.logInForm.setValue({
+            email: email,
+            password: ''
+          })
+        },
+      );
+    }
   }
 
   register() {
+    let email = this.registerForm.get('email').value;
     let password = this.registerForm.get('password').value;
     let confirmPassword = this.registerForm.get('confirmPassword').value;
 
-    if (!this.registerForm.value['email'].includes('@')) {
+    if (!email.includes('@'))
       this.toast.infoToast('Please provide a valid email address');
-    }
-    else if (password.value.length > 8) {
+    else if (!password)
+      this.toast.infoToast('Please provide a password');
+    else if (password.length > 8)
       this.toast.errorToast('Password length - up to 8 characters');
-    }
-    else if (password !== confirmPassword) {
+    else if (password !== confirmPassword)
       this.toast.infoToast('Password and confirmPassword do not match');
-    }
     else {
       this.authService.register(this.registerForm.value).subscribe(
         result => {
