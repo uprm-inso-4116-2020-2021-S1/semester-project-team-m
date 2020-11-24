@@ -189,7 +189,7 @@
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"
-      [ngClass]="{hovered: row.hovered, highlighted: row.highlighted, yo: row.grade!='Choose Grade'}" (click)="row.highlighted = !row.highlighted"
+      [ngClass]="{hovered: row.hovered, highlighted: row.highlighted, graded: row.grade!='Choose Grade'}" (click)="row.highlighted = !row.highlighted"
       (mouseover)="row.hovered = true" (mouseout)="row.hovered = false">
     </mat-row>
   </mat-table>
