@@ -3,10 +3,11 @@ import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { CourseCatalogService } from 'src/app/business-logic/course-catalog/course-catalog.service';
-import { empty, Observable } from 'rxjs';
 import { MatSort } from '@angular/material/sort';
 import { Course } from '../../../business-logic/models/course'
 import { FormControl } from '@angular/forms';
+import { ToastService } from '../../../business-logic/toast/toast.service';
+
 
 /** Reference of a specific input field within the advance search. */
 class SearchField<E> {
@@ -69,17 +70,19 @@ export class CourseCatalogContainerComponent implements OnInit {
 
   //user gpa var
   public userGPA = '';
+  public messages: any;
 
   constructor(
     private router: Router,
     private cookieService: CookieService,
     private changeDetector: ChangeDetectorRef,
     private courseCatalogService: CourseCatalogService,
+    private toast: ToastService
   ) { }
 
   ngOnInit() {
     if (!this.cookieService.get('courses-token'))
-      this.router.navigate(['/auth'])
+      this.router.navigate(['/auth']);
 
     this.codeFields.push(new SearchField(''));
     this.titleFields.push(new SearchField(''));
@@ -92,18 +95,8 @@ export class CourseCatalogContainerComponent implements OnInit {
     this.gradeOptions.push('D')
     this.gradeOptions.push('F')
 
-    this.courseCatalogService.getMyCourses().subscribe(
-      mycourses => {
-        // this.originalCourses = mycourses;
-        // this.dataSource.data = mycourses;
-        // this.mycourses = mycourses;
-        // this.originalCourses = this.dataSource.data = mycourses;
-      },
-      error => { console.log(error) }
-    )
-
     this.courseCatalogService.getCurriculum().subscribe(courses => {
-      console.log(courses)
+      // console.log(courses)
       this.originalCourses = this.dataSource.data = courses;
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
@@ -118,9 +111,7 @@ export class CourseCatalogContainerComponent implements OnInit {
 
   displayCourse(code: string) {
     this.viewAdvancedFilter = false;
-    // this.viewCourseDetail = true;
     this.courseCatalogService.getCourseByCode(code).subscribe(course => {
-      // console.log(course);
       this.selectedCourse = course
     })
   }
@@ -140,7 +131,6 @@ export class CourseCatalogContainerComponent implements OnInit {
 
     // const asyncFunc = course => {
     //   if (course.code == codeToDelete) {
-    //     console.log('\n\nFound\n\n', course)
     //     course.code = ''
     //     this.changeDetector.detectChanges()
     //   }
@@ -305,12 +295,10 @@ export class CourseCatalogContainerComponent implements OnInit {
       }
     });
 
-    if (this.filteredCourses.length > 0) {
+    if (this.filteredCourses.length > 0)
       this.dataSource.data = this.filteredCourses; // table data references filtered
-    } else {
-      // this.toast.message('No course found with current filtering data');
-      alert('No course found with current filtering data');
-    }
+    else
+      this.toast.errorToast('No course found with current filtering data');
 
     // update table
     this.changeDetector.detectChanges();
@@ -319,13 +307,6 @@ export class CourseCatalogContainerComponent implements OnInit {
     this.filteredCourses = [];
     this.cloneOriginal();
   }
-
-  // calculateGpa() {
-  //   for (let c of this.dataSource.data) {
-  //     console.log(c);
-  //     c['c']
-  //   }
-  // }
 
   /** Returns true if each string within the given search fields is empty */
   emptySearchFields(searchFields: SearchField<string>[] | string[]): boolean {

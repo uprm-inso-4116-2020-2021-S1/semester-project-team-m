@@ -4,6 +4,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../business-logic/authentication/authentication.service';
 import { CookieService } from 'ngx-cookie-service';
+import { ToastService } from '../business-logic/toast/toast.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -35,6 +36,7 @@ export class AuthComponent implements OnInit {
     private authService: AuthenticationService,
     private router: Router,
     private cookieService: CookieService,
+    private toast: ToastService
   ) { }
 
   ngOnInit() {
@@ -75,8 +77,7 @@ export class AuthComponent implements OnInit {
       (res: TokenObj) => {
         console.log('Token', res)
         this.cookieService.set('courses-token', res['token']);
-        // this.isSignedIn.emit(true)
-        // alert("User successfully logged in")
+        this.toast.successToast("User successfully logged in")
         this.router.navigate(['/home']);
       },
       error => {
@@ -85,21 +86,23 @@ export class AuthComponent implements OnInit {
           email: this.logInForm.get('email').value,
           password: ''
         })
-        alert('User Not Found')
+        this.toast.errorToast('User Not Found');
       },
     );
-    // this.cookie.set("token", )
   }
 
   register() {
-    let password = this.registerForm.get('password');
-    let confirmPassword = this.registerForm.get('confirmPassword');
+    let password = this.registerForm.get('password').value;
+    let confirmPassword = this.registerForm.get('confirmPassword').value;
 
     if (!this.registerForm.value['email'].includes('@')) {
-      alert('Please provide a valid email address');
+      this.toast.infoToast('Please provide a valid email address');
+    }
+    else if (password.value.length > 8) {
+      this.toast.errorToast('Password length - up to 8 characters');
     }
     else if (password !== confirmPassword) {
-      alert('password and confirmPassword do not match');
+      this.toast.infoToast('Password and confirmPassword do not match');
     }
     else {
       this.authService.register(this.registerForm.value).subscribe(
