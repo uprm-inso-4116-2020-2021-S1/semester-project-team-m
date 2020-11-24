@@ -109,8 +109,8 @@ mat-header-row {
   text-align: center;
 }
 
-.graded{
-  background-color: rgba(11,156,49,0.2);
+.graded {
+  background-color: #a1f59936;
 }
 
 .mat-column-pre {
