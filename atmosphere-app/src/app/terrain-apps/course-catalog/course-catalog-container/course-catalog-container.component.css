@@ -105,6 +105,14 @@ mat-header-row {
   min-width: 140px !important;
 }
 
+.select{
+  text-align: center;
+}
+
+.yo{
+  background-color: rgba(11,156,49,0.2);
+}
+
 .mat-column-pre {
   min-width: 380px !important;
   padding-left: 10px;
