@@ -34,17 +34,17 @@ export class AuthenticationService {
     })
   }
 
-  login(authData: Student) {
-    const body = JSON.stringify({
-      username: authData.email,
-      password: authData.password
-    });
+  signin(authData: Student) {
     // const body = JSON.stringify({
-    //   // username: "general",
-    //   // password: "secretpassword"
-    //   username: "test6@upr.edu",
-    //   password: "test6"
+    //   username: authData.email,
+    //   password: authData.password
     // });
+    const body = JSON.stringify({
+      username: "general",
+      password: "secretpassword"
+      // username: "test6@upr.edu",
+      // password: "test6"
+    });
     return this.http.post(`${this.baseUrl}api-auth/`, body, {
       headers: this.headers
     })
