@@ -35,6 +35,10 @@ a { text-decoration: none !important; }
   margin-bottom: 5px;
 }
 
+.mat-raised-button {
+  color: white !important;
+}
+
 /* Text Colors */
 .white { color: white !important; }
 .green { color: #74da6b !important; }
@@ -52,8 +56,5 @@ a { text-decoration: none !important; }
 .bg-gray { background-color: #9B9B9B; }
 .bg-dark-gray { background-color: #4C4C4C; }
 .bg-light-gray { background-color: #E4E4E4; }
+.bg-light-purple { background-color: #6E46B9; }
 
-/* Mat Colors */
-.mat-raised-button {
-  color: white !important;
-}
