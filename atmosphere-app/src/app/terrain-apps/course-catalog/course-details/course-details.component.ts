@@ -14,6 +14,7 @@ export class CourseDetailsComponent implements OnInit {
 
   constructor(
     private courseCatalogService: CourseCatalogService,
+    private router: Router
   ) { }
 
   get getTitle() { return this.course.title }
@@ -27,11 +28,8 @@ export class CourseDetailsComponent implements OnInit {
     return code.substr(0, 4) + ' ' + code.substr(4)
   }
 
-
   ngOnInit() {
     this.courseCatalogService.getMycourseByCode(this.course.code).subscribe(mycourse => {
-      console.log(this.course)
-      console.log(mycourse);
       this.course.grade = (mycourse.grade) ? mycourse.grade : 'Course not taken'
       this.course.term = mycourse.term;
     })
@@ -39,7 +37,7 @@ export class CourseDetailsComponent implements OnInit {
 
   deleteFromMycourses() {
     this.courseCatalogService.deleteCourseByCode(this.course.code).subscribe(_ => {
-      this.onFinished.emit('details')
+      this.router.navigate(['/home/apps', { "componentToRerouteTo": 'catalog' }]);
     })
   }
 }

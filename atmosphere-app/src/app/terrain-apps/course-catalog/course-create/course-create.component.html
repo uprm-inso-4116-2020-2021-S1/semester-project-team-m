@@ -1,4 +1,3 @@
-<!-- <div style="display: flex; justify-content: center; align-items: center;"> -->
 <div class="d-flex justify-content-center align-items-center">
   <mat-card style="width: 75%; padding-bottom: 22px;">
     <div class="header-content p-3 title bg-light-gray">
@@ -9,9 +8,13 @@
 
     <div class="course-content">
       <div class="fields mt-1">
-        <div class="field">
-          <mat-form-field>
-            <input matInput [(ngModel)]="code" type="text" placeholder="Code" name="code" />
+        <div class="field mat-select">
+          <mat-form-field for flex class="md-icon-float md-block md-title">
+            <mat-select placeholder="Choose Code" [(ngModel)]="codeForm">
+              <mat-option *ngFor="let codeOption of codeOptions" [value]="codeOption">
+                {{codeOption}}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
         </div>
         <div class="field">
@@ -33,7 +36,3 @@
     </mat-card-actions>
   </mat-card>
 </div>
-<!-- <button class="mb-3" mat-raised-button color="primary" (click)="addCourse()"
-  style="float: right; margin: 30px 330px 0 0">Add Course
-</button> -->
-<!-- </div> -->

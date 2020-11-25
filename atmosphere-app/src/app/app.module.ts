@@ -14,7 +14,6 @@ import { HomeLayoutModule } from './layouts/home-layout/home-layout.module';
 import { SharedModule } from './shared/shared.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CdkTableModule } from '@angular/cdk/table';
-import { GpaCalculatorModule } from './terrain-apps/gpa-calculator/gpa-calculator.module';
 import { GradeDistributionModule } from './terrain-apps/grade-distribution/grade-distribution.module';
 import { MatIconModule } from '@angular/material/icon';
 import { ToastrModule } from 'ngx-toastr';
@@ -34,7 +33,6 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     AtmosTerrainModule,
     CourseCatalogModule,
-    GpaCalculatorModule,
     GradeDistributionModule,
     HomeLayoutModule,
     SharedModule,

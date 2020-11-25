@@ -105,10 +105,6 @@ export class CourseCatalogContainerComponent implements OnInit {
     )
   }
 
-  displayCourseAdd() {
-    this.viewAddCourse = true;
-  }
-
   displayCourse(code: string) {
     this.viewAdvancedFilter = false;
     this.courseCatalogService.getCourseByCode(code).subscribe(course => {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'terrain-container-apps',
@@ -8,11 +8,17 @@ import { Router } from '@angular/router';
 })
 export class TerrainContainerComponent implements OnInit {
   public viewCatalog = false;
+
   constructor(
+    private route: ActivatedRoute,
     private router: Router
   ) { }
 
   ngOnInit(): void {
+    // this.router.
+    const redirectToWhom = this.route.snapshot.paramMap.get('componentToRerouteTo');
+    if (redirectToWhom === 'catalog')
+      this.router.navigate(['home/catalog/'])
   }
 
 
@@ -23,10 +29,6 @@ export class TerrainContainerComponent implements OnInit {
 
   detectCourseCatalog() {
     this.router.navigate(['home/catalog'])
-  }
-
-  detentGpaCalculator() {
-    this.router.navigate(['home/gpa-calculator'])
   }
 
   detectGradeDistribution() {
