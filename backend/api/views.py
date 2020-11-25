@@ -7,6 +7,7 @@ from rest_framework.permissions import IsAuthenticated
 from .serializers import CourseSerializer, MyCourseSerializer, GradesSerializer, UserCourseSerializer, UserSerializer
 from rest_framework import serializers
 from django.contrib.auth.models import User
+import json
 
 
 @api_view(['POST'])
@@ -100,15 +101,16 @@ def api_my_course_list(request, format='json'):
         return JsonResponse(serializer.data, safe=False)
 
     elif request.method == "POST":
-        if 'course' not in request.POST:
-            raise serializers.ValidationError({"course": "This field is required."})
+        data = json.loads(request.body)
+        if 'code' not in data:
+            raise serializers.ValidationError({"code": "This field is required."})
 
-        serializer = MyCourseSerializer(data=request.data)
+        serializer = MyCourseSerializer(data=data)
         if serializer.is_valid():
             try:
-                course = Course.objects.get(code=request.POST['course'].upper())
+                course = Course.objects.get(code=data['code'].upper())
             except Course.DoesNotExist:
-                raise serializers.ValidationError({"course": "Please provide a valid course."})
+                raise serializers.ValidationError({"code": "Please provide a valid course."})
             serializer.save(course=course, user=request.user.profile)
             return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
         return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -119,7 +121,7 @@ def api_my_course_list(request, format='json'):
 def api_my_courses_detail(request, course_code):
     try:
         course_code = course_code.upper()
-        my_courses = MyCourse.objects.get(user=request.user.profile, course__code=course_code)
+        my_courses = MyCourse.objects.filter(user=request.user.profile, course__code=course_code).first()
     except MyCourse.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
@@ -130,11 +132,11 @@ def api_my_courses_detail(request, course_code):
     elif request.method == "PUT":
         serializer = MyCourseSerializer(my_courses, data=request.data, partial=True)
         if serializer.is_valid():
-            if 'course' in request.POST:
+            if 'code' in request.POST:
                 try:
-                    course = Course.objects.get(code=request.POST['course'].upper())
+                    course = Course.objects.get(code=request.POST['code'].upper())
                 except Course.DoesNotExist:
-                    raise serializers.ValidationError({"course": "Please provide a valid course."})
+                    raise serializers.ValidationError({"code": "Please provide a valid course."})
                 serializer.save(course=course, user=request.user.profile)
             else:
                 serializer.save(user=request.user.profile)
@@ -142,7 +144,7 @@ def api_my_courses_detail(request, course_code):
         return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == "DELETE":
-        my_courses.delete()
+        MyCourse.objects.filter(user=request.user.profile, course__code=course_code).delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 

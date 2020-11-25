@@ -60,7 +60,7 @@ class Course(models.Model):
 
     def taken_courses(self, profile):
         try:
-            return MyCourse.objects.filter(course__code=self.code, user=profile).first()
+            return MyCourse.objects.filter(course__code=self.code, user=profile).order_by('grade').first()
         except MyCourse.DoesNotExist:
             return None
 

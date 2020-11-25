@@ -70,11 +70,11 @@ call       | url                                                      | descript
 **POST**   | https://terrain.gabrielrosa.dev/api-auth/                | Generate a token for authentication                     | username <br> password                                                  | Y <br> Y
 **POST**   | https://terrain.gabrielrosa.dev/api/register/            | Register a new user                                     | email <br> password <br> student_id <br> major <br> curriculum_year     | Y <br> Y <br> Y <br> Y <br> Y
 **POST**   | https://terrain.gabrielrosa.dev/api/courses/             | **(Auth)** Create a new course                          | code <br> title <br> worth <br> pre <br> curriculum                     | Y <br> Y <br> Y <br> N <br> Y
-**POST**   | https://terrain.gabrielrosa.dev/api/mycourses/           | **(Auth)** Add a taken course to my profile             | course <br> grade <br> term                                             | Y <br> Y <br> Y
+**POST**   | https://terrain.gabrielrosa.dev/api/mycourses/           | **(Auth)** Add a taken course to my profile             | code <br> grade <br> term                                               | Y <br> Y <br> Y
 **PUT**    | https://terrain.gabrielrosa.dev/api/courses/{code}/      | **(Auth)** Modify information about a course            | code <br> title <br> worth <br> pre <br> curriculum                     | N <br> N <br> N <br> N <br> N
-**PUT**    | https://terrain.gabrielrosa.dev/api/mycourses/{code}/    | **(Auth)** Modify the information about a taken course  | course <br> grade <br> term                                             | N <br> N <br> N
+**PUT**    | https://terrain.gabrielrosa.dev/api/mycourses/{code}/    | **(Auth)** Modify the information about a taken course  | code <br> grade <br> term                                               | N <br> N <br> N
 **DELETE** | https://terrain.gabrielrosa.dev/api/courses/{code}/      | **(Auth)** Remove a course                              | |
-**DELETE** | https://terrain.gabrielrosa.dev/api/mycourses/{code}/    | **(Auth)** Remove a course from my profile          | |
+**DELETE** | https://terrain.gabrielrosa.dev/api/mycourses/{code}/    | **(Auth)** Remove a course from my profile              | |
 
 ### Format
 - The parameter {code} in the API url should be replaced with the course code in a format similiar to this: CIIC3010 or ciic3010
@@ -91,6 +91,5 @@ call       | url                                                      | descript
   | worth             | amount of credits that the course is worth                         | 4                       |
   | pre               | course(s) required before taking this course                       | [INSO4115]              |
   | curriculum        | the curriculum(s) in which this course is REQUIRED                 | [INSO2015]              |
-  | course            | course code                                                        | INSO4116                |
   | grade             | grade received in this course (A, B, C, D, F, P)                   | A                       |
   | term              | the term/period in which the course was taken                      | 2015S1                  |
