@@ -7,10 +7,11 @@ mat-form-field {
   height: 500px;
   overflow: auto;
 } */
-mat-card {
+.card-table {
   padding-bottom: 90px;
   min-width: 550px;
   max-height: 500px;
+  overflow: hidden;
 }
 
 mat-table {
@@ -64,7 +65,13 @@ tr.mat-header-row {
 
 .advanced-filter-buttons {
   margin-top: 1.5em;
-  width: 100%;
+  /* width: 100%; */
+  
+}
+
+.disabled {
+  opacity: 0.65; 
+  cursor: not-allowed;
 }
 
 #search-field {
