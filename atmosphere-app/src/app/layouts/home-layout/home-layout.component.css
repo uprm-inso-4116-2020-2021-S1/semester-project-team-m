@@ -1,6 +1,7 @@
 :host {
   display: flex;
   flex-flow: column;
+  background-color: #f8f8f8 !important;
 }
 
 .app-middle {

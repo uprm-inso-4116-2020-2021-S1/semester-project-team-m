@@ -17,6 +17,7 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { GpaCalculatorModule } from './terrain-apps/gpa-calculator/gpa-calculator.module';
 import { GradeDistributionModule } from './terrain-apps/grade-distribution/grade-distribution.module';
 import { MatIconModule } from '@angular/material/icon';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { MatIconModule } from '@angular/material/icon';
     SharedModule,
     FlexLayoutModule,
     CdkTableModule,
-    MatIconModule
+    MatIconModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     CookieService

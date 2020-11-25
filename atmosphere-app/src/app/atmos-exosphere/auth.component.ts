@@ -4,6 +4,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../business-logic/authentication/authentication.service';
 import { CookieService } from 'ngx-cookie-service';
+import { ToastService } from '../business-logic/toast/toast.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -27,7 +28,7 @@ export class AuthComponent implements OnInit {
   message: any = "";
 
   logInForm: FormGroup;
-  signUpForm: FormGroup;
+  registerForm: FormGroup;
   matcher = new MyErrorStateMatcher();
 
   constructor(
@@ -35,6 +36,7 @@ export class AuthComponent implements OnInit {
     private authService: AuthenticationService,
     private router: Router,
     private cookieService: CookieService,
+    private toast: ToastService
   ) { }
 
   ngOnInit() {
@@ -47,16 +49,21 @@ export class AuthComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(8)]],
     })
 
-    this.signUpForm = this.formBuilder.group(
+    this.registerForm = this.formBuilder.group(
       {
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(8)]],
-        confirmPassword: ['']
+        confirmPassword: [''],
+        student_id: ['']
       },
       {
         validator: this.checkPassword
       })
   }
+
+
+  // get password() { return this.registerForm.get('password') }
+  // get confirmPassword() { return this.registerForm.get('confirmPassword') }
 
   checkPassword(group: FormGroup) { // here we have the 'passwords' group
     let pass = group.get('password').value;
@@ -65,60 +72,53 @@ export class AuthComponent implements OnInit {
     return pass === confirmPass ? null : { notSame: true }
   }
 
-  saveForm() {
-    this.authService.login(this.logInForm.value).subscribe(
+  signin() {
+    let email = this.registerForm.get('email').value;
+    let password = this.registerForm.get('password').value;
+
+    // if (!email.includes('@'))
+    //   this.toast.infoToast('Please provide a valid email address');
+    // else if (!password)
+    //   this.toast.infoToast('Please provide a password');
+    // else {
+    this.authService.signin(this.logInForm.value).subscribe(
       (res: TokenObj) => {
         console.log('Token', res)
         this.cookieService.set('courses-token', res['token']);
-        // alert("User successfully logged in")
+        this.toast.successToast("User successfully logged in")
         this.router.navigate(['/home']);
       },
       error => {
-        console.log('error', error)
+        this.toast.errorToast('User Not Found');
         this.logInForm.setValue({
-          email: this.logInForm.get('email').value,
+          email: email,
           password: ''
         })
-        alert('User Not Found')
       },
     );
-    // this.cookie.set("token", )
+    // }
   }
 
-  // signup() {
-  //   this.authService.signup(this.signUpForm.value).subscribe(
-  //     result => {
-  //       console.log(result);
-  //       this.saveForm()
-  //     }
-  //   )
-  // }
+  register() {
+    let email = this.registerForm.get('email').value;
+    let password = this.registerForm.get('password').value;
+    let confirmPassword = this.registerForm.get('confirmPassword').value;
 
-
-
-
-  // login() {
-  //   // originally
-  //   // const body = {
-  //   //   email: this.logInForm.get('email'),
-  //   //   password: this.logInForm.get('password')
-  //   // }
-  //   // this.router.navigate(['/admin/purchases']);
-
-  //   // At the moment
-  //   const body = {
-  //     email: this.logInForm.get('email'),
-  //     password: this.logInForm.get('password')
-  //   }
-
-  //   // fetching api
-  //   // this.authService.login().subscribe(
-  //   //   data => {
-  //   //     this.message = data['message'];
-  //   //   },
-  //   //   error => console.log(error)
-  //   // )
-
-  //   // this.router.navigate(['/courses']);
-  // }
+    if (!email.includes('@'))
+      this.toast.infoToast('Please provide a valid email address');
+    else if (!password)
+      this.toast.infoToast('Please provide a password');
+    else if (password.length > 8)
+      this.toast.errorToast('Password length - up to 8 characters');
+    else if (password !== confirmPassword)
+      this.toast.infoToast('Password and confirmPassword do not match');
+    else {
+      this.authService.register(this.registerForm.value).subscribe(
+        result => {
+          console.log(result);
+          this.signin()
+        }
+      )
+    }
+  }
 }

@@ -1,6 +1,6 @@
 header {
   padding: 20px;
-  background-color: #388e3c;
+  background-color: #5E10BC;
   /* height: 100%; */
 }
 
@@ -11,7 +11,7 @@ header {
 
 .nav-link:hover {
   cursor: pointer;
-  border-bottom-color: #8d849e !important;
+  border-bottom-color: #388e3c !important;
 }
 
 li {

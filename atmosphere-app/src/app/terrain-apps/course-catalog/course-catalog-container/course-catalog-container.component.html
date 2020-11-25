@@ -11,9 +11,8 @@
 <!-- <hr class="mt-1"> -->
 
 <!-- <div class="sub-header mb-2"> -->
-<!-- <div class="back-button"> -->
 <div class="d-flex justify-content-start align-items-center w-100 mt-3 mb-3">
-  <a (click)="goBack()" class="green circular-btn d-flex justify-content-center align-items-center">
+  <a (click)="goBack()" class="green circular-btn purple d-flex justify-content-center align-items-center">
     <mat-icon>keyboard_arrow_left</mat-icon>BACK
   </a>
 </div>
@@ -26,15 +25,7 @@
   </div> -->
 <!-- </div> -->
 
-
-
-<!-- <ng-template #courseDetails>
-  <app-course-details></app-course-details>
-</ng-template> -->
-
-
-
-<mat-card *ngIf="viewAdvancedFilter" class="mt-2" style="max-height: 300px">
+<mat-card *ngIf="viewAdvancedFilter && !selectedCourse && !viewAddCourse" class="mt-2" style="max-height: 300px">
   <div class="d-flex justify-content-start align-items-center p-3 title bg-light-gray">
     <h6 class="m-0">Advanced Filter</h6>
   </div>
@@ -98,28 +89,27 @@
 
     <div class="advanced-filter-buttons">
       <div style="display: inline">
-        <button class="mr-2" mat-stroked-button color="primary" (click)="removeEmptyFields()">
+        <button class="mr-3" mat-stroked-button color="primary" (click)="removeEmptyFields()">
           Remove Empty Fields
         </button>
       </div>
-      <div style="display: inline">
-        <div *ngIf="!allEmptyFields(); else disabled">
+
+      <div *ngIf="!allEmptyFields(); else disabled">
         <button class="apply-filter" style="width: 75%" mat-raised-button color="primary" (click)="applyFilter()">
           Filter Now
         </button>
-        </div>
-        <!--<ng-template #disabled>
-          <button class="apply-filter" style="width: 75%" mat-raised-button color="primary" (click)="applyFilter() disabled">
-            Filter Now
-          </button>
-        </ng-template> -->
       </div>
+      <ng-template #disabled>
+        <button class="apply-filter" style="width: 75%" mat-raised-button color="primary" disabled>
+          Filter Now
+        </button>
+      </ng-template>
     </div>
   </div>
 </mat-card>
 
 
-<mat-card *ngIf="!viewCourseDetail" class="mt-2" style="overflow: hidden">
+<mat-card *ngIf="!selectedCourse && !viewAddCourse; else childViews" class="mt-2" style="overflow: hidden">
   <div class="d-flex mb-4">
     <div id="search-field">
       <mat-form-field style="width: 100%">
@@ -128,7 +118,7 @@
       </mat-form-field>
     </div>
     <div id="advanced-button">
-      <div *ngIf="viewAdvancedFilter; else undo" (click)="undoFilter()"
+      <div *ngIf="viewAdvancedFilter; else undo" (click)="undoFilter()" [ngClass]="{'active': viewAdvancedFilter}"
         class="filter-button green circular-btn d-flex justify-content-center align-items-center">
         <img src="../../../../assets/SVG/filter.svg" height="" width="30">
         <p style="font-size: x-large; margin: 2px 0 0 15px; color: black;">Filter</p>
@@ -143,29 +133,29 @@
     </div>
   </div>
 
-  <mat-table [dataSource]="dataSource" class="data-table">
-    <ng-container matColumnDef="course_code" sticky>
+  <mat-table [dataSource]="dataSource" class="data-table" matSort>
+    <ng-container matColumnDef="course_code">
       <mat-header-cell *matHeaderCellDef> Course Code </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.code}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="title">
-      <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Title </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="worth">
-      <mat-header-cell *matHeaderCellDef> Worth </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Worth </mat-header-cell>
       <mat-cell *matCellDef="let element;">{{element.worth}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="grade">
-      <mat-header-cell *matHeaderCellDef> Grade </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Grade </mat-header-cell>
       <mat-cell *matCellDef="let element;">
         <mat-form-field appearance="fill">
           <!-- <mat-form-field> -->
           <!-- <mat-label>Choose Grade</mat-label> -->
-          <mat-select [(ngModel)]="element.grade">
+          <mat-select class="select" [(ngModel)]="element.grade">
             <!-- <mat-select [formControl]="grade" [(value)]="element.grade"> -->
             <mat-option value="Choose Grade"> Choose Grade </mat-option>
             <mat-option value="A"> A </mat-option>
@@ -180,20 +170,55 @@
     </ng-container>
 
     <ng-container matColumnDef="pre">
-      <mat-header-cell *matHeaderCellDef> Pre </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Pre </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.pre}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="honor">
-      <mat-header-cell *matHeaderCellDef> Honor </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Honor </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{(element.grade) ? gradeToValue(element.grade) * element.worth : ""}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="view">
+      <mat-header-cell *matHeaderCellDef> View Details </mat-header-cell>
+      <mat-cell *matCellDef="let course">
+        <button mat-button color="accent" (click)="displayCourse(course.code)">View</button>
       </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"
-      [ngClass]="{hovered: row.hovered, highlighted: row.highlighted}" (click)="row.highlighted = !row.highlighted"
+      [ngClass]="{hovered: row.hovered, highlighted: row.highlighted, graded: row.grade!='Choose Grade'}" (click)="row.highlighted = !row.highlighted"
       (mouseover)="row.hovered = true" (mouseout)="row.hovered = false">
     </mat-row>
   </mat-table>
+  <!-- <div class="d-flex justify-content-start align-items-center w-100 mt-3 mb-3">
+    <a (click)="goBack()" class="green circular-btn purple d-flex justify-content-center align-items-center">
+      <mat-icon>keyboard_arrow_left</mat-icon>BACK
+    </a>
+  </div> -->
+  <mat-card-actions vertical-align='bottom' align='end' class="mr-5">
+    <div>
+      <span *ngIf="userGPA" class="gpa mr-2 circular-btn active" style="font-size: x-large">
+        {{userGPA}}</span>
+      <button mat-stroked-button color="primary" (click)="calculateGPA()">Calculate GPA</button>
+    </div>
+    <button mat-raised-button color="primary" (click)="displayCourseAdd()">
+      Create Course
+    </button>
+  </mat-card-actions>
+  <!-- <mat-paginator [pageSize]="dataSource.data.length" [hidePageSize]="true" [itemsPerPageLabel]="false"
+    [disabled]="true">
+  </mat-paginator> -->
 </mat-card>
+
+
+<ng-template #childViews>
+  <div *ngIf="selectedCourse">
+    <app-course-details (onFinished)="goBack($event)" [course]="selectedCourse"></app-course-details>
+  </div>
+  <div *ngIf="viewAddCourse">
+    <app-course-create (onFinished)="goBack($event)"></app-course-create>
+  </div>
+</ng-template>
