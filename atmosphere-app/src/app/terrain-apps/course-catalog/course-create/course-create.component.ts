@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CourseCatalogService } from 'src/app/business-logic/course-catalog/course-catalog.service';
 import { Course } from 'src/app/business-logic/models/course';
+import { ToastService } from 'src/app/business-logic/toast/toast.service';
 
 @Component({
   selector: 'app-course-create',
@@ -17,69 +17,46 @@ export class CourseCreateComponent implements OnInit {
   term: string;
 
   constructor(
-    // private formBuilder: FormBuilder,
+    private toast: ToastService,
     private courseCatalogService: CourseCatalogService,
   ) { }
 
-  ngOnInit(): void {
-    // this.courseForm = this.formBuilder.group({
-    //   code: [''],
-    //   grade: [''],
-    //   term: [''],
-
-    //   // email: ['', [Validators.required, Validators.email]],
-    //   // password: ['', [Validators.required, Validators.minLength(8)]],
-    // })
-  }
+  ngOnInit(): void { }
 
   addToMycourse() {
-    // const f = this.courseForm;
+    //harcode for testing
     // const newCourse = new Course(
-    //   f.get('code').value,
-    //   f.get('title').value,
-    //   f.get('worth').value,
-    //   f.get('grade').value,
-    //   f.get('term').value
+    //   "INGE3011",
+    //   "",
+    //   0,
+    //   [],
+    //   [],
+    //   "D",
+    //   "2019",
     // );
     const newCourse = new Course(
-      // this.code,
-      // "",
-      // "",
-      // [],
-      // [],
-      // this.grade,
-      // this.term,
-      "QUIM3131",
+      this.code,
       "",
       0,
       [],
       [],
-      "F",
-      "2020",
-    );
+      this.grade,
+      this.term,
+    )
 
-    this.courseCatalogService.getCurriculum().subscribe(courses => {
-      // mycourses.filter(c => c.code == this.course.code); //filter function no funciona :(
-      // let i = courses.length - 1;
-      let i = 10;
-      for (; i >= 0; i--)
-        if (newCourse.code == courses[i].code)
-          break;
-
-      if (i >= 0) {
-        console.log(newCourse);
-
-        this.courseCatalogService.postCourseToMycourse(newCourse)
-        this.onFinished.emit('create')
+    this.courseCatalogService.getMycourseByCode(newCourse.code).subscribe(c => {
+      if (c.grade == null) {
+        this.toast.errorToast('A course with code <' + newCourse.code + '> provided does not exist within curriculum')
       }
-      else {
-        alert('Course with the code provided does not exist')
-      }
-      // for (let i = 0; i < courses.length; i++) {
-      //   const c = courses[i];
-      //   if (newCourse.code == c.code)
+      else
+        this.courseCatalogService.postCourseToMycourse(newCourse).subscribe(res => console.log(res));
+    },
+      error => {
+        console.log(error)
+      })
+  }
 
-      // }
-    })
+  delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 }
