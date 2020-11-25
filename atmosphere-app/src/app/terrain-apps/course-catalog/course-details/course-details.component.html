@@ -4,19 +4,15 @@
     get getGrade() { return this.course.grade } -->
 <mat-card style="padding: 20px 40px; margin: 100px;">
   <p class="code text-center">{{ getCode }}</p>
-
-  <p class="title">{{ getTitle }}</p>
+  <p>{{ getTitle }}</p>
   <p>Grade: {{ getGrade }}</p>
-
-  <p class="term">Term: {{ getTerm }}</p>
-  <p>Description: Write a general presentable description. Context doesn't matter. </p>
+  <p class="term" *ngIf="getTerm">Term: {{ getTerm }}</p>
+  <p>Description: Context of the course is important, but our stored courses don't have any. </p>
   <p>{{ getWorth }}</p>
   <p>{{ getPre }}</p>
 
-  <!-- <p>Syllabus: </p> -->
-
-  <!-- <p>{{ course.pre }}</p> -->
-  <button mat-button color="warn" (click)="deleteFromMycourses()">
+  <button *ngIf="getGrade" vertical-align='bottom' align='end' mat-raised-button color="warn"
+    (click)="deleteFromMycourses()">
     Delete from My Courses
   </button>
 </mat-card>
