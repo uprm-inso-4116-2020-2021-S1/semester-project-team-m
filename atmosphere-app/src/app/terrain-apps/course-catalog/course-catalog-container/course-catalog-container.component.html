@@ -8,7 +8,7 @@
     </ng-template>
   </div>
 </div>
-<!-- <hr class="mt-1"> -->
+<hr class="mt-1">
 
 <!-- <div class="sub-header mb-2"> -->
 <div class="d-flex justify-content-start align-items-center w-100 mt-3 mb-3">
@@ -16,14 +16,6 @@
     <mat-icon>keyboard_arrow_left</mat-icon>BACK
   </a>
 </div>
-<!-- </div> -->
-<!-- <hr> -->
-<!-- <div>
-    <button mat-raised-button class="ml-3" color="primary">
-      <p *ngIf="true" (click)="toogleTableCourses()">My Courses</p>
-    </button>
-  </div> -->
-<!-- </div> -->
 
 <mat-card *ngIf="viewAdvancedFilter && !selectedCourse && !viewAddCourse" class="mt-2" style="max-height: 300px">
   <div class="d-flex justify-content-start align-items-center p-3 title bg-light-gray">
@@ -134,8 +126,8 @@
   </div>
 
   <mat-table [dataSource]="dataSource" class="data-table" matSort>
-    <ng-container matColumnDef="course_code">
-      <mat-header-cell *matHeaderCellDef> Course Code </mat-header-cell>
+    <ng-container matColumnDef="code">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Course Code </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.code}} </mat-cell>
     </ng-container>
 
@@ -189,15 +181,10 @@
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"
-      [ngClass]="{hovered: row.hovered, highlighted: row.highlighted, graded: row.grade!='Choose Grade'}" (click)="row.highlighted = !row.highlighted"
-      (mouseover)="row.hovered = true" (mouseout)="row.hovered = false">
+      [ngClass]="{hovered: row.hovered, highlighted: row.highlighted, graded: row.grade!='Choose Grade'}"
+      (click)="row.highlighted = !row.highlighted" (mouseover)="row.hovered = true" (mouseout)="row.hovered = false">
     </mat-row>
   </mat-table>
-  <!-- <div class="d-flex justify-content-start align-items-center w-100 mt-3 mb-3">
-    <a (click)="goBack()" class="green circular-btn purple d-flex justify-content-center align-items-center">
-      <mat-icon>keyboard_arrow_left</mat-icon>BACK
-    </a>
-  </div> -->
   <mat-card-actions vertical-align='bottom' align='end' class="mr-5">
     <div>
       <span *ngIf="userGPA" class="gpa mr-2 circular-btn active" style="font-size: x-large">
@@ -205,7 +192,7 @@
       <button mat-stroked-button color="primary" (click)="calculateGPA()">Calculate GPA</button>
     </div>
     <button mat-raised-button color="primary" (click)="displayCourseAdd()">
-      Create Course
+      Add to my courses
     </button>
   </mat-card-actions>
   <!-- <mat-paginator [pageSize]="dataSource.data.length" [hidePageSize]="true" [itemsPerPageLabel]="false"

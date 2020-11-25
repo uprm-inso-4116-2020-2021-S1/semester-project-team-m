@@ -115,7 +115,7 @@ export class AuthComponent implements OnInit {
     else {
       this.authService.register(this.registerForm.value).subscribe(
         result => {
-          console.log(result);
+          this.toast.successToast("Welcome to Rum's Atmosphere!")
           this.signin()
         }
       )

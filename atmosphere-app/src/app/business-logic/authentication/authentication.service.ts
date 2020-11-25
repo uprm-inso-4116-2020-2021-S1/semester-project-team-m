@@ -62,8 +62,8 @@ export class AuthenticationService {
       email: authData.email,
       password: authData.password,
       student_id: authData.student_id,
-      major: "INSO",
-      curriculum_year: 2015,
+      major: "INSO", //hardcoded (only curriculum we have stored)
+      curriculum_year: 2015, //hardcode (term of the curriculum we have stored)
     });
 
     return this.http.post(`${this.baseUrl}api/register/`, body, {

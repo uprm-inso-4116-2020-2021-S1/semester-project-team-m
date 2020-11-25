@@ -26,7 +26,7 @@ export class CourseCatalogContainerComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator; // For pagination
   @ViewChild(MatSort) sort: MatSort; // For Sort
   public displayedColumns = [
-    'course_code',
+    'code',
     'title',
     'worth',
     'grade', //mat-select
@@ -145,7 +145,6 @@ export class CourseCatalogContainerComponent implements OnInit {
     for (let row of this.dataSource.data) {
       //2 is current index of credit worth
       //5 is current index of gpa points
-      console.log(row.grade);
       if (row.grade == 'A') {
         total_points += row.worth * 4;
         total_credits += row.worth;
@@ -269,17 +268,20 @@ export class CourseCatalogContainerComponent implements OnInit {
     if (this.emptySearchFields(this.gradeFields))
       return false;
 
-    const grade = this.gradeToValue(course.grade);
+    const grade = this.gradeToValue(course.grade, true);
+    if (grade === -1)
+      return false;
+
     for (const field of this.gradeFields) {
-      const fieldGrade = this.gradeToValue(field.value)
+      const fieldGrade = this.gradeToValue(field.value);
       if (undefined !== fieldGrade && grade === fieldGrade) // course's grade same as fieldGrade?
         return true;
     }
     return false;
   }
 
-  gradeToValue(grade: string): number {
-    if (grade.length > 1) return 0;
+  gradeToValue(grade: string, considerChooseGrade?): number {
+    if (grade.length > 1) return (considerChooseGrade) ? -1 : 0;
     let value = 69 - grade.charCodeAt(0);
     return (value === -1) ? 0 : value;
   }
@@ -344,16 +346,41 @@ export class CourseCatalogContainerComponent implements OnInit {
       searchFields.push(new SearchField(''));
   }
 
-  /** pushes all original students to the clone and filtered array.
-   */
+  /** pushes all original students to the clone and filtered array. */
   copyOriginal() {
     this.originalCourses.forEach(course => {
       this.filteredCourses.push(course);
     });
   }
+  generalFilter() { this.dataSource.filter = this.genIn; }
+
 
   /** Returns true if given string is numeric. */
   isNumeric(value: string): boolean {
     return value != null && !isNaN(Number(value));
   }
+
+  // sortData(sort: Sort) {
+  //   console.log("Sorting")
+  //   const data = this.originalCourses;
+  //   if (!sort.active || sort.direction === '') {
+  //     this.dataSource.data = data;
+  //     return;
+  //   }
+
+  //   this.dataSource.data = data.sort((a, b) => {
+  //     const isAsc = sort.direction === 'asc';
+  //     switch (sort.active) {
+  //       case 'code': return this.compare(a.code, b.code, isAsc);
+  //       case 'title': return this.compare(a.title, b.title, isAsc);
+  //       case 'worth': return this.compare(a.worth, b.worth, isAsc);
+  //       case 'grade': return this.compare(a.grade, b.grade, isAsc);
+  //       default: return 0;
+  //     }
+  //   });
+  // }
+
+  // compare(a: number | string, b: number | string, isAsc: boolean) {
+  //   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+  // }
 }
