@@ -76,27 +76,27 @@ export class AuthComponent implements OnInit {
     let email = this.registerForm.get('email').value;
     let password = this.registerForm.get('password').value;
 
-    // if (!email.includes('@'))
-    //   this.toast.infoToast('Please provide a valid email address');
-    // else if (!password)
-    //   this.toast.infoToast('Please provide a password');
-    // else {
-    this.authService.signin(this.logInForm.value).subscribe(
-      (res: TokenObj) => {
-        console.log('Token', res)
-        this.cookieService.set('courses-token', res['token']);
-        this.toast.successToast("User successfully logged in")
-        this.router.navigate(['/home']);
-      },
-      error => {
-        this.toast.errorToast('User Not Found');
-        this.logInForm.setValue({
-          email: email,
-          password: ''
-        })
-      },
-    );
-    // }
+    if (!email.includes('@'))
+      this.toast.infoToast('Please provide a valid email address');
+    else if (!password)
+      this.toast.infoToast('Please provide a password');
+    else {
+      this.authService.signin(this.logInForm.value).subscribe(
+        (res: TokenObj) => {
+          console.log('Token', res)
+          this.cookieService.set('courses-token', res['token']);
+          this.toast.successToast("User successfully logged in")
+          this.router.navigate(['/home']);
+        },
+        error => {
+          this.toast.errorToast('User Not Found');
+          this.logInForm.setValue({
+            email: email,
+            password: ''
+          })
+        },
+      );
+    }
   }
 
   register() {
