@@ -17,7 +17,7 @@
   </a>
 </div>
 
-<mat-card *ngIf="viewAdvancedFilter && !selectedCourse && !viewAddCourse" class="mt-2" style="max-height: 300px">
+<mat-card *ngIf="viewAdvancedFilter && !selectedCourse && !viewAddCourse" class="mt-2">
   <div class="d-flex justify-content-start align-items-center p-3 title bg-light-gray">
     <h6 class="m-0">Advanced Filter</h6>
   </div>
@@ -78,30 +78,29 @@
       </div>
     </div>
 
-
     <div class="advanced-filter-buttons">
-      <div style="display: inline">
-        <button class="mr-3" mat-stroked-button color="primary" (click)="removeEmptyFields()">
+      <div class="text-center mt-1">
+        <button style="width: 50%" class="mr-3" mat-stroked-button color="primary" (click)="removeEmptyFields()">
           Remove Empty Fields
         </button>
       </div>
-
-      <div *ngIf="!allEmptyFields(); else disabled">
-        <button class="apply-filter" style="width: 75%" mat-raised-button color="primary" (click)="applyFilter()">
-          Filter Now
-        </button>
+      <div class="mr-3 mt-3">
+        <div class="text-center">
+          <button mat-raised-button color="primary" *ngIf="!allEmptyFields(); else disabled" (click)="applyFilter()"
+            style="width: 70%">
+            Filter Now
+          </button>
+          <ng-template #disabled>
+            <button disabled mat-raised-button style="width: 70%">Filter Now</button>
+          </ng-template>
+        </div>
       </div>
-      <ng-template #disabled>
-        <button class="apply-filter" style="width: 75%" mat-raised-button color="primary" disabled>
-          Filter Now
-        </button>
-      </ng-template>
     </div>
   </div>
 </mat-card>
 
 
-<mat-card *ngIf="!selectedCourse && !viewAddCourse; else childViews" class="mt-2" style="overflow: hidden">
+<mat-card class="card-table" class="" *ngIf="!selectedCourse && !viewAddCourse; else childViews" class="mt-2">
   <div class="d-flex mb-4">
     <div id="search-field">
       <mat-form-field style="width: 100%">
