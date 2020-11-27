@@ -1,6 +1,5 @@
 header {
   padding: 20px;
-  background-color: #5E10BC;
   /* height: 100%; */
 }
 
@@ -16,4 +15,14 @@ header {
 
 li {
   list-style: none;
+}
+
+#signInBtn {
+  cursor: pointer;
+}
+#signInBtn:hover {
+  border-bottom-style: solid;
+  border-bottom-color: #74da6b !important;
+  border-bottom-width: 4px;
+  padding-bottom: 4px;
 }
