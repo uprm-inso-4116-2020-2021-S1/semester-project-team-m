@@ -7,7 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./terrain-container.component.css']
 })
 export class TerrainContainerComponent implements OnInit {
-  public viewCatalog = false;
+  public viewCatalogue = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,7 +24,7 @@ export class TerrainContainerComponent implements OnInit {
 
   hideViewCatalog(whatIPassed) {
     console.log("What I passed from other component", whatIPassed)
-    this.viewCatalog = whatIPassed;
+    this.viewCatalogue = whatIPassed;
   }
 
   detectCourseCatalog() {

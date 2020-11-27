@@ -8,9 +8,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule, MatCardModule, MatIconModule, MatPaginatorModule, MatSortModule } from '@angular/material';
-import { CourseCatalogContainerComponent } from './course-catalog-container/course-catalog-container.component';
+import { CourseCatalogueContainerComponent } from './course-catalogue-container/course-catalogue-container.component';
 import { CourseDetailsComponent } from './course-details/course-details.component';
-import { CourseCreateComponent } from './course-create/course-create.component';
+import { CourseAddComponent } from './course-add/course-add.component';
 
 // import { MaterialModule } from '../../material.module'
 
@@ -20,9 +20,9 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    CourseCatalogContainerComponent,
+    CourseCatalogueContainerComponent,
     CourseDetailsComponent,
-    CourseCreateComponent
+    CourseAddComponent
   ],
   imports: [
     CommonModule,
@@ -44,8 +44,9 @@ const routes: Routes = [
   exports: [
     RouterModule,
     CourseDetailsComponent,
-    CourseCatalogContainerComponent
+    CourseCatalogueContainerComponent,
+    CourseAddComponent
   ],
   providers: []
 })
-export class CourseCatalogModule { }
+export class CourseCatalogueModule { }

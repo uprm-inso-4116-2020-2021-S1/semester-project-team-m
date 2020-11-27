@@ -6,11 +6,11 @@ import { Course } from 'src/app/business-logic/models/course';
 import { ToastService } from 'src/app/business-logic/toast/toast.service';
 
 @Component({
-  selector: 'app-course-create',
-  templateUrl: './course-create.component.html',
-  styleUrls: ['./course-create.component.css']
+  selector: 'app-course-add',
+  templateUrl: './course-add.component.html',
+  styleUrls: ['./course-add.component.css']
 })
-export class CourseCreateComponent implements OnInit {
+export class CourseAddComponent implements OnInit {
   @Output() onFinished = new EventEmitter<string>();
 
   // public courseForm: FormGroup;

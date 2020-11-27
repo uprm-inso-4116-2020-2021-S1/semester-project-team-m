@@ -15,11 +15,11 @@ class SearchField<E> {
   constructor(v: E) { this.value = v; }
 }
 @Component({
-  selector: 'app-course-catalog-container',
-  templateUrl: './course-catalog-container.component.html',
-  styleUrls: ['./course-catalog-container.component.css']
+  selector: 'app-course-catalogue-container',
+  templateUrl: './course-catalogue-container.component.html',
+  styleUrls: ['./course-catalogue-container.component.css']
 })
-export class CourseCatalogContainerComponent implements OnInit {
+export class CourseCatalogueContainerComponent implements OnInit {
   @Output() onFinished = new EventEmitter<boolean>();
 
   public dataSource = new MatTableDataSource<Course>();
