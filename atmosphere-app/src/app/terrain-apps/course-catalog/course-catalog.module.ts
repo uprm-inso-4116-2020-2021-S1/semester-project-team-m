@@ -8,7 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule, MatCardModule, MatIconModule, MatPaginatorModule, MatSortModule } from '@angular/material';
-import { CourseCatalogueContainerComponent } from './course-catalogue-container/course-catalogue-container.component';
+import { CourseCatalogContainerComponent } from './course-catalog-container/course-catalog-container.component';
 import { CourseDetailsComponent } from './course-details/course-details.component';
 import { CourseAddComponent } from './course-add/course-add.component';
 
@@ -20,7 +20,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    CourseCatalogueContainerComponent,
+    CourseCatalogContainerComponent,
     CourseDetailsComponent,
     CourseAddComponent
   ],
@@ -44,9 +44,9 @@ const routes: Routes = [
   exports: [
     RouterModule,
     CourseDetailsComponent,
-    CourseCatalogueContainerComponent,
+    CourseCatalogContainerComponent,
     CourseAddComponent
   ],
   providers: []
 })
-export class CourseCatalogueModule { }
+export class CourseCatalogModule { }
