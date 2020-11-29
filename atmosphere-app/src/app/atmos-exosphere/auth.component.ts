@@ -54,7 +54,7 @@ export class AuthComponent implements OnInit {
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(8)]],
         confirmPassword: [''],
-        student_id: ['']
+        student_id: ['', [Validators.required]]
       },
       {
         validator: this.checkPassword
@@ -75,11 +75,14 @@ export class AuthComponent implements OnInit {
   signin() {
     let email = this.signinForm.get('email').value;
     let password = this.signinForm.get('password').value;
+    let student_id = this.signinForm.get('student_id').value;
 
     if (!email.includes('@'))
       this.toast.infoToast('Please provide a valid email address');
     else if (!password)
       this.toast.infoToast('Please provide a password');
+    else if (!student_id)
+      this.toast.infoToast('Please provide a student id');
     else {
       this.authService.signin(this.signinForm.value).subscribe(
         (res: TokenObj) => {
