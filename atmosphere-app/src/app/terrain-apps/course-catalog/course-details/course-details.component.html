@@ -11,7 +11,7 @@
   <p>{{ getWorth }}</p>
   <p>{{ getPre }}</p>
 
-  <button *ngIf="getGrade" vertical-align='bottom' align='end' mat-raised-button color="warn"
+  <button *ngIf="getGrade.length === 1" vertical-align='bottom' align='end' mat-raised-button color="warn"
     (click)="deleteFromMycourses()">
     Delete from My Courses
   </button>
