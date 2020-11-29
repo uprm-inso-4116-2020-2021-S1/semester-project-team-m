@@ -75,14 +75,11 @@ export class AuthComponent implements OnInit {
   signin() {
     let email = this.signinForm.get('email').value;
     let password = this.signinForm.get('password').value;
-    let student_id = this.signinForm.get('student_id').value;
 
     if (!email.includes('@'))
       this.toast.infoToast('Please provide a valid email address');
     else if (!password)
       this.toast.infoToast('Please provide a password');
-    else if (!student_id)
-      this.toast.infoToast('Please provide a student id');
     else {
       this.authService.signin(this.signinForm.value).subscribe(
         (res: TokenObj) => {
@@ -104,6 +101,7 @@ export class AuthComponent implements OnInit {
 
   register() {
     let email = this.registerForm.get('email').value;
+    let student_id = this.registerForm.get('student_id').value;
     let password = this.registerForm.get('password').value;
     let confirmPassword = this.registerForm.get('confirmPassword').value;
 
@@ -111,6 +109,8 @@ export class AuthComponent implements OnInit {
       this.toast.infoToast('Please provide a valid email address');
     else if (!password)
       this.toast.infoToast('Please provide a password');
+    else if (!student_id)
+      this.toast.infoToast('Please provide a student id')
     else if (password.length > 8)
       this.toast.errorToast('Password length - up to 8 characters');
     else if (password !== confirmPassword)
