@@ -52,7 +52,7 @@ export class AuthComponent implements OnInit {
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(8)]],
         confirmPassword: [''],
-        student_id: ['']
+        student_id: ['', [Validators.required]]
       },
       {
         validator: this.checkPassword
