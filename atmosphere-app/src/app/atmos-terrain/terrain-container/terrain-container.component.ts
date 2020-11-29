@@ -18,7 +18,7 @@ export class TerrainContainerComponent implements OnInit {
     // this.router.
     const redirectToWhom = this.route.snapshot.paramMap.get('componentToRerouteTo');
     if (redirectToWhom === 'catalog')
-      this.router.navigate(['home/catalogue/'])
+      this.router.navigate(['home/catalog/'])
   }
 
 

@@ -127,7 +127,7 @@ export class CourseCatalogContainerComponent implements OnInit {
       this.viewAddCourse = false;
       // this.updateStudentsTable();
     }
-    else if (cameFrom === 'create' || cameFrom === 'details')
+    else if (cameFrom === 'add' || cameFrom === 'details')
       this.updateStudentsTable();
     else
       this.router.navigate(['home/apps']);
