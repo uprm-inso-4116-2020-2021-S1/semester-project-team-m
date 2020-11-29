@@ -46,6 +46,9 @@
 
                 <mat-form-field>
                   <input matInput placeholder="student id" formControlName="student_id" required>
+                  <mat-error *ngIf="registerForm.hasError('required', 'student_id')">
+                    Student ID is required
+                  </mat-error>
                 </mat-form-field>
 
                 <mat-form-field>
