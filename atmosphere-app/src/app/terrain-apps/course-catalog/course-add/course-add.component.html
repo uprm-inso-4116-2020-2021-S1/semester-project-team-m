@@ -10,21 +10,30 @@
       <div class="fields mt-1">
         <div class="field mat-select">
           <mat-form-field for flex class="md-icon-float md-block md-title">
-            <mat-select placeholder="Choose Code" [(ngModel)]="codeForm">
+            <mat-select placeholder="Choose Code" [(ngModel)]="codeForm.value">
               <mat-option *ngFor="let codeOption of codeOptions" [value]="codeOption">
                 {{codeOption}}
               </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
-        <div class="field">
+        <!-- <div class="field">
           <mat-form-field>
             <input matInput [(ngModel)]="grade" type="text" placeholder="Grade" name="grade" />
+          </mat-form-field>
+        </div> -->
+        <div class="field mat-select">
+          <mat-form-field for flex class="md-icon-float md-block md-title">
+            <mat-select placeholder="Choose Grade" [(ngModel)]="gradeForm.value">
+              <mat-option *ngFor="let gradeOption of gradeOptions" [value]="gradeOption">
+                {{gradeOption}}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
         </div>
         <div class="field">
           <mat-form-field>
-            <input matInput [(ngModel)]="term" type="text" placeholder="Term" name="term" />
+            <input matInput [(ngModel)]="term" type="number" placeholder="Term" name="term" />
           </mat-form-field>
         </div>
       </div>
