@@ -54,7 +54,7 @@ export class CourseCatalogContainerComponent implements OnInit {
   // course lists
   public originalCourses: Course[] = []; //: Course[];
   public filteredCourses: Course[] = []; //: Course[] = [];
-  public mycourses: Course[] = [];
+  public mycoursesCode: string[] = [];
 
   // input fields configurations
 
@@ -71,6 +71,7 @@ export class CourseCatalogContainerComponent implements OnInit {
   //user gpa var
   public userGPA = '';
   public messages: any;
+  public cache;
 
   constructor(
     private router: Router,
@@ -95,6 +96,12 @@ export class CourseCatalogContainerComponent implements OnInit {
     this.gradeOptions.push('D')
     this.gradeOptions.push('F')
 
+    this.courseCatalogService.getMyCourses().subscribe(mycourses => {
+      console.log(mycourses);
+      mycourses.forEach(c => {
+        this.mycoursesCode.push(c.code)
+      })
+    })
     this.courseCatalogService.getCurriculum().subscribe(courses => {
       // console.log(courses)
       this.originalCourses = this.dataSource.data = courses;
@@ -165,7 +172,9 @@ export class CourseCatalogContainerComponent implements OnInit {
     else this.userGPA = '';
   }
 
-
+  courseTaken(code) {
+    return this.mycoursesCode.includes(code);
+  }
 
 
   /* ----------------     Advance Filter Section     ---------------- */

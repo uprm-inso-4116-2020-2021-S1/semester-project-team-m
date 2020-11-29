@@ -27,7 +27,7 @@ interface TokenObj {
 export class AuthComponent implements OnInit {
   message: any = "";
 
-  logInForm: FormGroup;
+  signinForm: FormGroup;
   registerForm: FormGroup;
   matcher = new MyErrorStateMatcher();
 
@@ -44,7 +44,7 @@ export class AuthComponent implements OnInit {
     if (coursesToken)
       this.router.navigate(['/home'])
 
-    this.logInForm = this.formBuilder.group({
+    this.signinForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
     })
@@ -73,15 +73,15 @@ export class AuthComponent implements OnInit {
   }
 
   signin() {
-    let email = this.registerForm.get('email').value;
-    let password = this.registerForm.get('password').value;
+    let email = this.signinForm.get('email').value;
+    let password = this.signinForm.get('password').value;
 
     if (!email.includes('@'))
       this.toast.infoToast('Please provide a valid email address');
     else if (!password)
       this.toast.infoToast('Please provide a password');
     else {
-      this.authService.signin(this.logInForm.value).subscribe(
+      this.authService.signin(this.signinForm.value).subscribe(
         (res: TokenObj) => {
           console.log('Token', res)
           this.cookieService.set('courses-token', res['token']);
@@ -90,7 +90,7 @@ export class AuthComponent implements OnInit {
         },
         error => {
           this.toast.errorToast('User Not Found');
-          this.logInForm.setValue({
+          this.signinForm.setValue({
             email: email,
             password: ''
           })

@@ -8,12 +8,12 @@
         <mat-tab-group mat-stretch-tabs>
           <mat-tab label="Sign In">
             <mat-card-content>
-              <form class="form" [formGroup]="logInForm">
+              <form class="form" [formGroup]="signinForm">
 
                 <mat-form-field>
                   <input matInput placeholder="email" formControlName="email" required />
                   <mat-icon matSuffix>email</mat-icon>
-                  <mat-error *ngIf="logInForm.hasError('required', 'email')">
+                  <mat-error *ngIf="signinForm.hasError('required', 'email')">
                     Email is Invalid
                   </mat-error>
                 </mat-form-field>
@@ -22,7 +22,7 @@
                   <input matInput #input placeholder="password" formControlName="password" [type]="'password'"
                     required />
                   <mat-icon matSuffix>lock</mat-icon>
-                  <mat-error *ngIf="logInForm.hasError('required', 'password')">
+                  <mat-error *ngIf="signinForm.hasError('required', 'password')">
                     Password is required
                   </mat-error>
                   <mat-hint align="end">{{input.value?.length || 0}}/8</mat-hint>

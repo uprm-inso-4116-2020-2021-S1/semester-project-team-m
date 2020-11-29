@@ -177,10 +177,9 @@
         <button mat-button color="accent" (click)="displayCourse(course.code)">View</button>
       </mat-cell>
     </ng-container>
-
+    <!-- [ngClass]="{hovered: row.hovered, highlighted: row.highlighted, graded: row.grade!='Choose Grade'}" -->
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"
-      [ngClass]="{hovered: row.hovered, highlighted: row.highlighted, graded: row.grade!='Choose Grade'}"
+    <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{graded: mycoursesCode.includes(row.code)}"
       (click)="row.highlighted = !row.highlighted" (mouseover)="row.hovered = true" (mouseout)="row.hovered = false">
     </mat-row>
   </mat-table>
@@ -191,7 +190,7 @@
       <button mat-stroked-button color="primary" (click)="calculateGPA()">Calculate GPA</button>
     </div>
     <button mat-raised-button color="primary" (click)="viewAddCourse = true">
-      Add to my courses
+      Set to my courses
     </button>
   </mat-card-actions>
   <!-- <mat-paginator [pageSize]="dataSource.data.length" [hidePageSize]="true" [itemsPerPageLabel]="false"
@@ -205,6 +204,6 @@
     <app-course-details (onFinished)="goBack($event)" [course]="selectedCourse"></app-course-details>
   </div>
   <div *ngIf="viewAddCourse">
-    <app-course-create (onFinished)="goBack($event)"></app-course-create>
+    <app-course-add (onFinished)="goBack($event)"></app-course-add>
   </div>
 </ng-template>
